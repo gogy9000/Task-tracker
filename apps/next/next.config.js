@@ -7,6 +7,7 @@ module.exports = withNativebase({
     '@expo/next-adapter',
     'react-native-vector-icons',
     'react-native-vector-icons-for-web',
+    "@react-native-community/hooks",
     'solito',
     'app',
   ],

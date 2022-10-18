@@ -1,11 +1,20 @@
 import React from "react";
 import { Center, Heading, useBreakpointValue } from 'native-base'
-import { HEIGHT } from 'app/common/Variables'
-import { Dimensions } from 'react-native'
+import { useDimensions } from '@react-native-community/hooks'
+
+
+
+// let newHook;
+//
+// (async () => {
+//
+//   const { useDimensions } = await import('@react-native-community/hooks');
+//   newHook = useDimensions;
+// })();
 
 export const EmptyContent = () => {
 
-    const {height}=Dimensions.get("screen")
+  const {height}=useDimensions().screen
 
 
     return (
