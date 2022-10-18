@@ -2,8 +2,7 @@ import React, {FC, memo, useCallback, useState} from "react";
 import {Api} from "../DAL/Api";
 import {Todo} from "./Todo";
 import {Tasks} from "./Tasks";
-import {TodoListItem} from "../DAL/types/types";
-import {ActivityIndicator} from "react-native";
+import { FeedbackMutationType, TodoListItem } from '../DAL/types/types'
 import { Spinner } from 'native-base'
 
 type TodoContainerProps = {
@@ -13,9 +12,8 @@ type TodoContainerProps = {
 export const TodoContainer: FC<TodoContainerProps> = memo(({todo}) => {
     const [taskTitle, setTaskTitle] = useState("")
     const {data, isLoading} = Api.useGetTasksQuery({todolistId: todo._id})
-    const [deleteTodo,deleteFeedbackData] = Api.useDeleteTodoMutation()
+    const [deleteTodo,deleteFeedbackData ] = Api.useDeleteTodoMutation()
     const [postTask,postFeedbackData ] = Api.usePostTaskMutation()
-    console.log(deleteFeedbackData)
     const tasks = data?.items
 
     const onChangeTodoTitle = useCallback((value: string) => {
@@ -23,7 +21,10 @@ export const TodoContainer: FC<TodoContainerProps> = memo(({todo}) => {
     }, [taskTitle])
 
     const addTaskHandler = useCallback(() => {
-        postTask({todolistId: todo._id, title: taskTitle})
+        if(!taskTitle.trim()){
+            return
+        }
+        postTask({todolistId: todo._id, title: taskTitle.trim()})
         setTaskTitle("")
     }, [todo._id, taskTitle])
 
@@ -33,8 +34,8 @@ export const TodoContainer: FC<TodoContainerProps> = memo(({todo}) => {
 
     return (
         <Todo
-            postFeedbackData={postFeedbackData}
-            deleteFeedbackData={deleteFeedbackData}
+            postFeedbackData={postFeedbackData as FeedbackMutationType}
+            deleteFeedbackData={deleteFeedbackData as FeedbackMutationType}
             currentTaskTitle={taskTitle}
             onChangeTaskTitle={onChangeTodoTitle}
             todo={todo}
