@@ -14,8 +14,8 @@ import {
 } from 'native-base'
 
 type TodoProps = {
-  postFeedbackData:FeedbackMutationType
-  deleteFeedbackData:FeedbackMutationType
+  postFeedbackData: FeedbackMutationType
+  deleteFeedbackData: FeedbackMutationType
   viewMod?: boolean
   todo: TodoListItem
   children?: ReactElement
@@ -27,7 +27,17 @@ type TodoProps = {
 }
 
 export const Todo: FC<TodoProps> = memo((props) => {
-  const { deleteFeedbackData,postFeedbackData, children, addTaskHandler, todo, viewMod, onChangeTaskTitle, currentTaskTitle, deleteTodoHandler } = props
+  const {
+    deleteFeedbackData,
+    postFeedbackData,
+    children,
+    addTaskHandler,
+    todo,
+    viewMod,
+    onChangeTaskTitle,
+    currentTaskTitle,
+    deleteTodoHandler
+  } = props
 
   const onAddTask = useCallback(() => {
     addTaskHandler && addTaskHandler()
@@ -65,7 +75,7 @@ export const Todo: FC<TodoProps> = memo((props) => {
       </HStack>
       {
         !viewMod &&
-        <HStack space={1}>
+        <HStack>
           <Input flex={1}
                  variant={'underlined'}
                  _focus={{
@@ -83,7 +93,13 @@ export const Todo: FC<TodoProps> = memo((props) => {
                  onChangeText={onChangeTaskTitle}
                  value={currentTaskTitle}
           />
-          <Button colorScheme={'blue'} variant={'subtle'} onPress={onAddTask}>add task</Button>
+          <Button isLoading={postFeedbackData.isLoading}
+                  disabled={postFeedbackData.isLoading}
+                  colorScheme={'blue'} variant={'subtle'}
+                  onPress={onAddTask}
+          >
+            add task
+          </Button>
         </HStack>
       }
       {children || null}
