@@ -39,19 +39,24 @@ export const Header: FC<HeaderProps> = memo(() => {
       <HStack px='1' py='1' space={2}>
         <Input
           flex={1}
+          size={'2xl'}
+          color={'rgb(255,255,255)'}
+          variant={'underlined'}
           onChangeText={onTextInput}
           value={inputValue}
-
-          placeholderTextColor={TEXTCOLOR}
+          placeholderTextColor={'rgb(255,255,255)'}
           placeholder={'Todo...'}
-
+          _focus={{ borderColor: 'rgb(255,255,255)' }}
         />
-        <Button variant={'outline'}
-                isLoading={true}
-                isDisabled={true}
+        <Button variant={'ghost'}
+                isLoading={isLoading}
+                isDisabled={isLoading}
                 isLoadingText={'fetching'}
                 colorScheme={'rgb(255,255,255)'}
                 onPress={onCreateTodo}
+                _hover={{
+                  bg: 'white.100:alpha.10'
+                }}
                 _spinner={{
                   color: 'white'
                 }}
