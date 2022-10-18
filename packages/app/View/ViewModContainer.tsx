@@ -1,20 +1,32 @@
-import {FC, memo, ReactElement} from "react";
-import React from "react";
-import {Box, Center} from "native-base";
+import { FC, memo, ReactElement } from 'react'
+import React from 'react'
+import { Box } from 'native-base'
 
 type TodoContainerProps = {
-    children?: ReactElement
+  children?: ReactElement
 }
 
-export const ViewModContainer: FC<TodoContainerProps> = memo(({children}) => {
+export const ViewModContainer: FC<TodoContainerProps> = memo(({ children }) => {
 
-    return (
-        <Center w={"100%"} >
-            <Box maxW="360" w="100%" >
-                {children}
-            </Box>
-        </Center>
+  return (
+      <Box  px={"3"} maxW={'1000'} py={"1"} mt={"1"} borderColor={'coolGray.200'} rounded='lg' borderWidth='1'
+           _dark={{
+             borderColor: 'coolGray.600',
+             backgroundColor: 'gray.700'
+           }}
+           _web={{
+             alignSelf:'center',
+             minW:'500',
+             shadow: 2,
+             borderWidth: 2
+           }} _light={{
+        backgroundColor: 'gray.50'
+      }}>
+        {children}
+      </Box>
 
-    )
+
+
+  )
 })
 
