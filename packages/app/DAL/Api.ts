@@ -29,7 +29,7 @@ const axiosQuery = (
             // }
         // }
         try {
-            console.log(headers)
+            // console.log(headers)
             const result = await axios({url: baseUrl + url, method, data, params, headers, withCredentials})
             // console.log(result)
             // if (result.headers["set-cookie"]) {

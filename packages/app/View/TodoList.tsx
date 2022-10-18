@@ -8,6 +8,7 @@ import { Api } from '../DAL/Api'
 import { TodoListItem } from '../DAL/types/types'
 import { TaskList } from './TaskList'
 import { TodoContainer } from './TodoContainer'
+import { Center, Spinner } from 'native-base'
 
 export const TodoList = () => {
   const { data: todoList, isLoading, isError, error } = Api.useGetTodoListQuery()
@@ -31,14 +32,19 @@ export const TodoList = () => {
   }
 
   if (isLoading) {
-    return <ActivityIndicator />
+    return (
+      <Center flex={1}>
+        <Spinner size={"lg"} />
+      </Center>
+    )
   }
   if (isError) {
     return (
+      <Center flex={1}>
       <Text>error</Text>
+      </Center>
     )
   }
-
   return (
     <FlatList
       data={todoList}

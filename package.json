@@ -16,7 +16,5 @@
     "native": "cd apps/expo && expo start",
     "web": "cd apps/next && yarn next"
   },
-  "dependencies": {
-    "eslint-config-universe": "^11.1.0"
-  }
+  "dependencies": {}
 }

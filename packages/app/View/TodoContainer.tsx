@@ -4,6 +4,7 @@ import {Todo} from "./Todo";
 import {Tasks} from "./Tasks";
 import {TodoListItem} from "../DAL/types/types";
 import {ActivityIndicator} from "react-native";
+import { Spinner } from 'native-base'
 
 type TodoContainerProps = {
     todo: TodoListItem
@@ -12,8 +13,9 @@ type TodoContainerProps = {
 export const TodoContainer: FC<TodoContainerProps> = memo(({todo}) => {
     const [taskTitle, setTaskTitle] = useState("")
     const {data, isLoading} = Api.useGetTasksQuery({todolistId: todo._id})
-    const [deleteTodo] = Api.useDeleteTodoMutation()
-    const [postTask] = Api.usePostTaskMutation()
+    const [deleteTodo,deleteFeedbackData] = Api.useDeleteTodoMutation()
+    const [postTask,postFeedbackData ] = Api.usePostTaskMutation()
+    console.log(deleteFeedbackData)
     const tasks = data?.items
 
     const onChangeTodoTitle = useCallback((value: string) => {
@@ -31,6 +33,8 @@ export const TodoContainer: FC<TodoContainerProps> = memo(({todo}) => {
 
     return (
         <Todo
+            postFeedbackData={postFeedbackData}
+            deleteFeedbackData={deleteFeedbackData}
             currentTaskTitle={taskTitle}
             onChangeTaskTitle={onChangeTodoTitle}
             todo={todo}
@@ -38,7 +42,7 @@ export const TodoContainer: FC<TodoContainerProps> = memo(({todo}) => {
             deleteTodoHandler={deleteTodoHandler}
         >
             {isLoading ?
-                <ActivityIndicator color={"white"} size={"large"}/>
+                <Spinner size={"lg"}/>
                 :
                 <Tasks todo={todo} tasks={tasks}/>}
         </Todo>

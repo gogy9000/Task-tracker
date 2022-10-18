@@ -1,5 +1,5 @@
 import { StyleSheet, View, StatusBar, TextInput, Dimensions } from 'react-native'
-import { BACKGROUNDCOLOR, HEIGHT, PADDING, TEXTCOLOR, WIDTH } from '../common/Variables'
+import { BACKGROUNDCOLOR, HEIGHT, PADDING, TEXTCOLOR_PRIMARY, WIDTH } from '../common/Variables'
 import { FC, memo, useCallback, useEffect, useState } from 'react'
 import { CustomButton } from '../common/CustomButton'
 import React from 'react'

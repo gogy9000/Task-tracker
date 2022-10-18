@@ -1,5 +1,5 @@
 import {View, StyleSheet, Text} from "react-native";
-import {BACKGROUNDCOLOR, HEIGHT, TEXTCOLOR, WIDTH} from "../common/Variables";
+import {BACKGROUNDCOLOR, HEIGHT, TEXTCOLOR_PRIMARY, WIDTH} from "../common/Variables";
 import {CustomButton} from "../common/CustomButton";
 import React from "react";
 
@@ -11,7 +11,7 @@ export const AppBar = () => {
             </CustomButton>
             <CustomButton>B</CustomButton>
             <CustomButton
-                styleButton={{...styles.button, backgroundColor: TEXTCOLOR}}
+                styleButton={{...styles.button, backgroundColor: TEXTCOLOR_PRIMARY}}
                 styleTitle={{color: "black"}}
                 title={"C"}/>
             <CustomButton

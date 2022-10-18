@@ -1,25 +1,18 @@
-import {Text, View, StyleSheet} from "react-native";
-import {FONTSIZEPrimary, HEIGHT, TEXTCOLOR, WIDTH} from "../common/Variables";
 import React from "react";
+import { Center, Heading, useBreakpointValue } from 'native-base'
+import { HEIGHT } from 'app/common/Variables'
+import { Dimensions } from 'react-native'
 
 export const EmptyContent = () => {
+
+    const {height}=Dimensions.get("screen")
+
+
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>
+        <Center h={height*0.6}>
+            <Heading>
                 O curva! list is empty!
-            </Text>
-        </View>
+            </Heading>
+        </Center>
     )
 }
-const styles = StyleSheet.create({
-    container: {
-        width: WIDTH,
-        height: HEIGHT * 0.79,
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    title: {
-        color: TEXTCOLOR,
-        fontSize: FONTSIZEPrimary,
-    }
-})

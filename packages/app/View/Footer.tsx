@@ -1,5 +1,5 @@
 import {Text, View, StyleSheet} from "react-native";
-import {FONTSIZEPrimary, HEIGHT, PADDING, WIDTH} from "../common/Variables";
+import {FONTSIZE_PRIMARY, HEIGHT, PADDING, WIDTH} from "../common/Variables";
 
 export const Footer = () => {
     return (
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         height: (HEIGHT - PADDING * 2) / 19,
         width: WIDTH,
         paddingHorizontal: 10,
-        fontSize: FONTSIZEPrimary,
+        fontSize: FONTSIZE_PRIMARY,
         backgroundColor: "rgba(5,5,5,0.2)",
         justifyContent: "center",
         alignItems: "center"

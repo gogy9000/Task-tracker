@@ -2,7 +2,7 @@ import React, {memo, useCallback} from "react";
 import {Text, View, StyleSheet, Pressable} from "react-native";
 
 import {CustomButton} from "../common/CustomButton";
-import {BACKGROUNDCOLOR, FONTSIZEPrimary, HEIGHT, MARGIN, PADDING, TEXTCOLOR, WIDTH} from "../common/Variables";
+import {BACKGROUNDCOLOR, FONTSIZE_PRIMARY, HEIGHT, MARGIN, PADDING, TEXTCOLOR_PRIMARY, WIDTH} from "../common/Variables";
 import {useActions} from "../CustomHooks/CustomHooks";
 import {TaskItem, TodoListItem} from "../DAL/types/types";
 import {Api} from "../DAL/Api";
@@ -58,8 +58,8 @@ const styles = StyleSheet.create({
         backgroundColor: BACKGROUNDCOLOR
     },
     title: {
-        color: TEXTCOLOR,
-        fontSize: FONTSIZEPrimary,
+        color: TEXTCOLOR_PRIMARY,
+        fontSize: FONTSIZE_PRIMARY,
         maxWidth: ((WIDTH - PADDING * 2) / 1.5)
     },
     button: {

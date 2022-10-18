@@ -1,6 +1,6 @@
 import {ColorValue, GestureResponderEvent, StyleSheet, Text, TouchableHighlight, View} from "react-native";
 import {FC, memo, ReactElement, useCallback} from "react";
-import {BACKGROUNDCOLOR, FONTSIZEPrimary, PADDING, TEXTCOLOR, WIDTH} from "./Variables";
+import {BACKGROUNDCOLOR, FONTSIZE_PRIMARY, PADDING, TEXTCOLOR_PRIMARY, WIDTH} from "./Variables";
 import {commonBorderStyle} from "./Styles";
 import React from "react";
 type CustomButtonPropsType = {
@@ -47,6 +47,6 @@ const styles = StyleSheet.create({
     },
     title: {
         color: 'rgb(5,5,5)',
-        fontSize: FONTSIZEPrimary
+        fontSize: FONTSIZE_PRIMARY
     }
 })

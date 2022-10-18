@@ -1,7 +1,7 @@
 import {StatusBar, StyleSheet, Text, View} from "react-native";
 import {CustomButton} from "../common/CustomButton";
 import React from "react";
-import {BACKGROUNDCOLOR, FONTSIZEPrimary, PADDING, TEXTCOLOR} from "../common/Variables";
+import {BACKGROUNDCOLOR, FONTSIZE_PRIMARY, PADDING, TEXTCOLOR_PRIMARY} from "../common/Variables";
 import {useAppSelector} from "../CustomHooks/CustomHooks";
 
 export const TaskView = () => {
@@ -30,8 +30,8 @@ const styles = StyleSheet.create({
         justifyContent: "space-between"
     },
     title: {
-        color: TEXTCOLOR,
-        fontSize: FONTSIZEPrimary
+        color: TEXTCOLOR_PRIMARY,
+        fontSize: FONTSIZE_PRIMARY
     },
     taskBar: {
         flexDirection: "row",
