@@ -11,13 +11,9 @@ import { TodoContainer } from './TodoContainer'
 
 export const TodoList = () => {
   const { data: todoList, isLoading, isError, error } = Api.useGetTodoListQuery()
-  const [createTodo] = Api.usePostTodoMutation()
-  // const navigation = useAppNavigation()
   const { changeCurrentTodo } = useActions()
 
-  const createTodoHandler = useCallback((newTodoTitle: string) => {
-    createTodo(newTodoTitle)
-  }, [])
+
 
   const render: ListRenderItem<TodoListItem> = ({ item }) => {
     const onNavigate = () => {
@@ -49,7 +45,7 @@ export const TodoList = () => {
       showsHorizontalScrollIndicator={false}
       keyExtractor={(item) => item._id}
       renderItem={render}
-      ListHeaderComponent={<Header createTodoHandler={createTodoHandler} />}
+      ListHeaderComponent={<Header  />}
       ListEmptyComponent={<EmptyContent />}
       listKey={'root'}
     />
