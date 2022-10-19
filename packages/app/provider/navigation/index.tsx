@@ -16,8 +16,9 @@ export function NavigationProvider({
           config: {
             initialRouteName: 'todolist',
             screens: {
-              todolist: '',
-              login: '',
+              todolist: 'todolist',
+              login: 'login',
+              TaskList:'TaskList',
             },
           },
         }),
