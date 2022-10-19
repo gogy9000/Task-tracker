@@ -1,68 +1,78 @@
-import React, {memo, useCallback} from "react";
-import {Text, View, StyleSheet, Pressable} from "react-native";
-
-import {CustomButton} from "../common/CustomButton";
-import {BACKGROUNDCOLOR, FONTSIZE_PRIMARY, HEIGHT, MARGIN, PADDING, TEXTCOLOR_PRIMARY, WIDTH} from "../common/Variables";
-import {useActions} from "../CustomHooks/CustomHooks";
-import {TaskItem, TodoListItem} from "../DAL/types/types";
-import {Api} from "../DAL/Api";
+import React, { memo, useCallback } from 'react'
+import { Pressable } from 'react-native'
+import { useActions } from '../CustomHooks/CustomHooks'
+import { TaskItem, TodoListItem } from '../DAL/types/types'
+import { Api } from '../DAL/Api'
+import { CheckIcon, Divider, HStack, IconButton, Text } from 'native-base'
+import { TEXTCOLOR_PRIMARY } from 'app/common/Variables'
 
 type TaskProps = {
-    task: TaskItem
-    todo: TodoListItem
+  task: TaskItem
+  todo: TodoListItem
 }
-export const Task: React.FC<TaskProps> = memo(({task, todo}) => {
-    const [putTask, {isLoading}] = Api.usePutTaskMutation()
 
-    const {changeCurrentTodo, changeCurrentTask} = useActions()
+export const Task: React.FC<TaskProps> = memo(({ task, todo }) => {
+  const [putTask, { isLoading }] = Api.usePutTaskMutation()
 
-    const doubleTap = useCallback(() => {
-        let tapCount = 0
-        return () => {
-            tapCount++
-            setTimeout(() => {
-                tapCount = 0
-            }, 300)
-            if (tapCount === 2) {
-                changeCurrentTodo(todo)
-                changeCurrentTask(task)
-                // navigation.navigate("TodoScreen", {screen: "TaskScreen", params: {screen: "TaskView"}})
-            } else {
-            }
-        }
-    }, [todo, task])
+  const { changeCurrentTodo, changeCurrentTask } = useActions()
 
-    const checkTask = useCallback(() => {
-        putTask({...task, status: task.status === 0 ? 1 : 0})
-    }, [task])
+  const doubleTap = useCallback(() => {
+    let tapCount = 0
+    return () => {
+      tapCount++
+      setTimeout(() => {
+        tapCount = 0
+      }, 300)
+      if (tapCount === 2) {
+        changeCurrentTodo(todo)
+        changeCurrentTask(task)
+        // navigation.navigate("TodoScreen", {screen: "TaskScreen", params: {screen: "TaskView"}})
+      } else {
+      }
+    }
+  }, [todo, task])
 
-    return (
-        <Pressable onPress={doubleTap()}>
-            <View style={styles.taskContainer}>
-                <Text style={styles.title}>{task.title}</Text>
-                <CustomButton styleButton={styles.button} disabled={isLoading} onPress={checkTask}>check</CustomButton>
-            </View>
-        </Pressable>
-    )
-})
+  const checkTask = useCallback(() => {
 
-const styles = StyleSheet.create({
-    taskContainer: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        marginVertical: MARGIN / 3,
-        paddingVertical: PADDING / 4,
-        paddingHorizontal: PADDING / 4,
-    },
-    checkedTask: {
-        backgroundColor: BACKGROUNDCOLOR
-    },
-    title: {
-        color: TEXTCOLOR_PRIMARY,
-        fontSize: FONTSIZE_PRIMARY,
-        maxWidth: ((WIDTH - PADDING * 2) / 1.5)
-    },
-    button: {
-        maxHeight: HEIGHT / 25
-    },
+    putTask({ ...task, status: task.status === 0 ? 1 : 0 })
+  }, [task])
+
+  return (
+    <Pressable onPress={doubleTap()}>
+      <HStack space={'sm'} mt={5} alignItems={'center'}>
+        <IconButton onPress={checkTask}
+
+                    disabled={isLoading}
+                    isDisabled={isLoading}
+                    borderRadius={50}
+                    icon={
+                      <CheckIcon />
+                    }
+                    _icon={{
+                      size: '5',
+                      color: task.status === 0 ? 'rgb(37,99,234)' : TEXTCOLOR_PRIMARY
+                    }}
+                    _web={{
+                      size: '5'
+                    }}
+                    _hover={{
+                      bg: 'rgb(250,250,250)',
+                      _icon: {
+                        color: 'rgb(37,99,234)'
+                      }
+                    }}
+                    _pressed={{
+                      _web: {
+                        bg: 'rgb(255,255,255)'
+                      },
+                      bg: 'rgba(37,99,234,0.3)'
+                    }}
+
+        />
+
+        <Text w={'95%'} color={TEXTCOLOR_PRIMARY} fontSize={'xl'}>{task.title}</Text>
+      </HStack>
+      <Divider bg={TEXTCOLOR_PRIMARY} />
+    </Pressable>
+  )
 })

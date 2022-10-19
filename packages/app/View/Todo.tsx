@@ -77,6 +77,7 @@ export const Todo: FC<TodoProps> = memo((props) => {
         !viewMod &&
         <HStack>
           <Input flex={1}
+
                  variant={'underlined'}
                  _focus={{
                    borderColor: 'rgba(5,5,5,0.3)',
