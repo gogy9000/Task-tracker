@@ -45,3 +45,13 @@ export type AuthDataType = {
     id: string
     login: string
 }
+
+export type FeedbackMutationType={
+    "isError": boolean,
+    "isLoading": boolean,
+    "isSuccess": boolean,
+    "isUninitialized": boolean,
+    "originalArgs": undefined,
+    "reset": (args:any[])=>any,
+    "status": string,
+}
