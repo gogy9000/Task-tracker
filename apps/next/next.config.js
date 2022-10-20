@@ -1,9 +1,20 @@
 /** @type {import('next').NextConfig} */
+const withPlugins = require('next-compose-plugins')
+const withTM = require('next-transpile-modules')([
+  // "@react-native-community/hooks",
+  'dripsy',
+  '@dripsy/core',
+  // you can add other packages here that need transpiling
+])
 
 const { withNativebase } = require('@native-base/next-adapter')
 
-module.exports = withNativebase({
+module.exports =
+  withPlugins([withTM],
+  withNativebase({
   dependencies: [
+    'dripsy',
+    '@dripsy/core',
     '@expo/next-adapter',
     'react-native-vector-icons',
     'react-native-vector-icons-for-web',
@@ -31,3 +42,4 @@ module.exports = withNativebase({
     },
   },
 })
+  )
