@@ -17,7 +17,7 @@ export const ViewModContainer: FC<TodoContainerProps> = memo(({ children }) => {
          }}
          _web={{
            alignSelf: 'center',
-           w: '500',
+           w:'360',
            shadow: 2,
            borderWidth: 2
          }} _light={{

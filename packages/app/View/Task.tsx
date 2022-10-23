@@ -5,6 +5,7 @@ import { TaskItem, TodoListItem } from '../DAL/types/types'
 import { Api } from '../DAL/Api'
 import { CheckIcon, Divider, HStack, IconButton, Text } from 'native-base'
 import { TEXTCOLOR_PRIMARY } from 'app/common/Variables'
+import { useRouter } from 'solito/router'
 
 type TaskProps = {
   task: TaskItem
@@ -13,6 +14,7 @@ type TaskProps = {
 
 export const Task: React.FC<TaskProps> = memo(({ task, todo }) => {
   const [putTask, { isLoading }] = Api.usePutTaskMutation()
+  const router = useRouter()
 
   const { changeCurrentTodo, changeCurrentTask } = useActions()
 
@@ -26,6 +28,7 @@ export const Task: React.FC<TaskProps> = memo(({ task, todo }) => {
       if (tapCount === 2) {
         changeCurrentTodo(todo)
         changeCurrentTask(task)
+        router.push('/TaskList')
         // navigation.navigate("TodoScreen", {screen: "TaskScreen", params: {screen: "TaskView"}})
       } else {
       }
@@ -41,7 +44,6 @@ export const Task: React.FC<TaskProps> = memo(({ task, todo }) => {
     <Pressable onPress={doubleTap()}>
       <HStack space={'sm'} mt={5} alignItems={'center'}>
         <IconButton onPress={checkTask}
-
                     disabled={isLoading}
                     isDisabled={isLoading}
                     borderRadius={50}
@@ -67,10 +69,8 @@ export const Task: React.FC<TaskProps> = memo(({ task, todo }) => {
                       },
                       bg: 'rgba(37,99,234,0.3)'
                     }}
-
         />
-
-        <Text w={'95%'} color={TEXTCOLOR_PRIMARY} fontSize={'xl'}>{task.title}</Text>
+        <Text w={'90%'} color={TEXTCOLOR_PRIMARY} fontSize={'xl'}>{task.title}</Text>
       </HStack>
       <Divider bg={TEXTCOLOR_PRIMARY} />
     </Pressable>

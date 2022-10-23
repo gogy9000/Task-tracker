@@ -1,19 +1,19 @@
 import { useActions } from '../CustomHooks/CustomHooks'
-import { ActivityIndicator, Text, FlatList, ListRenderItem, TouchableOpacity } from 'react-native'
+import {Text, FlatList, ListRenderItem, TouchableOpacity } from 'react-native'
 import { Header } from './Header'
 import { EmptyContent } from './EmptyContent'
 import { ViewModContainer } from './ViewModContainer'
 import React, { useCallback } from 'react'
 import { Api } from '../DAL/Api'
 import { TodoListItem } from '../DAL/types/types'
-import { TaskList } from './TaskList'
 import { TodoContainer } from './TodoContainer'
-import { Center, Spinner } from 'native-base'
+import { Center, Spinner, useBreakpointValue } from 'native-base'
 
 export const TodoList = () => {
   const { data: todoList, isLoading, isError, error } = Api.useGetTodoListQuery()
   const { changeCurrentTodo } = useActions()
-
+  const breakPoint=useBreakpointValue({base:1,sm:1,md:2,lg:2,xl:3,'2xl':3})
+  console.log(breakPoint)
 
 
   const render: ListRenderItem<TodoListItem> = ({ item }) => {
@@ -48,6 +48,8 @@ export const TodoList = () => {
   return (
     <FlatList
       data={todoList}
+      key={breakPoint}
+      numColumns={breakPoint}
       showsHorizontalScrollIndicator={false}
       keyExtractor={(item) => item._id}
       renderItem={render}
