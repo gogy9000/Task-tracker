@@ -1,5 +1,5 @@
 import { useActions } from '../CustomHooks/CustomHooks'
-import {Text, FlatList, ListRenderItem, TouchableOpacity } from 'react-native'
+import { Text, FlatList, ListRenderItem, TouchableOpacity, View } from 'react-native'
 import { Header } from './Header'
 import { EmptyContent } from './EmptyContent'
 import { ViewModContainer } from './ViewModContainer'
@@ -8,26 +8,28 @@ import { Api } from '../DAL/Api'
 import { TodoListItem } from '../DAL/types/types'
 import { TodoContainer } from './TodoContainer'
 import { Center, Spinner, useBreakpointValue } from 'native-base'
+import { useRouter } from 'solito/router'
 
 export const TodoList = () => {
-  const { data: todoList, isLoading, isError, error } = Api.useGetTodoListQuery()
-  const { changeCurrentTodo } = useActions()
-  const breakPoint=useBreakpointValue({base:1,sm:1,md:2,lg:2,xl:3,'2xl':3})
+  const breakPoint=useBreakpointValue({base:1,md:2,xl:3})
   console.log(breakPoint)
+  const { data: todoList, isLoading, isError, error,refetch} = Api.useGetTodoListQuery()
+  const { changeCurrentTodo } = useActions()
 
+  const router=useRouter()
 
   const render: ListRenderItem<TodoListItem> = ({ item }) => {
     const onNavigate = () => {
       changeCurrentTodo(item)
-      // navigation.navigate("TodoScreen", {screen: "TaskScreen", params: {screen: "TaskList"}})
+      router.push('/TaskList')
     }
 
     return (
-        <TouchableOpacity activeOpacity={1} onLongPress={onNavigate}>
-          <ViewModContainer>
-            <TodoContainer todo={item} />
-          </ViewModContainer>
-        </TouchableOpacity>
+      <TouchableOpacity key={item._id} activeOpacity={1} onPress={onNavigate}>
+        <ViewModContainer>
+          <TodoContainer todo={item} />
+        </ViewModContainer>
+      </TouchableOpacity>
     )
   }
 
@@ -41,21 +43,27 @@ export const TodoList = () => {
   if (isError) {
     return (
       <Center flex={1}>
-      <Text>error</Text>
+      <Text>{String(error)}</Text>
       </Center>
     )
   }
   return (
+    <View style={{flex:1}}>
     <FlatList
+      onRefresh={refetch}
+      refreshing={isLoading}
       data={todoList}
+      extraData={breakPoint}
       key={breakPoint}
       numColumns={breakPoint}
       showsHorizontalScrollIndicator={false}
+      columnWrapperStyle={breakPoint>1?{alignSelf:'center'}:undefined}
       keyExtractor={(item) => item._id}
       renderItem={render}
-      ListHeaderComponent={<Header  />}
+      ListHeaderComponent={<Header/>}
       ListEmptyComponent={<EmptyContent />}
       listKey={'root'}
     />
+    </View>
   )
 }

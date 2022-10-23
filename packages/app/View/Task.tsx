@@ -3,7 +3,7 @@ import { Pressable } from 'react-native'
 import { useActions } from '../CustomHooks/CustomHooks'
 import { TaskItem, TodoListItem } from '../DAL/types/types'
 import { Api } from '../DAL/Api'
-import { CheckIcon, Divider, HStack, IconButton, Text } from 'native-base'
+import { CheckIcon, Divider, HStack, IconButton, Text, View } from 'native-base'
 import { TEXTCOLOR_PRIMARY } from 'app/common/Variables'
 import { useRouter } from 'solito/router'
 
@@ -41,7 +41,7 @@ export const Task: React.FC<TaskProps> = memo(({ task, todo }) => {
   }, [task])
 
   return (
-    <Pressable onPress={doubleTap()}>
+    <View>
       <HStack space={'sm'} mt={5} alignItems={'center'}>
         <IconButton onPress={checkTask}
                     disabled={isLoading}
@@ -73,6 +73,6 @@ export const Task: React.FC<TaskProps> = memo(({ task, todo }) => {
         <Text w={'90%'} color={TEXTCOLOR_PRIMARY} fontSize={'xl'}>{task.title}</Text>
       </HStack>
       <Divider bg={TEXTCOLOR_PRIMARY} />
-    </Pressable>
+    </View>
   )
 })
