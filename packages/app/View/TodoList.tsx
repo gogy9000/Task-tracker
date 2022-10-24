@@ -3,20 +3,19 @@ import { Text, FlatList, ListRenderItem, TouchableOpacity, View } from 'react-na
 import { Header } from './Header'
 import { EmptyContent } from './EmptyContent'
 import { ViewModContainer } from './ViewModContainer'
-import React, { useCallback } from 'react'
+import React from 'react'
 import { Api } from '../DAL/Api'
 import { TodoListItem } from '../DAL/types/types'
 import { TodoContainer } from './TodoContainer'
-import { Center, Spinner, useBreakpointValue } from 'native-base'
+import { Center, Spinner} from 'native-base'
 import { useRouter } from 'solito/router'
 
 export const TodoList = () => {
-  const breakPoint=useBreakpointValue({base:1,md:2,xl:3})
-  console.log(breakPoint)
-  const { data: todoList, isLoading, isError, error,refetch} = Api.useGetTodoListQuery()
+  // const breakPoint = useBreakpointValue({ base: 1, md: 2, xl: 3 })
+  const { data: todoList, isLoading, isError, error, refetch } = Api.useGetTodoListQuery()
   const { changeCurrentTodo } = useActions()
 
-  const router=useRouter()
+  const router = useRouter()
 
   const render: ListRenderItem<TodoListItem> = ({ item }) => {
     const onNavigate = () => {
@@ -36,34 +35,34 @@ export const TodoList = () => {
   if (isLoading) {
     return (
       <Center flex={1}>
-        <Spinner size={"lg"} />
+        <Spinner size={'lg'} />
       </Center>
     )
   }
   if (isError) {
     return (
       <Center flex={1}>
-      <Text>{String(error)}</Text>
+        <Text>{String(error)}</Text>
       </Center>
     )
   }
   return (
-    <View style={{flex:1}}>
-    <FlatList
-      onRefresh={refetch}
-      refreshing={isLoading}
-      data={todoList}
-      extraData={breakPoint}
-      key={breakPoint}
-      numColumns={breakPoint}
-      showsHorizontalScrollIndicator={false}
-      columnWrapperStyle={breakPoint>1?{alignSelf:'center'}:undefined}
-      keyExtractor={(item) => item._id}
-      renderItem={render}
-      ListHeaderComponent={<Header/>}
-      ListEmptyComponent={<EmptyContent />}
-      listKey={'root'}
-    />
+    <View style={{ flex: 1 }}>
+      <FlatList
+        onRefresh={refetch}
+        refreshing={isLoading}
+        data={todoList}
+        // extraData={breakPoint}
+        // key={breakPoint}
+        // numColumns={breakPoint}
+        showsHorizontalScrollIndicator={false}
+        // columnWrapperStyle={breakPoint > 1 ? { alignSelf: 'center' } : undefined}
+        keyExtractor={(item) => item._id}
+        renderItem={render}
+        ListHeaderComponent={<Header />}
+        ListEmptyComponent={<EmptyContent />}
+        listKey={'root'}
+      />
     </View>
   )
 }
