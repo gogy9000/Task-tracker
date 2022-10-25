@@ -2,6 +2,6 @@
 //
 // export default HomeScreen
 
-import { TodoList } from 'app/View/TodoList'
+import { TodoList as todoList } from 'app/View/TodoList'
 
-export default TodoList
+export default todoList

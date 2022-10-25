@@ -8,16 +8,17 @@ import {commonBorderStyle} from "../common/Styles";
 import {Api} from "../DAL/Api";
 // import {useAppNavigation} from "../CustomHooks/CustomHooks";
 import {Box, Button, Center, FormControl, Heading, HStack, Input, Text, Link, VStack} from "native-base";
+import { useRouter } from 'solito/router'
 
 export const Login = () => {
     const {data, isLoading, error, isError} = Api.useAuthMeQuery()
     const err = error as { status: number, data: any }
     const [login] = Api.useLoginMutation()
-    // const navigation = useAppNavigation()
+    const router = useRouter()
 
     useEffect(() => {
         if (data && data.resultCode === 0) {
-            // navigation.navigate("TodoScreen", {screen: "TodoList"})
+            router.push('/todolist')
         }
     }, [data])
 

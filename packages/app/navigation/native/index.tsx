@@ -1,32 +1,18 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { Login } from 'app/View/Login'
 import { TodoList } from 'app/View/TodoList'
-import { TaskList } from 'app/View/TaskList'
+import { TaskList } from 'app/View/taskList'
 
 
 const Stack = createNativeStackNavigator<{
   login: undefined
   todolist:undefined
-  TaskList:undefined
+  taskList:undefined
 }>()
 
 export function NativeNavigation() {
   return (
     <Stack.Navigator>
-      <Stack.Screen
-        name="todolist"
-        component={TodoList}
-        options={{
-          title: 'Todolist',
-        }}
-      />
-      <Stack.Screen
-        name="TaskList"
-        component={TaskList}
-        options={{
-          title: 'TaskList',
-        }}
-      />
       <Stack.Screen
         name="login"
         component={Login}
@@ -34,6 +20,21 @@ export function NativeNavigation() {
           title: 'login',
         }}
       />
+      <Stack.Screen
+        name="todolist"
+        component={TodoList}
+        options={{
+          title: 'todolist',
+        }}
+      />
+      <Stack.Screen
+        name="taskList"
+        component={TaskList}
+        options={{
+          title: 'taskList',
+        }}
+      />
+
     </Stack.Navigator>
   )
 }

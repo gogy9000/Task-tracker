@@ -14,13 +14,20 @@ export const TodoList = () => {
   const breakPoint = useBreakpointValue({ base: 1, md: 2, xl: 3 })
   const { data: todoList, isLoading, isError, error, refetch } = Api.useGetTodoListQuery()
   const { changeCurrentTodo } = useActions()
-
   const router = useRouter()
+  console.log(todoList)
+
+  const err=error as  {
+    "data":{
+      "message": string,
+    },
+    "status": number,
+  }
 
   const render: ListRenderItem<TodoListItem> = ({ item }) => {
     const onNavigate = () => {
       changeCurrentTodo(item)
-      router.push('/TaskList')
+      router.push('/taskList')
     }
 
     return (
@@ -42,7 +49,7 @@ export const TodoList = () => {
   if (isError) {
     return (
       <Center flex={1}>
-        <Text>{String(error)}</Text>
+        <Text>{err.data.message}</Text>
       </Center>
     )
   }

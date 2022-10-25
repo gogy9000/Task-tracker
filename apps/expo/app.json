@@ -6,7 +6,6 @@
     "sdkVersion": "44.0.0",
     "scheme": "mini-trello",
     "icon": "./assets/icon.png",
-    "orientation": "portrait",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",

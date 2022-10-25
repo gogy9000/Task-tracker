@@ -18,7 +18,7 @@ export function NavigationProvider({
             screens: {
               todolist: 'todolist',
               login: 'login',
-              TaskList:'TaskList',
+              taskList:'taskList',
             },
           },
         }),
