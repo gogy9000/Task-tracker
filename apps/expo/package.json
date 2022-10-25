@@ -30,6 +30,12 @@
     "web": "expo start --web",
     "build-apk": "eas build -p android --profile preview"
   },
+  "browserslist": {
+    "production": [
+      "> 1%",
+      "not dead"
+    ]
+  },
   "version": "1.0.0",
   "private": true,
   "name": "expo-app"

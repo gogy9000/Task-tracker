@@ -1,19 +1,37 @@
 {
   "expo": {
-    "name": "solito-blank",
+    "name": "mini-trello",
     "slug": "solito-blank",
     "version": "1.0.0",
     "sdkVersion": "44.0.0",
-    "scheme": "solito-blank",
+    "scheme": "mini-trello",
+    "icon": "./assets/icon.png",
+    "orientation": "portrait",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "platforms": [
       "ios",
       "android"
     ],
     "ios": {
-      "bundleIdentifier": "com.solito.blank"
+      "bundleIdentifier": "com.ivangoro.minitrello",
+      "supportsTablet": true
     },
     "android": {
-      "package": "com.solito.blank"
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#000000"
+      },
+      "package": "com.ivan_goro.minitrello"
     },
     "extra": {
       "eas": {

@@ -15,7 +15,8 @@
   "scripts": {
     "native": "cd apps/expo && expo start -c",
     "web": "cd apps/next && yarn next",
-    "native-no-dev":"cd apps/expo && expo start --no-dev --minify -c"
+    "native-no-dev":"cd apps/expo && expo start --no-dev --minify -c",
+    "prebuild-dev": "cd apps/expo && npx expo prebuild -p android"
   },
 
   "dependencies": {}
