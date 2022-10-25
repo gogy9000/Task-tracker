@@ -37,6 +37,22 @@
       "eas": {
         "projectId": "37c68b02-44f6-4d76-92a0-79dba7a98c2a"
       }
-    }
+    },
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "goropashnyj9000gmailcom",
+            "project": "react-native",
+            "authToken": "88a43381b0ea43c18108afcc665a5bc296893d6c873c4f4183f6f5cdbb2773c4",
+            "setCommits": true
+          }
+        }
+      ]
+    },
+    "plugins": [
+      "sentry-expo"
+    ]
   }
 }
