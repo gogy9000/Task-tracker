@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { Login } from 'app/View/Login'
 import { TodoList } from 'app/View/TodoList'
 import { TaskList } from 'app/View/TaskList'
-import { Text } from 'native-base'
+import { Text } from 'react-native'
 
 const Stack = createNativeStackNavigator<{
   login: undefined
