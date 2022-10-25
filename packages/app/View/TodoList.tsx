@@ -7,11 +7,11 @@ import React from 'react'
 import { Api } from '../DAL/Api'
 import { TodoListItem } from '../DAL/types/types'
 import { TodoContainer } from './TodoContainer'
-import { Center, Spinner} from 'native-base'
+import { Center, Spinner, useBreakpointValue } from 'native-base'
 import { useRouter } from 'solito/router'
 
 export const TodoList = () => {
-  // const breakPoint = useBreakpointValue({ base: 1, md: 2, xl: 3 })
+  const breakPoint = useBreakpointValue({ base: 1, md: 2, xl: 3 })
   const { data: todoList, isLoading, isError, error, refetch } = Api.useGetTodoListQuery()
   const { changeCurrentTodo } = useActions()
 
@@ -52,11 +52,11 @@ export const TodoList = () => {
         onRefresh={refetch}
         refreshing={isLoading}
         data={todoList}
-        // extraData={breakPoint}
-        // key={breakPoint}
-        // numColumns={breakPoint}
+        extraData={breakPoint}
+        key={breakPoint}
+        numColumns={breakPoint}
         showsHorizontalScrollIndicator={false}
-        // columnWrapperStyle={breakPoint > 1 ? { alignSelf: 'center' } : undefined}
+        columnWrapperStyle={breakPoint > 1 ? { alignSelf: 'center' } : undefined}
         keyExtractor={(item) => item._id}
         renderItem={render}
         ListHeaderComponent={<Header />}

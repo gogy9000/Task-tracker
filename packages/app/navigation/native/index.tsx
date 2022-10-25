@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { Login } from 'app/View/Login'
 import { TodoList } from 'app/View/TodoList'
 import { TaskList } from 'app/View/TaskList'
-import { Text } from 'react-native'
+
 
 const Stack = createNativeStackNavigator<{
   login: undefined
@@ -15,7 +15,7 @@ export function NativeNavigation() {
     <Stack.Navigator>
       <Stack.Screen
         name="todolist"
-        component={Slug}
+        component={TodoList}
         options={{
           title: 'Todolist',
         }}
@@ -36,9 +36,4 @@ export function NativeNavigation() {
       />
     </Stack.Navigator>
   )
-}
-
-const Slug = () => {
-
-  return <Text>azaza</Text>
 }
