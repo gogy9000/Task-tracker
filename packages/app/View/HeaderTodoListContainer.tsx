@@ -1,23 +1,21 @@
-import { StyleSheet, View, StatusBar, TextInput, Dimensions } from 'react-native'
+import { StyleSheet, View, StatusBar, TextInput, Dimensions, GestureResponderEvent } from 'react-native'
 import { BACKGROUNDCOLOR, HEIGHT, PADDING, TEXTCOLOR_PRIMARY, WIDTH } from '../common/Variables'
 import { FC, memo, useCallback, useEffect, useState } from 'react'
 import { CustomButton } from '../common/CustomButton'
 import React from 'react'
 import { Api } from '../DAL/Api'
 import { Box, Button, HStack, Input } from 'native-base'
+import { useRouter } from 'solito/router'
 
 type HeaderProps = {
   // createTodoHandler: (newTodoTitle: string) => void
 }
 
-export const Header: FC<HeaderProps> = memo(() => {
+export const HeaderTodoListContainer: FC<HeaderProps> = memo(() => {
   const [inputValue, setInputValue] = useState('')
-  // const {data} = Api.useAuthMeQuery()
+  const {data:authData} = Api.useAuthMeQuery()
   const [createTodo, { isLoading }] = Api.usePostTodoMutation()
-
-  // const createTodoHandler = useCallback((newTodoTitle: string) => {
-  //     createTodo(newTodoTitle)
-  // }, [])
+  const router=useRouter()
 
   const onTextInput = useCallback((value: string) => {
     setInputValue(value)
@@ -28,12 +26,32 @@ export const Header: FC<HeaderProps> = memo(() => {
     setInputValue('')
   }, [inputValue])
 
-  // useEffect(() => {
-  //     if (data && data.resultCode === 1) {
-  //         navigation.navigate("Login")
-  //     }
-  // }, [data])
+  useEffect(() => {
+      if (authData && authData.resultCode === 1) {
+        router.push('/login')
+      }
+  }, [authData])
 
+  return (
+    <HeaderLayout inputValue={inputValue}
+                  isLoading={isLoading}
+                  onPressHandler={onCreateTodo}
+                  onChangeTextHandler={onTextInput}
+                  title={'todo'}
+    />
+  )
+})
+
+type HeaderLayoutProps={
+  inputValue:string
+  isLoading:boolean
+  onPressHandler:((event: GestureResponderEvent) => void) | null | undefined
+  onChangeTextHandler:((text: string) => void) | undefined
+  title:string
+}
+
+const HeaderLayout:React.FC<HeaderLayoutProps> = (props) => {
+const {isLoading,inputValue,onPressHandler,onChangeTextHandler,title}=props
   return (
     <Box flex={1} bg={'blue.600'} px='1' py='3'>
       <HStack px='1' py='1' space={2}>
@@ -42,10 +60,10 @@ export const Header: FC<HeaderProps> = memo(() => {
           size={'2xl'}
           color={'rgb(255,255,255)'}
           variant={'underlined'}
-          onChangeText={onTextInput}
+          onChangeText={onChangeTextHandler}
           value={inputValue}
           placeholderTextColor={'rgb(255,255,255)'}
-          placeholder={'Todo...'}
+          placeholder={`${title}...`}
           _focus={{ borderColor: 'rgb(255,255,255)' }}
         />
         <Button variant={'ghost'}
@@ -53,7 +71,7 @@ export const Header: FC<HeaderProps> = memo(() => {
                 isDisabled={isLoading}
                 isLoadingText={'fetching'}
                 colorScheme={'rgb(255,255,255)'}
-                onPress={onCreateTodo}
+                onPress={onPressHandler}
                 _hover={{
                   bg: 'white.100:alpha.10'
                 }}
@@ -67,9 +85,9 @@ export const Header: FC<HeaderProps> = memo(() => {
                   }
                 }}
         >
-          Create todo
+          {`Create ${title}`}
         </Button>
       </HStack>
     </Box>
   )
-})
+}

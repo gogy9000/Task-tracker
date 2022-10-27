@@ -1,15 +1,17 @@
 import { FC, memo, ReactElement } from 'react'
 import React from 'react'
 import { Box } from 'native-base'
+import { useDimensions } from '@react-native-community/hooks'
 
 type TodoContainerProps = {
   children?: ReactElement
+  width?:number
 }
 
 export const ViewModContainer: FC<TodoContainerProps> = memo(({ children }) => {
 
   return (
-    <Box px={'3'} maxW={'360'} m={'1'} alignSelf={'center'}
+    <Box px={'3'} maxW={360} m={'1'} alignSelf={'center'}
          py={'1'} mt={'1'} borderColor={'coolGray.200'}
          rounded='lg' borderWidth='1'
          _dark={{
@@ -17,8 +19,7 @@ export const ViewModContainer: FC<TodoContainerProps> = memo(({ children }) => {
            backgroundColor: 'gray.700'
          }}
          _web={{
-
-           w: '360',
+           w: 'lg',
            shadow: 2,
            borderWidth: 2
          }} _light={{

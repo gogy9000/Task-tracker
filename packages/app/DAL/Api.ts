@@ -31,11 +31,8 @@ const axiosQuery = (
     }
     }
     try {
-      // console.log(headers)
       const result = await axios({ url: baseUrl + url, method, data, params, headers, withCredentials })
-      console.log(result)
       if (result.headers["set-cookie"]) {
-
           saveStorage("Cookie", result.headers["set-cookie"]?.join(""))
       }
       return { data: result.data }
@@ -54,6 +51,18 @@ const axiosQuery = (
       }
     }
   }
+
+//с бекенда приходят id, на фронте ожидаются _id
+function transformKey_Id<Obj extends Record<string, unknown>[]>(arr: Obj) {
+  arr.forEach((item) => {
+    if ('id' in item) {
+      item._id = item.id
+      delete item.id
+    }
+  })
+  return arr
+}
+
 
 
 export const Api = createApi({
@@ -86,16 +95,8 @@ export const Api = createApi({
     getTodoList: build.query<TodoListItem[], void>({
       query: () => ({ url: `/todo-lists`, method: 'get' }),
       providesTags: () => ['postTodo', 'putTodo', 'deleteTodo'],
-      transformResponse:(response:TodoListItem[])=>{
-        console.log(response)
-
-         response.forEach((todo)=>{
-          // @ts-ignore
-          todo._id=todo.id
-           // @ts-ignore
-           delete todo.id
-        })
-        return response
+      transformResponse: (response: TodoListItem[]) => {
+        return transformKey_Id(response)
       }
     }),
     postTodo: build.mutation<Data<Item<TodoListItem>>, string>({
@@ -117,6 +118,10 @@ export const Api = createApi({
         method: 'get',
         params: { count, page }
       }),
+      transformResponse: (response: GetTaskType) => {
+        response.items = transformKey_Id(response.items)
+        return response
+      },
       providesTags: () => ['postTask', 'putTask', 'deleteTask']
     }),
 

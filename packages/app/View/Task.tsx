@@ -14,26 +14,6 @@ type TaskProps = {
 
 export const Task: React.FC<TaskProps> = memo(({ task, todo }) => {
   const [putTask, { isLoading }] = Api.usePutTaskMutation()
-  const router = useRouter()
-
-  const { changeCurrentTodo, changeCurrentTask } = useActions()
-
-  const doubleTap = useCallback(() => {
-    let tapCount = 0
-    return () => {
-      tapCount++
-      setTimeout(() => {
-        tapCount = 0
-      }, 300)
-      if (tapCount === 2) {
-        changeCurrentTodo(todo)
-        changeCurrentTask(task)
-        router.push('/TaskList')
-        // navigation.navigate("TodoScreen", {screen: "TaskScreen", params: {screen: "TaskView"}})
-      } else {
-      }
-    }
-  }, [todo, task])
 
   const checkTask = useCallback(() => {
 
