@@ -9,10 +9,11 @@ import {Api} from "../DAL/Api";
 // import {useAppNavigation} from "../CustomHooks/CustomHooks";
 import {Box, Button, Center, FormControl, Heading, HStack, Input, Text, Link, VStack} from "native-base";
 import { useRouter } from 'solito/router'
+import { ErrorType } from 'app/DAL/types/types'
 
 export const Login = () => {
     const {data, isLoading, error, isError} = Api.useAuthMeQuery()
-    const err = error as { status: number, data: any }
+    const err = error as ErrorType
     const [login] = Api.useLoginMutation()
     const router = useRouter()
 
@@ -41,10 +42,10 @@ export const Login = () => {
 
     if (isError) {
         return (
-            <View style={styles.loginContainer}>
+            <View  style={styles.loginContainer}>
                 {
                     error ?
-                        <Text>{err.data}</Text> :
+                        <Text>{err.data.message}</Text> :
                         <Text>error</Text>
                 }
 

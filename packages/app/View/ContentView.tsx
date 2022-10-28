@@ -38,7 +38,7 @@ export const ContentView:React.FC<ContentViewProps> = ({ isLoading, error, refet
         keyExtractor={(item) => item._id}
         renderItem={renderItem}
         ListHeaderComponent={<HeaderTodoListContainer />}
-        ListEmptyComponent={<EmptyContent errorMessage={error.data.message}/>}
+        ListEmptyComponent={<EmptyContent errorMessage={error?.data.message}/>}
         listKey={listKey}
       />
     </View>

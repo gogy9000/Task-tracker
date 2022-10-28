@@ -3,7 +3,7 @@ import { Center, Heading,Text } from 'native-base'
 import { useDimensions } from '@react-native-community/hooks'
 
 type EmptyContentType={
-  errorMessage:string
+  errorMessage?:string
 }
 export const EmptyContent:React.FC<EmptyContentType>= ({errorMessage}) => {
 
@@ -15,7 +15,7 @@ export const EmptyContent:React.FC<EmptyContentType>= ({errorMessage}) => {
         O curva! list is empty!
       </Heading>
       <Text>
-        {errorMessage}
+        {errorMessage||null}
       </Text>
 
     </Center>

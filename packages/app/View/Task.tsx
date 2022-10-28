@@ -1,11 +1,9 @@
 import React, { memo, useCallback } from 'react'
-import { Pressable } from 'react-native'
-import { useActions } from '../CustomHooks/CustomHooks'
 import { TaskItem, TodoListItem } from '../DAL/types/types'
 import { Api } from '../DAL/Api'
-import { CheckIcon, Divider, HStack, IconButton, Text, View } from 'native-base'
+import { CheckIcon, Divider, HStack, Text, View } from 'native-base'
 import { TEXTCOLOR_PRIMARY } from 'app/common/Variables'
-import { useRouter } from 'solito/router'
+import { IconButtonWrapper } from 'app/View/IconButtonWrapper'
 
 type TaskProps = {
   task: TaskItem
@@ -23,33 +21,19 @@ export const Task: React.FC<TaskProps> = memo(({ task, todo }) => {
   return (
     <View>
       <HStack space={'sm'} mt={5} alignItems={'center'}>
-        <IconButton onPress={checkTask}
-                    disabled={isLoading}
-                    isDisabled={isLoading}
-                    borderRadius={50}
-                    icon={
-                      <CheckIcon />
-                    }
-                    _icon={{
-                      size: '5',
-                      color: task.status === 0 ? 'rgb(37,99,234)' : TEXTCOLOR_PRIMARY
-                    }}
-                    _web={{
-                      size: '5'
-                    }}
-                    _hover={{
-                      bg: 'rgb(250,250,250)',
-                      _icon: {
-                        color: 'rgb(37,99,234)'
-                      }
-                    }}
-                    _pressed={{
-                      _web: {
-                        bg: 'rgb(255,255,255)'
-                      },
-                      bg: 'rgba(37,99,234,0.3)'
-                    }}
+        <IconButtonWrapper
+          onPress={checkTask}
+          disabled={isLoading}
+          isDisabled={isLoading}
+          icon={
+            <CheckIcon />
+          }
+          _icon={{
+            size: '5',
+            color: task.status === 0 ? 'rgb(37,99,234)' : TEXTCOLOR_PRIMARY
+          }}
         />
+
         <Text w={'90%'} color={TEXTCOLOR_PRIMARY} fontSize={'xl'}>{task.title}</Text>
       </HStack>
       <Divider bg={TEXTCOLOR_PRIMARY} />
