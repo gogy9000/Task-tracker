@@ -52,9 +52,9 @@ type TaskDescriptionProps = {
   task: TaskItem
 }
 const TaskDescription: React.FC<TaskDescriptionProps> = ({ task }) => {
-  const [putTask, putTaskResponse] = Api.usePutTaskMutation()
-  const onPutTask = (payload) => {
-    console.log(payload)
+
+  const [putTask, {isLoading}] = Api.usePutTaskMutation()
+  const onPutTask = (payload:Partial<TaskItem>) => {
     putTask({ ...task, ...payload })
   }
 
@@ -62,17 +62,30 @@ const TaskDescription: React.FC<TaskDescriptionProps> = ({ task }) => {
     <ViewModContainer>
       <VStack>
         <Heading alignSelf={'center'}>{task.title}</Heading>
-        <DetailsContentContainer PayloadKey={'description'} onPutTask={onPutTask} title={'description:'}
+        <DetailsContentContainer PayloadKey={'description'}
+                                 isLoading={isLoading}
+                                 onPutTask={onPutTask}
+                                 title={'description:'}
                                  value={task.description} />
-        <DetailsContentContainer PayloadKey={'startDate'} onPutTask={onPutTask} title={'startDate:'}
+        <DetailsContentContainer PayloadKey={'startDate'}
+                                 onPutTask={onPutTask}
+                                 title={'startDate:'}
                                  value={task.startDate} />
-        <DetailsContentContainer PayloadKey={'addedDate'} onPutTask={onPutTask} title={'addedDate:'}
+        <DetailsContentContainer PayloadKey={'addedDate'}
+                                 onPutTask={onPutTask}
+                                 title={'addedDate:'}
                                  value={task.addedDate} />
-        <DetailsContentContainer PayloadKey={'deadline'} onPutTask={onPutTask} title={'deadline:'}
+        <DetailsContentContainer PayloadKey={'deadline'}
+                                 onPutTask={onPutTask}
+                                 title={'deadline:'}
                                  value={task.deadline} />
-        <DetailsContentContainer PayloadKey={'priority'} onPutTask={onPutTask} title={'priority:'}
+        <DetailsContentContainer PayloadKey={'priority'}
+                                 onPutTask={onPutTask} title={'priority:'}
                                  value={task.priority} />
-        <DetailsContentContainer PayloadKey={'status'} onPutTask={onPutTask} title={'status:'} value={task.status} />
+        <DetailsContentContainer PayloadKey={'status'}
+                                 onPutTask={onPutTask}
+                                 title={'status:'}
+                                 value={task.status} />
       </VStack>
     </ViewModContainer>
   )
