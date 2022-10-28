@@ -3,7 +3,7 @@ import { IconButton, IIconButtonProps } from 'native-base'
 
 type IconButtonWrapperProps = IIconButtonProps & {}
 export const IconButtonWrapper: React.FC<IconButtonWrapperProps> = ({ ...restProps }) => {
-  return <IconButton {...restProps}
+  return <IconButton
                      borderRadius={50}
                      _web={{
                        size: '5'
@@ -20,5 +20,6 @@ export const IconButtonWrapper: React.FC<IconButtonWrapperProps> = ({ ...restPro
                        },
                        bg: 'rgba(37,99,234,0.3)'
                      }}
+                     {...restProps}
   />
 }

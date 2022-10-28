@@ -1,9 +1,10 @@
 import React, { memo, useCallback } from 'react'
 import { TaskItem, TodoListItem } from '../DAL/types/types'
 import { Api } from '../DAL/Api'
-import { CheckIcon, Divider, HStack, Text, View } from 'native-base'
+import { CheckIcon, HStack, Text, View } from 'native-base'
 import { TEXTCOLOR_PRIMARY } from 'app/common/Variables'
 import { IconButtonWrapper } from 'app/View/IconButtonWrapper'
+import { CustomDivider } from 'app/View/CustomDivider'
 
 type TaskProps = {
   task: TaskItem
@@ -25,18 +26,26 @@ export const Task: React.FC<TaskProps> = memo(({ task, todo }) => {
           onPress={checkTask}
           disabled={isLoading}
           isDisabled={isLoading}
+          _web={{
+            size:'4'
+          }}
           icon={
             <CheckIcon />
           }
           _icon={{
-            size: '5',
-            color: task.status === 0 ? 'rgb(37,99,234)' : TEXTCOLOR_PRIMARY
+            color: task.status === 0 ?TEXTCOLOR_PRIMARY: 'rgb(37,99,234)'
           }}
         />
 
         <Text w={'90%'} color={TEXTCOLOR_PRIMARY} fontSize={'xl'}>{task.title}</Text>
+
       </HStack>
-      <Divider bg={TEXTCOLOR_PRIMARY} />
+      <CustomDivider _light={{
+        borderBottomColor: "muted.500",
+      }} _dark={{
+
+        borderBottomColor: "muted.50"
+      }}/>
     </View>
   )
 })
