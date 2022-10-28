@@ -20,6 +20,8 @@ import { Api } from 'app/DAL/Api'
 import { ListRenderItem } from 'react-native'
 import { ErrorType, TaskItem } from 'app/DAL/types/types'
 import { ViewModContainer } from 'app/View/ViewModContainer'
+import { IconButtonWrapper } from 'app/View/IconButtonWrapper'
+import { CustomDivider } from 'app/View/CustomDivider'
 
 
 export const TaskList = () => {
@@ -30,7 +32,7 @@ export const TaskList = () => {
 
   const render: ListRenderItem<TaskItem> = ({ item: task }) => {
 
-    return <TaskDescription task={task}/>
+    return <TaskDescription task={task} />
   }
 
 
@@ -46,64 +48,82 @@ export const TaskList = () => {
     />
   )
 }
-type TaskDescriptionProps={
-  task:TaskItem
+type TaskDescriptionProps = {
+  task: TaskItem
 }
-const TaskDescription:React.FC<TaskDescriptionProps>=({ task })=>{
-  const [putTask,putTaskResponse]=Api.usePutTaskMutation()
-  const onPutTask=(payload)=>{
+const TaskDescription: React.FC<TaskDescriptionProps> = ({ task }) => {
+  const [putTask, putTaskResponse] = Api.usePutTaskMutation()
+  const onPutTask = (payload) => {
     console.log(payload)
-    putTask({...task,...payload})
+    putTask({ ...task, ...payload })
   }
 
-  return(
+  return (
     <ViewModContainer>
       <VStack>
-        <Heading>title:{task.title}</Heading>
-        <DetailsContentContainer PayloadKey={'description'}  onPutTask={onPutTask} title={'description:'} value={task.description} />
-        <DetailsContentContainer PayloadKey={'startDate'} onPutTask={onPutTask} title={'startDate:'} value={task.startDate} />
-        <DetailsContentContainer PayloadKey={'addedDate'} onPutTask={onPutTask} title={'addedDate:'} value={task.addedDate} />
-        <DetailsContentContainer PayloadKey={'deadline'} onPutTask={onPutTask} title={'deadline:'} value={task.deadline} />
-        <DetailsContentContainer PayloadKey={'priority'} onPutTask={onPutTask} title={'priority:'} value={task.priority} />
+        <Heading alignSelf={'center'}>{task.title}</Heading>
+        <DetailsContentContainer PayloadKey={'description'} onPutTask={onPutTask} title={'description:'}
+                                 value={task.description} />
+        <DetailsContentContainer PayloadKey={'startDate'} onPutTask={onPutTask} title={'startDate:'}
+                                 value={task.startDate} />
+        <DetailsContentContainer PayloadKey={'addedDate'} onPutTask={onPutTask} title={'addedDate:'}
+                                 value={task.addedDate} />
+        <DetailsContentContainer PayloadKey={'deadline'} onPutTask={onPutTask} title={'deadline:'}
+                                 value={task.deadline} />
+        <DetailsContentContainer PayloadKey={'priority'} onPutTask={onPutTask} title={'priority:'}
+                                 value={task.priority} />
         <DetailsContentContainer PayloadKey={'status'} onPutTask={onPutTask} title={'status:'} value={task.status} />
       </VStack>
     </ViewModContainer>
   )
 }
 
-type DetailsContentContainerProps={
-  title:string
-  value?:string|number|null
-  onPutTask:(payload:Partial<TaskItem>)=>void
-  PayloadKey:keyof TaskItem
+type DetailsContentContainerProps = {
+  title: string
+  value?: string | number | null
+  onPutTask: (payload: Partial<TaskItem>) => void
+  PayloadKey: keyof TaskItem
+  isLoading?: boolean
 }
-const DetailsContentContainer:React.FC<DetailsContentContainerProps> = ({ title,value,onPutTask,PayloadKey }) => {
+const DetailsContentContainer: React.FC<DetailsContentContainerProps> = ({
+                                                                           isLoading,
+                                                                           title,
+                                                                           value,
+                                                                           onPutTask,
+                                                                           PayloadKey
+                                                                         }) => {
   const [inputValue, setInputValue] = useState(value)
 
   const onPressHandler = () => {
-    if(inputValue){
-      onPutTask({[PayloadKey]:inputValue})
+    if (inputValue) {
+      onPutTask({ [PayloadKey]: inputValue })
     }
 
 
   }
 
   return (
-    <HStack alignItems={'center'} justifyContent={'space-between'}>
-      <Text fontSize={"sm"}>{title}</Text>
-      <Input onChangeText={setInputValue}
-             _focus={{ borderColor: 'rgb(37,99,234)' }}
-             borderColor={'rgb(100,98,98)'}
-             flexGrow={2}
-             size={"md"}
-             variant={'underlined'}
-             value={inputValue?.toString()}
+    <VStack alignContent={"center"}>
+      <HStack alignItems={'flex-end'} justifyContent={'space-between'}>
+        <Text fontSize={'md'}>{title}</Text>
+        <Input onChangeText={setInputValue}
+               _focus={{ borderColor: 'rgb(37,99,234)' }}
 
-      />
-      <IconButton icon={<CheckCircleIcon size={5}  color='muted.400' />}  onPress={onPressHandler}/>
+               paddingBottom={'0'}
+               borderColor={'rgb(100,98,98)'}
+               flexGrow={2}
+               size={'md'}
+               variant={'unstyled'}
+               value={inputValue?.toString()}
 
-
-    </HStack>
+        />
+        <IconButtonWrapper disabled={isLoading}
+                           isDisabled={isLoading}
+                           icon={<CheckCircleIcon size={5} color={'muted.500'} />}
+                           onPress={onPressHandler} />
+      </HStack>
+      <CustomDivider />
+    </VStack>
   )
 }
 
@@ -117,17 +137,17 @@ const EditableText = ({ initialValue }) => {
   }
   console.log(inputValue)
   return <>
-      <Input onChangeText={setInputValue}
-             flexGrow={2}
-             size={"md"}
-             variant={'underlined'}
-             value={inputValue}
-             InputRightElement={
-               <Pressable onPress={onPressHandler}>
-                 <CheckCircleIcon size={5} mr='2' color='muted.400' />
-               </Pressable>
-             }
-      />
+    <Input onChangeText={setInputValue}
+           flexGrow={2}
+           size={'md'}
+           variant={'underlined'}
+           value={inputValue}
+           InputRightElement={
+             <Pressable onPress={onPressHandler}>
+               <CheckCircleIcon size={5} mr='2' color='muted.400' />
+             </Pressable>
+           }
+    />
   </>
 
 
