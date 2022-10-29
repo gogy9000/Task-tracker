@@ -53,6 +53,7 @@ export const Todo: FC<TodoProps> = memo((props) => {
       <HStack justifyContent={'space-between'} alignItems={'center'}>
         <Heading w={'90%'} isTruncated size={'md'}>{todo.title}</Heading>
         <IconButtonWrapper
+          onPress={onDeleteTodo}
           _web={{
             size:'10'
           }}
