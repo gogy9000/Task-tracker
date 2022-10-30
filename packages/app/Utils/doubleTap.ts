@@ -1,6 +1,6 @@
 
 
-export const doubleTap = (callback) => {
+export const doubleTap = (callback:Function) => {
   let tapCount = 0
   return () => {
     tapCount++

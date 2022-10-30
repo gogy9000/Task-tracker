@@ -6,7 +6,6 @@ import { ListRenderItem } from 'react-native'
 import { ErrorType, TaskItem } from 'app/DAL/types/types'
 import { TaskDescription } from 'app/View/taskDescription'
 import { AuthRedirect } from 'app/View/AuthRedirect'
-import { HeaderByTodoList } from 'app/View/HeaderByTodoList'
 import { EmptyContent } from 'app/View/EmptyContent'
 import { HeaderByTaskList } from 'app/View/HeaderByTaskList'
 
