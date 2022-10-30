@@ -2,11 +2,11 @@ import React, { FC, memo, useCallback } from 'react'
 import { Api } from '../DAL/Api'
 import { HeaderContainer } from 'app/View/HeaderContainer'
 
-type HeaderProps = {
+type HeaderByTodoListProps = {
 
 }
 
-export const HeaderByTodoList: FC<HeaderProps> = memo(() => {
+export const HeaderByTodoList: FC<HeaderByTodoListProps> = memo(() => {
 
   const [createTodo, { isLoading }] = Api.usePostTodoMutation()
 
@@ -22,4 +22,5 @@ export const HeaderByTodoList: FC<HeaderProps> = memo(() => {
     />
   )
 })
+
 

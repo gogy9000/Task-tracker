@@ -1,6 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import { Api } from 'app/DAL/Api'
-import { useRouter } from 'solito/router'
+import React, { useCallback, useState } from 'react'
 import { HeaderLayout } from 'app/View/HeaderLayout'
 
 type HeaderContainerProps = {
@@ -10,37 +8,27 @@ type HeaderContainerProps = {
 }
 export const HeaderContainer: React.FC<HeaderContainerProps> = ({ title = '', onPressHandler, isLoading }) => {
   const [inputValue, setInputValue] = useState('')
-  const [error,setError]=useState('')
-  const { data: authData } = Api.useAuthMeQuery()
-  const router = useRouter()
+  const [error, setError] = useState('')
 
-  useEffect(() => {
-    if (authData && authData.resultCode === 1) {
-      router.push('/login')
-    }
-  }, [authData])
   const onTextInput = useCallback((value: string) => {
     setInputValue(value)
   }, [inputValue])
-  console.log('error: ',error)
-  console.log('input: ',inputValue)
 
   const onPress = useCallback(() => {
-    if(inputValue.trim()){
+    if (inputValue.trim()) {
       onPressHandler(inputValue)
       setInputValue('')
-    }else {
+    } else {
       setError('field must not be empty')
     }
 
   }, [inputValue])
 
   const clearError = () => {
-    if(error){
+    if (error) {
       setError('')
     }
   }
-
 
   return (
     <HeaderLayout inputValue={inputValue}
@@ -53,3 +41,4 @@ export const HeaderContainer: React.FC<HeaderContainerProps> = ({ title = '', on
     />
   )
 }
+

@@ -1,20 +1,28 @@
-import { FlatList, ListRenderItem, Text, View } from 'react-native'
+import { FlatList, ListRenderItem, View } from 'react-native'
 import { Center, Spinner, useBreakpointValue } from 'native-base'
-import { HeaderByTodoList } from 'app/View/HeaderByTodoList'
-import { EmptyContent } from 'app/View/EmptyContent'
-import React from 'react'
+import React, { ReactElement } from 'react'
 import { ErrorType } from 'app/DAL/types/types'
 
-type ContentViewProps = {
-  isLoading: boolean
-  isError: boolean
-  error: ErrorType
-  refetch: (() => void) | null | undefined
-  content: readonly any[] | null | undefined
+type ContentViewProps = Partial<FlatList> & {
+  isLoading?: boolean
+  error?: ErrorType
+  onRefresh?: (() => void) | null | undefined
+  data: readonly any[] | null | undefined
   renderItem: ListRenderItem<any> | null | undefined
-  listKey: string
+  listKey?: string
+  ListHeaderComponent?: ReactElement
+  ListEmptyComponent?: ReactElement
 }
-export const ContentView:React.FC<ContentViewProps> = ({ isLoading, error, refetch, content, renderItem, listKey }) => {
+
+export const ContentView: React.FC<ContentViewProps> = (props) => {
+  const {
+    ListHeaderComponent, onRefresh,
+    renderItem, isLoading, data,
+    ListEmptyComponent,
+    listKey,
+    ...restProps
+  } = props || {}
+
   const breakPoint = useBreakpointValue({ base: 1, md: 2, xl: 3 })
 
   if (isLoading) {
@@ -27,19 +35,20 @@ export const ContentView:React.FC<ContentViewProps> = ({ isLoading, error, refet
   return (
     <View style={{ flex: 1 }}>
       <FlatList
-        onRefresh={refetch}
-        refreshing={isLoading}
-        data={content}
+        renderItem={renderItem}
+        data={data}
         extraData={breakPoint}
+        onRefresh={onRefresh}
+        refreshing={isLoading}
         key={breakPoint}
         numColumns={breakPoint}
         showsHorizontalScrollIndicator={false}
         columnWrapperStyle={breakPoint > 1 ? { alignSelf: 'center' } : undefined}
         keyExtractor={(item) => item._id}
-        renderItem={renderItem}
-        ListHeaderComponent={<HeaderByTodoList />}
-        ListEmptyComponent={<EmptyContent errorMessage={error?.data.message}/>}
+        ListHeaderComponent={ListHeaderComponent}
+        ListEmptyComponent={ListEmptyComponent}
         listKey={listKey}
+        {...restProps}
       />
     </View>
   )
