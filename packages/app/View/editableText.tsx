@@ -1,4 +1,15 @@
-import { Box, CheckCircleIcon, HStack, IBoxProps, IInputProps, Input, ITextProps, Pressable, Text } from 'native-base'
+import {
+  Box,
+  CheckCircleIcon,
+  HStack,
+  IBoxProps,
+  IInputProps,
+  Input,
+  ITextProps,
+  Pressable,
+  Stack,
+  Text
+} from 'native-base'
 import React, { useState } from 'react'
 import { IconButtonWrapper } from 'app/View/IconButtonWrapper'
 
@@ -39,14 +50,15 @@ export const EditableText: React.FC<EditableTextProps> = ({
 
   return (
     <Pressable>
-      {({ isHovered }) =>
-        <HStack alignItems={'center'}
-                {...boxWrapperProps}>
+      {({ isHovered }) => {
+      return  <HStack  alignItems={'center'}
+
+        >
           {
             editMode
               ?
-              <>
-                {error&&<Text color={'red.400'}>{error}</Text>}
+              <React.Fragment>
+                <Text color={'red.400'}>{error}</Text>
                 <Input onChangeText={setInputValue}
                        onFocus={onFocusInput}
                        multiline
@@ -63,7 +75,7 @@ export const EditableText: React.FC<EditableTextProps> = ({
                   icon={<CheckCircleIcon size={5} mr='2' color='rgb(37,99,234)' />}
                 />
 
-              </>
+              </React.Fragment>
               :
               < >
                 <Text onPress={onPressHandler}
@@ -81,7 +93,9 @@ export const EditableText: React.FC<EditableTextProps> = ({
                       color={isHovered ? 'muted.400' : 'white'} />}
                 />
               </>
-          } </HStack>
+          }
+      </HStack>
+      }
       }</Pressable>
   )
 
