@@ -1,61 +1,53 @@
 import { useActions } from '../CustomHooks/CustomHooks'
-import {Text, FlatList, ListRenderItem, TouchableOpacity } from 'react-native'
-import { Header } from './Header'
-import { EmptyContent } from './EmptyContent'
+import { ListRenderItem, TouchableOpacity } from 'react-native'
 import { ViewModContainer } from './ViewModContainer'
-import React, { useCallback } from 'react'
+import React, { memo } from 'react'
 import { Api } from '../DAL/Api'
-import { TodoListItem } from '../DAL/types/types'
+import { ErrorType, TodoListItem } from '../DAL/types/types'
 import { TodoContainer } from './TodoContainer'
-import { Center, Spinner, useBreakpointValue } from 'native-base'
+import { useRouter } from 'solito/router'
+import { ContentView } from 'app/View/ContentView'
+import { AuthRedirect } from 'app/View/AuthRedirect'
+import { HeaderByTodoList } from 'app/View/HeaderByTodoList'
+import { EmptyContent } from 'app/View/EmptyContent'
+import { doubleTap } from 'app/Utils/doubleTap'
 
-export const TodoList = () => {
-  const { data: todoList, isLoading, isError, error } = Api.useGetTodoListQuery()
+export const TodoList = AuthRedirect(memo(() => {
+  const { data: todoList, isLoading, isError, error, refetch } = Api.useGetTodoListQuery()
   const { changeCurrentTodo } = useActions()
-  const breakPoint=useBreakpointValue({base:1,sm:1,md:2,lg:2,xl:3,'2xl':3})
-  console.log(breakPoint)
-
+  const router = useRouter()
+  const err = error as ErrorType
 
   const render: ListRenderItem<TodoListItem> = ({ item }) => {
-    const onNavigate = () => {
+
+
+    const onPress=()=>{
       changeCurrentTodo(item)
-      // navigation.navigate("TodoScreen", {screen: "TaskScreen", params: {screen: "TaskList"}})
+      router.push('/taskList')
     }
 
     return (
-        <TouchableOpacity activeOpacity={1} onLongPress={onNavigate}>
-          <ViewModContainer>
-            <TodoContainer todo={item} />
-          </ViewModContainer>
-        </TouchableOpacity>
+      <TouchableOpacity key={item._id}
+                        activeOpacity={1}
+                        onPress={doubleTap(onPress)}
+      >
+        <ViewModContainer>
+          <TodoContainer todo={item} />
+        </ViewModContainer>
+      </TouchableOpacity>
     )
   }
 
-  if (isLoading) {
-    return (
-      <Center flex={1}>
-        <Spinner size={"lg"} />
-      </Center>
-    )
-  }
-  if (isError) {
-    return (
-      <Center flex={1}>
-      <Text>error</Text>
-      </Center>
-    )
-  }
   return (
-    <FlatList
+    <ContentView
+      onRefresh={refetch}
       data={todoList}
-      key={breakPoint}
-      numColumns={breakPoint}
-      showsHorizontalScrollIndicator={false}
-      keyExtractor={(item) => item._id}
-      renderItem={render}
-      ListHeaderComponent={<Header  />}
-      ListEmptyComponent={<EmptyContent />}
       listKey={'root'}
+      isLoading={isLoading}
+      error={err}
+      renderItem={render}
+      ListHeaderComponent={<HeaderByTodoList />}
+      ListEmptyComponent={<EmptyContent errorMessage={err?.data.message} />}
     />
   )
-}
+}))

@@ -1,11 +1,10 @@
 import React, { memo, useCallback } from 'react'
-import { Pressable } from 'react-native'
-import { useActions } from '../CustomHooks/CustomHooks'
 import { TaskItem, TodoListItem } from '../DAL/types/types'
 import { Api } from '../DAL/Api'
-import { CheckIcon, Divider, HStack, IconButton, Text } from 'native-base'
+import { CheckIcon, HStack, Text, View } from 'native-base'
 import { TEXTCOLOR_PRIMARY } from 'app/common/Variables'
-import { useRouter } from 'solito/router'
+import { IconButtonWrapper } from 'app/View/IconButtonWrapper'
+import { CustomDivider } from 'app/View/CustomDivider'
 
 type TaskProps = {
   task: TaskItem
@@ -14,26 +13,6 @@ type TaskProps = {
 
 export const Task: React.FC<TaskProps> = memo(({ task, todo }) => {
   const [putTask, { isLoading }] = Api.usePutTaskMutation()
-  const router = useRouter()
-
-  const { changeCurrentTodo, changeCurrentTask } = useActions()
-
-  const doubleTap = useCallback(() => {
-    let tapCount = 0
-    return () => {
-      tapCount++
-      setTimeout(() => {
-        tapCount = 0
-      }, 300)
-      if (tapCount === 2) {
-        changeCurrentTodo(todo)
-        changeCurrentTask(task)
-        router.push('/TaskList')
-        // navigation.navigate("TodoScreen", {screen: "TaskScreen", params: {screen: "TaskView"}})
-      } else {
-      }
-    }
-  }, [todo, task])
 
   const checkTask = useCallback(() => {
 
@@ -41,38 +20,32 @@ export const Task: React.FC<TaskProps> = memo(({ task, todo }) => {
   }, [task])
 
   return (
-    <Pressable onPress={doubleTap()}>
+    <View>
       <HStack space={'sm'} mt={5} alignItems={'center'}>
-        <IconButton onPress={checkTask}
-                    disabled={isLoading}
-                    isDisabled={isLoading}
-                    borderRadius={50}
-                    icon={
-                      <CheckIcon />
-                    }
-                    _icon={{
-                      size: '5',
-                      color: task.status === 0 ? 'rgb(37,99,234)' : TEXTCOLOR_PRIMARY
-                    }}
-                    _web={{
-                      size: '5'
-                    }}
-                    _hover={{
-                      bg: 'rgb(250,250,250)',
-                      _icon: {
-                        color: 'rgb(37,99,234)'
-                      }
-                    }}
-                    _pressed={{
-                      _web: {
-                        bg: 'rgb(255,255,255)'
-                      },
-                      bg: 'rgba(37,99,234,0.3)'
-                    }}
+        <IconButtonWrapper
+          onPress={checkTask}
+          disabled={isLoading}
+          isDisabled={isLoading}
+          _web={{
+            size:'4'
+          }}
+          icon={
+            <CheckIcon />
+          }
+          _icon={{
+            color: task.status === 0 ?TEXTCOLOR_PRIMARY: 'rgb(37,99,234)'
+          }}
         />
+
         <Text w={'90%'} color={TEXTCOLOR_PRIMARY} fontSize={'xl'}>{task.title}</Text>
+
       </HStack>
-      <Divider bg={TEXTCOLOR_PRIMARY} />
-    </Pressable>
+      <CustomDivider _light={{
+        borderBottomColor: "muted.500",
+      }} _dark={{
+
+        borderBottomColor: "muted.50"
+      }}/>
+    </View>
   )
 })

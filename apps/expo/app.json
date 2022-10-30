@@ -1,19 +1,57 @@
 {
   "expo": {
-    "name": "solito-blank",
+    "name": "mini-trello",
     "slug": "solito-blank",
     "version": "1.0.0",
     "sdkVersion": "44.0.0",
-    "scheme": "solito-blank",
+    "scheme": "mini-trello",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "platforms": [
       "ios",
       "android"
     ],
     "ios": {
-      "bundleIdentifier": "com.solito.blank"
+      "bundleIdentifier": "com.ivangoro.minitrello",
+      "supportsTablet": true
     },
     "android": {
-      "package": "com.solito.blank"
-    }
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#000000"
+      },
+      "package": "com.ivan_goro.minitrello"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "37c68b02-44f6-4d76-92a0-79dba7a98c2a"
+      }
+    },
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "goropashnyj9000gmailcom",
+            "project": "react-native",
+            "authToken": "88a43381b0ea43c18108afcc665a5bc296893d6c873c4f4183f6f5cdbb2773c4",
+            "setCommits": true
+          }
+        }
+      ]
+    },
+    "plugins": [
+      "sentry-expo"
+    ]
   }
 }

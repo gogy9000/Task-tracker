@@ -13,8 +13,13 @@
     "typescript": "^4.6.2"
   },
   "scripts": {
-    "native": "cd apps/expo && expo start",
-    "web": "cd apps/next && yarn next"
+    "native": "cd apps/expo && expo start -c",
+    "web": "cd apps/next && yarn next",
+    "native-no-dev":"cd apps/expo && expo start --no-dev --minify -c",
+    "prebuild-dev": "cd apps/expo && npx expo prebuild -p android",
+    "mock": "json-server -w db.json -p 4200 -d 450"
+
   },
+
   "dependencies": {}
 }

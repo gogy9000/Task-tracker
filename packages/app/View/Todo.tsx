@@ -12,6 +12,7 @@ import {
   Button,
   Heading
 } from 'native-base'
+import { IconButtonWrapper } from 'app/View/IconButtonWrapper'
 
 type TodoProps = {
   postFeedbackData: FeedbackMutationType
@@ -51,26 +52,16 @@ export const Todo: FC<TodoProps> = memo((props) => {
     <VStack space={1}>
       <HStack justifyContent={'space-between'} alignItems={'center'}>
         <Heading w={'90%'} isTruncated size={'md'}>{todo.title}</Heading>
-        <IconButton onPress={onDeleteTodo}
-                    disabled={deleteFeedbackData.isLoading}
-                    isDisabled={deleteFeedbackData.isLoading}
-                    borderRadius={50}
-                    icon={
-                      <SmallCloseIcon />
-                    }
-                    _hover={{
-                      bg: 'rgb(250,250,250)',
-                      _icon: {
-                        color: 'rgb(37,99,234)'
-                      }
-                    }}
-                    _pressed={{
-                      _web: {
-                        bg: 'rgb(255,255,255)'
-                      },
-                      bg: 'rgba(37,99,234,0.3)'
-                    }}
-
+        <IconButtonWrapper
+          onPress={onDeleteTodo}
+          _web={{
+            size:'10'
+          }}
+          disabled={deleteFeedbackData.isLoading}
+          isDisabled={deleteFeedbackData.isLoading}
+          icon={
+            <SmallCloseIcon  />
+          }
         />
       </HStack>
       {
@@ -104,7 +95,7 @@ export const Todo: FC<TodoProps> = memo((props) => {
         </HStack>
       }
       {children || null}
-      <Divider mb={3} />
+
     </VStack>
   )
 

@@ -1,9 +1,11 @@
 import React from 'react'
-import { Center, Heading } from 'native-base'
+import { Center, Heading,Text } from 'native-base'
 import { useDimensions } from '@react-native-community/hooks'
 
-
-export const EmptyContent = () => {
+type EmptyContentType={
+  errorMessage?:string
+}
+export const EmptyContent:React.FC<EmptyContentType>= ({errorMessage}) => {
 
   const { height } = useDimensions().screen
 
@@ -12,6 +14,10 @@ export const EmptyContent = () => {
       <Heading>
         O curva! list is empty!
       </Heading>
+      <Text>
+        {errorMessage||null}
+      </Text>
+
     </Center>
   )
 }
