@@ -1,27 +1,27 @@
-import React, {useEffect} from "react";
+import React, { memo, useEffect } from 'react'
 import {CustomButton} from "../common/CustomButton";
 import {StyleSheet, View, NativeSyntheticEvent, NativeTouchEvent, ActivityIndicator} from "react-native";
 import {Formik} from 'formik';
-// import {StyledInput} from "../styled-components/StyledInput";
 import {MARGIN, PADDING, WIDTH} from "../common/Variables";
-import {commonBorderStyle} from "../common/Styles";
 import {Api} from "../DAL/Api";
-// import {useAppNavigation} from "../CustomHooks/CustomHooks";
 import {Box, Button, Center, FormControl, Heading, HStack, Input, Text, Link, VStack} from "native-base";
 import { useRouter } from 'solito/router'
 import { ErrorType } from 'app/DAL/types/types'
 
-export const Login = () => {
-    const {data, isLoading, error, isError} = Api.useAuthMeQuery()
+export const Login = memo( () => {
+    const {data:authMeData,  error, isError} = Api.useAuthMeQuery()
     const err = error as ErrorType
-    const [login] = Api.useLoginMutation()
+    const [login,{isLoading,data:loginData}] = Api.useLoginMutation()
     const router = useRouter()
 
     useEffect(() => {
-        if (data && data.resultCode === 0) {
+        if (authMeData && authMeData.resultCode === 0) {
             router.push('/todolist')
         }
-    }, [data])
+    }, [authMeData])
+    console.log(loginData)
+    console.log(authMeData)
+
 
     const onSubmit = async (values: { email: string, password: string }) => {
         try {
@@ -32,26 +32,26 @@ export const Login = () => {
         }
     }
 
-    if (isLoading) {
-        return (
-            <View style={styles.loginContainer}>
-                <ActivityIndicator size={"large"} color={"rgb(255,255,255)"}/>
-            </View>
-        )
-    }
+    // if (isLoading) {
+    //     return (
+    //         <View style={styles.loginContainer}>
+    //             <ActivityIndicator size={"large"} color={"rgb(255,255,255)"}/>
+    //         </View>
+    //     )
+    // }
 
-    if (isError) {
-        return (
-            <View  style={styles.loginContainer}>
-                {
-                    error ?
-                        <Text>{err.data.message}</Text> :
-                        <Text>error</Text>
-                }
-
-            </View>
-        )
-    }
+    // if (isError) {
+    //     return (
+    //         <View  style={styles.loginContainer}>
+    //             {
+    //                 error ?
+    //                     <Text>{err.data.message}</Text> :
+    //                     <Text>error</Text>
+    //             }
+    //
+    //         </View>
+    //     )
+    // }
     return (
         <Center w={"100%"}>
             <Formik
@@ -98,8 +98,15 @@ export const Login = () => {
                                 </Link>
                             </FormControl>
                             <Button mt="2" colorScheme="indigo"
-                                    onPress={(handleSubmit as unknown) as (ev: NativeSyntheticEvent<NativeTouchEvent>) => void}
-                                    >Sign in</Button>
+                                    isLoading={isLoading}
+                                    isDisabled={isLoading}
+                                    disabled={isLoading}
+                                    onPress={
+                                (handleSubmit as unknown) as (ev: NativeSyntheticEvent<NativeTouchEvent>) => void
+                            }
+                                    >
+                                Sign in
+                            </Button>
                             <HStack mt="6" justifyContent="center">
                                 <Text fontSize="sm" color="coolGray.600" _dark={{
                                     color: "warmGray.200"
@@ -119,51 +126,5 @@ export const Login = () => {
                 )}
             </Formik>
         </Center>
-    )
+    )})
 
-    // return (
-    //     <View style={styles.loginContainer}>
-    //         <Formik
-    //             initialValues={{email: '', password: ""}}
-    //             onSubmit={onSubmit}
-    //         >
-    //             {({handleChange, handleBlur, handleSubmit, values}) => (
-    //                 <View style={styles.loginForm}>
-    //                     <StyledInput
-    //                         onChangeText={handleChange('email')}
-    //                         onBlur={handleBlur('email')}
-    //                         value={values.email}
-    //                     />
-    //                     <StyledInput
-    //                         style={styles.loginTextField}
-    //                         onChangeText={handleChange('password')}
-    //                         onBlur={handleBlur('password')}
-    //                         value={values.password}
-    //                     />
-    //
-    //                     <CustomButton
-    //                         onPress={(handleSubmit as unknown) as (ev: NativeSyntheticEvent<NativeTouchEvent>) => void}
-    //                         title="Submit"/>
-    //                 </View>
-    //             )}
-    //         </Formik>
-    //     </View>
-    // )
-}
-
-const styles = StyleSheet.create({
-    loginContainer: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    loginForm: {
-        width: (WIDTH - PADDING * 2),
-        paddingHorizontal: PADDING,
-        paddingVertical: PADDING,
-        backgroundColor: "rgba(5,5,5,0.5)",
-    },
-    loginTextField: {
-        marginVertical: MARGIN / 3,
-    }
-})

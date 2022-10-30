@@ -7,8 +7,8 @@ export const CustomDivider: React.FC<CustomDividerProps> = ({ ...restProps }) =>
     <Box
          w={'full'}
          h={'1'}
-         borderStyle={'none'}
-         borderBottomStyle={'solid'}
+         // borderStyle={'none'}
+         borderBottomColor={'black'}
          borderWidth={'1'}
          {...restProps}
     />

@@ -8,7 +8,6 @@ type HeaderByTaskListProps = {
 export const HeaderByTaskList: FC<HeaderByTaskListProps> = memo(({todoId}) => {
 
   const [creatTask, { isLoading }] = Api.usePostTaskMutation()
-
   const onCreateTodo = useCallback((inputValue: string) => {
     creatTask({ todolistId: todoId, title: inputValue })
   }, [])
