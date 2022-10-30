@@ -8,19 +8,22 @@ type HeaderLayoutProps = {
   onPressHandler: ((event: GestureResponderEvent) => void) | null | undefined
   onChangeTextHandler: ((text: string) => void) | undefined
   title: string
+  error:string
+  clearError:()=>void
 }
 export const HeaderLayout: React.FC<HeaderLayoutProps> = (props) => {
-  const { isLoading, inputValue, onPressHandler, onChangeTextHandler, title } = props
+  const {error,clearError ,isLoading, inputValue, onPressHandler, onChangeTextHandler, title } = props
   return (
     <Box flex={1} bg={'blue.600'} px='1' py='3'>
       <HStack px='1' py='1' space={2}>
         <Input
           flex={1}
+          onFocus={clearError}
           size={'2xl'}
-          color={'rgb(255,255,255)'}
+          color={error?'rgb(248,4,4)':'rgb(252,252,252)'}
           variant={'underlined'}
           onChangeText={onChangeTextHandler}
-          value={inputValue}
+          value={error?error:inputValue}
           placeholderTextColor={'rgb(255,255,255)'}
           placeholder={`${title}...`}
           _focus={{ borderColor: 'rgb(255,255,255)' }}

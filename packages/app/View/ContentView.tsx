@@ -1,6 +1,6 @@
 import { FlatList, ListRenderItem, Text, View } from 'react-native'
 import { Center, Spinner, useBreakpointValue } from 'native-base'
-import { HeaderTodoListContainer } from 'app/View/HeaderTodoListContainer'
+import { HeaderByTodoList } from 'app/View/HeaderByTodoList'
 import { EmptyContent } from 'app/View/EmptyContent'
 import React from 'react'
 import { ErrorType } from 'app/DAL/types/types'
@@ -37,7 +37,7 @@ export const ContentView:React.FC<ContentViewProps> = ({ isLoading, error, refet
         columnWrapperStyle={breakPoint > 1 ? { alignSelf: 'center' } : undefined}
         keyExtractor={(item) => item._id}
         renderItem={renderItem}
-        ListHeaderComponent={<HeaderTodoListContainer />}
+        ListHeaderComponent={<HeaderByTodoList />}
         ListEmptyComponent={<EmptyContent errorMessage={error?.data.message}/>}
         listKey={listKey}
       />
