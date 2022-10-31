@@ -5,6 +5,7 @@ import { ViewModContainer } from 'app/View/ViewModContainer'
 import { VStack } from 'native-base'
 import { DetailsContentContainer } from 'app/View/detailsContentContainer'
 import { TaskTitleContainer } from 'app/View/taskTitleContainer'
+import { DescriptionContainer } from 'app/View/descriptionContainer'
 
 type TaskDescriptionProps = {
   task: TaskItem
@@ -21,12 +22,7 @@ export const TaskDescription: React.FC<TaskDescriptionProps> = ({ task }) => {
     <ViewModContainer>
       <VStack>
         <TaskTitleContainer task={task} />
-
-        <DetailsContentContainer PayloadKey={'description'}
-                                 isLoading={isLoading}
-                                 onPutTask={onPutTask}
-                                 title={'description:'}
-                                 value={task.description} />
+        <DescriptionContainer task={task}/>
         <DetailsContentContainer PayloadKey={'startDate'}
                                  onPutTask={onPutTask}
                                  title={'startDate:'}

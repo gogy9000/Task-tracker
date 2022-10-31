@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { CheckCircleIcon, HStack, Input, Text, VStack } from 'native-base'
 import { IconButtonWrapper } from 'app/View/IconButtonWrapper'
 import { CustomDivider } from 'app/View/CustomDivider'
+import { EditableText } from 'app/View/editableText'
 
 type DetailsContentContainerProps = {
   title: string
@@ -24,8 +25,6 @@ export const DetailsContentContainer: React.FC<DetailsContentContainerProps> = (
     if (inputValue) {
       onPutTask({ [PayloadKey]: inputValue })
     }
-
-
   }
 
   return (
@@ -34,7 +33,6 @@ export const DetailsContentContainer: React.FC<DetailsContentContainerProps> = (
         <Text fontSize={'md'}>{title}</Text>
         <Input onChangeText={setInputValue}
                _focus={{ borderColor: 'rgb(37,99,234)' }}
-
                paddingBottom={'0'}
                borderColor={'rgb(100,98,98)'}
                flexGrow={2}
