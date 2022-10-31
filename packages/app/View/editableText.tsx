@@ -13,18 +13,21 @@ import {
 import React, { useState } from 'react'
 import { IconButtonWrapper } from 'app/View/IconButtonWrapper'
 
-type EditableTextProps = IInputProps & {
+type EditableTextProps =  {
   initialValue: string
   textProps?: ITextProps
   boxWrapperProps?: IBoxProps
   onPressButton?:(text:string)=>void
+  inputProps?:IInputProps
+  isLoading:boolean
 }
 export const EditableText: React.FC<EditableTextProps> = ({
                                                             initialValue,
                                                             boxWrapperProps,
                                                             textProps,
+                                                            inputProps,
                                                             onPressButton,
-                                                            ...restProps
+                                                            isLoading
                                                           }) => {
   const { ...restTextProps } = textProps
   const [inputValue, setInputValue] = useState(initialValue)
@@ -51,14 +54,14 @@ export const EditableText: React.FC<EditableTextProps> = ({
   return (
     <Pressable>
       {({ isHovered }) => {
-      return  <HStack  alignItems={'center'}
+      return  <Box flexDirection={'row'}  alignItems={'center'} {...boxWrapperProps}
 
         >
           {
             editMode
               ?
-              <React.Fragment>
-                <Text color={'red.400'}>{error}</Text>
+              <>
+                <Text color={'red.400'} {...restTextProps}>{error}</Text>
                 <Input onChangeText={setInputValue}
                        onFocus={onFocusInput}
                        multiline
@@ -67,15 +70,16 @@ export const EditableText: React.FC<EditableTextProps> = ({
                        size={'md'}
                        variant={'unstyled'}
                        value={inputValue}
-                       {...restProps}
+                       {...inputProps}
                 />
-
                 <IconButtonWrapper
                   onPress={fetchText}
-                  icon={<CheckCircleIcon size={5} mr='2' color='rgb(37,99,234)' />}
+                  isDisabled={isLoading}
+                  disabled={isLoading}
+                  icon={<CheckCircleIcon size={5}  color='rgb(37,99,234)' />}
                 />
 
-              </React.Fragment>
+              </>
               :
               < >
                 <Text onPress={onPressHandler}
@@ -85,16 +89,22 @@ export const EditableText: React.FC<EditableTextProps> = ({
                   {inputValue}
                 </Text>
                 <IconButtonWrapper
+                  // size={'5'}
                   onPress={onPressHandler}
+                  isDisabled={isLoading}
+                  disabled={isLoading}
                   icon={
                     <CheckCircleIcon
                       size={5}
-                      mr='2'
-                      color={isHovered ? 'muted.400' : 'white'} />}
+                      // mr='2'
+                      // _web={{
+                      //   color:isHovered ? 'muted.400' :  'white'
+                      // }}
+                      color={'muted.400'} />}
                 />
               </>
           }
-      </HStack>
+      </Box>
       }
       }</Pressable>
   )

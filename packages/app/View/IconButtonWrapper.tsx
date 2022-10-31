@@ -5,9 +5,9 @@ type IconButtonWrapperProps = IIconButtonProps & {}
 export const IconButtonWrapper: React.FC<IconButtonWrapperProps> = ({ ...restProps }) => {
   return <IconButton
                      borderRadius={50}
-                     _web={{
-                       size: '5'
-                     }}
+                     // _web={{
+                     //   size: '5'
+                     // }}
                      _hover={{
                        bg: 'rgb(250,250,250)',
                        _icon: {
