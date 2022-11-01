@@ -1,7 +1,4 @@
-import {Dimensions} from "react-native";
-export const {height,width}=Dimensions.get("screen")
-export const HEIGHT=Math.round(height)
-export const WIDTH=Math.round(width)
+
 export const PADDING = 30
 export const MARGIN=30
 export const FONTSIZE_PRIMARY=22

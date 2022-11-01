@@ -6,8 +6,6 @@ import {
   HStack,
   Input,
   VStack,
-  Divider,
-  IconButton,
   SmallCloseIcon,
   Button,
   Heading
@@ -60,7 +58,7 @@ export const Todo: FC<TodoProps> = memo((props) => {
           disabled={deleteFeedbackData.isLoading}
           isDisabled={deleteFeedbackData.isLoading}
           icon={
-            <SmallCloseIcon  />
+            <SmallCloseIcon />
           }
         />
       </HStack>
@@ -68,20 +66,11 @@ export const Todo: FC<TodoProps> = memo((props) => {
         !viewMod &&
         <HStack space={'sm'}>
           <Input flex={1}
-
-                 variant={'underlined'}
-                 _focus={{
-                   borderColor: 'rgba(5,5,5,0.3)',
-                   color: 'rgba(5,5,5,0.8)'
-                 }
-                 }
+                 variant={'custom'}
                  fontSize={FONTSIZE_SECONDARY}
                  fontWeight={'500'}
-                 // color={TEXTCOLOR_PRIMARY}
-                 // borderColor={TEXTCOLOR_PRIMARY}
                  size={'md'}
                  placeholder={'task name...'}
-                 // placeholderTextColor={TEXTCOLOR_PRIMARY}
                  onChangeText={onChangeTaskTitle}
                  value={currentTaskTitle}
           />
