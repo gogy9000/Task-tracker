@@ -1,9 +1,41 @@
 import { extendTheme } from 'native-base'
 
-const config = {
-  useSystemColorMode: false,
-  initialColorMode: 'dark',
-};
 
-// extend the theme
- export const customTheme = extendTheme({ config });
+ export const customTheme = extendTheme({
+   config:{
+     useSystemColorMode: false,
+     initialColorMode: 'dark',
+
+   },
+   components:{
+     Button: {
+       variants:{
+         white: {
+           _text: {color: "white"},
+           borderColor:'white',
+           borderWidth:'1',
+           _hover:{
+             bg:'rgba(5,5,5,0.1)'
+           },
+           _pressed:{
+             bg:'rgba(5,5,5,0.5)',
+             borderColor:'rgb(152,151,151)',
+             _text:{color:'rgb(152,151,151)'}
+           }
+         }
+       }
+           // _text: {color: "white"},
+           // _web: {outlineWidth: string},
+           // bg: string,
+           //   _hover: {_text: {color: any},bg: any},
+           // _pressed: {_text: {color: any},bg: any}},
+     },
+
+   }
+ });
+
+type CustomThemeType = typeof customTheme;
+
+declare module 'native-base' {
+  interface ICustomTheme extends CustomThemeType {}
+}

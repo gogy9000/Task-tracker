@@ -27,14 +27,11 @@ export const TodoList = AuthRedirect(memo(() => {
     }
 
     return (
-      <TouchableOpacity key={item._id}
-                        activeOpacity={1}
-                        onPress={doubleTap(onPress)}
-      >
-        <ViewModContainer>
+
+        <ViewModContainer  key={item._id} onPress={doubleTap(onPress)}>
           <TodoContainer todo={item} />
         </ViewModContainer>
-      </TouchableOpacity>
+
     )
   }
 

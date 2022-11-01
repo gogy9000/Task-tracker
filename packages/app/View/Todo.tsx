@@ -66,7 +66,7 @@ export const Todo: FC<TodoProps> = memo((props) => {
       </HStack>
       {
         !viewMod &&
-        <HStack>
+        <HStack space={'sm'}>
           <Input flex={1}
 
                  variant={'underlined'}
@@ -77,17 +77,20 @@ export const Todo: FC<TodoProps> = memo((props) => {
                  }
                  fontSize={FONTSIZE_SECONDARY}
                  fontWeight={'500'}
-                 color={TEXTCOLOR_PRIMARY}
-                 borderColor={TEXTCOLOR_PRIMARY}
+                 // color={TEXTCOLOR_PRIMARY}
+                 // borderColor={TEXTCOLOR_PRIMARY}
                  size={'md'}
                  placeholder={'task name...'}
-                 placeholderTextColor={TEXTCOLOR_PRIMARY}
+                 // placeholderTextColor={TEXTCOLOR_PRIMARY}
                  onChangeText={onChangeTaskTitle}
                  value={currentTaskTitle}
           />
           <Button isLoading={postFeedbackData.isLoading}
                   disabled={postFeedbackData.isLoading}
-                  colorScheme={'blue'} variant={'subtle'}
+                  _dark={{
+                    variant:"white"
+                  }}
+                   variant={'subtle'}
                   onPress={onAddTask}
           >
             add task
