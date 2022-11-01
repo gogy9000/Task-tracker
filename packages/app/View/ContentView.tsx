@@ -1,5 +1,5 @@
-import { FlatList, ListRenderItem, View } from 'react-native'
-import { Center, Spinner, useBreakpointValue } from 'native-base'
+import { FlatList, ListRenderItem } from 'react-native'
+import { Center, Spinner, useBreakpointValue,View } from 'native-base'
 import React, { ReactElement } from 'react'
 import { ErrorType } from 'app/DAL/types/types'
 
@@ -33,7 +33,7 @@ export const ContentView: React.FC<ContentViewProps> = (props) => {
     )
   }
   return (
-    <View style={{ flex: 1 }}>
+    <View flex={'1'} _dark={{bg:'warmGray.600'}}>
       <FlatList
         renderItem={renderItem}
         data={data}

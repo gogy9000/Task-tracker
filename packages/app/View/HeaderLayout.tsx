@@ -15,10 +15,11 @@ type HeaderLayoutProps = {
 export const HeaderLayout: React.FC<HeaderLayoutProps> = (props) => {
   const statusBarBgColor=useColorModeValue("white","black")
   const barStyle=useColorModeValue("dark-content","light-content")
+  const headerBgColor=useColorModeValue('blue.600',"warmGray.700")
 
   const {error,clearError ,isLoading, inputValue, onPressHandler, onChangeTextHandler, title } = props
   return (
-    <Box flex={1} bg={'blue.600'} px='1' py='3'>
+    <Box flex={1} bg={headerBgColor} px='1' py='3'>
       <StatusBar backgroundColor={statusBarBgColor} barStyle={barStyle}/>
       <HStack px='1' py='1' space={2}>
         <Input
