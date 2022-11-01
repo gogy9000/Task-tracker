@@ -60,7 +60,7 @@ export const customTheme = extendTheme({
             _focus: {
               borderStyle:'solid',
               borderWidth:'1',
-              borderColor: 'rgb(37,99,234)',
+              borderColor: 'rgb(59,87,157)',
               color: 'rgba(5,5,5,0.8)'
             }
           },
