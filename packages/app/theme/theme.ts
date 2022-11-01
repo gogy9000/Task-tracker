@@ -10,7 +10,7 @@ import { extendTheme } from 'native-base'
    components:{
      Button: {
        variants:{
-         white: {
+         darkStyle: {
            _text: {color: "white"},
            borderColor:'white',
            borderWidth:'1',
@@ -21,6 +21,17 @@ import { extendTheme } from 'native-base'
              bg:'rgba(5,5,5,0.5)',
              borderColor:'rgb(152,151,151)',
              _text:{color:'rgb(152,151,151)'}
+           }
+         },
+         lightStyle:{
+           _text: {color: "rgb(253,253,253)"},
+           bg:"rgb(37,99,234)",
+           _hover:{
+             bg:'rgb(35,84,201)'
+           },
+           _pressed:{
+             bg:'rgb(19,50,108)',
+             // _text:{color:'rgb(152,151,151)'}
            }
          }
        }

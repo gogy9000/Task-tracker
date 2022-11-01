@@ -88,9 +88,9 @@ export const Todo: FC<TodoProps> = memo((props) => {
           <Button isLoading={postFeedbackData.isLoading}
                   disabled={postFeedbackData.isLoading}
                   _dark={{
-                    variant:"white"
+                    variant:"darkStyle"
                   }}
-                   variant={'subtle'}
+                   variant={'lightStyle'}
                   onPress={onAddTask}
           >
             add task
