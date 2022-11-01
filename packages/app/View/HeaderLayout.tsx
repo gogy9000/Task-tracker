@@ -1,6 +1,7 @@
 import React from 'react'
-import { Box, Button, HStack, Input } from 'native-base'
+import { Box, Button, HStack, Input, StatusBar, useColorModeValue } from 'native-base'
 import { GestureResponderEvent } from 'react-native'
+import { ColorModeSwitch } from 'app/components'
 
 type HeaderLayoutProps = {
   inputValue: string
@@ -12,9 +13,13 @@ type HeaderLayoutProps = {
   clearError:()=>void
 }
 export const HeaderLayout: React.FC<HeaderLayoutProps> = (props) => {
+  const statusBarBgColor=useColorModeValue("white","black")
+  const barStyle=useColorModeValue("dark-content","light-content")
+
   const {error,clearError ,isLoading, inputValue, onPressHandler, onChangeTextHandler, title } = props
   return (
     <Box flex={1} bg={'blue.600'} px='1' py='3'>
+      <StatusBar backgroundColor={statusBarBgColor} barStyle={barStyle}/>
       <HStack px='1' py='1' space={2}>
         <Input
           flex={1}
@@ -49,6 +54,7 @@ export const HeaderLayout: React.FC<HeaderLayoutProps> = (props) => {
         >
           {`Create ${title}`}
         </Button>
+        <ColorModeSwitch/>
       </HStack>
     </Box>
   )

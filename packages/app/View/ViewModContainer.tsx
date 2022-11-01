@@ -11,7 +11,7 @@ type TodoContainerProps = {
 export const ViewModContainer: FC<TodoContainerProps> = memo(({ children }) => {
 
   return (
-    <Box px={'3'} w={'95%'} m={'1'} alignSelf={'center'}
+    <Box px={'3'} w={'360'} m={'1'} alignSelf={'center'}
          py={'5'} mt={'1'} borderColor={'coolGray.200'}
          rounded='lg' borderWidth='1'
          _dark={{

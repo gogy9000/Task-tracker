@@ -23,7 +23,7 @@ const axiosQuery = (
     // из-за того что бек расчитан под работу только с вэб приложениями, приходится имитировать браузерные запросы
     //прокидывая браузерные куки с каждым запросом
     const cookie = await loadStorage("Cookie")
-    console.log(cookie)
+    // console.log(cookie)
     if (cookie) {
     headers = {
         ...headers,

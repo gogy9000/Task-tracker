@@ -18,9 +18,9 @@ export function ColorModeSwitch() {
     >
       <IconButton
         variant="unstyled"
-        position="absolute"
-        top={12}
-        right={8}
+        // position="absolute"
+        // top={12}
+        // right={8}
         onPress={toggleColorMode}
         icon={colorMode === 'dark' ? <SunIcon /> : <MoonIcon />}
         accessibilityLabel="Color Mode Switch"

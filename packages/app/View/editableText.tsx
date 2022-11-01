@@ -37,7 +37,6 @@ export const EditableText: React.FC<EditableTextProps> = ({
                                                             controlledEditMode,
                                                             setControlledEditMode
                                                           }) => {
-  const { ...restTextProps } = textProps
   const [inputValue, setInputValue] = useState<string>(initialValue)
   const [editMode, setEditMode] = useState(false)
   const [error, setError] = useState('')
@@ -70,7 +69,7 @@ export const EditableText: React.FC<EditableTextProps> = ({
   if (controlledEditMode||editMode) {
     return (
       <Box flexDirection={'row'} alignItems={'center'} {...boxWrapperProps}>
-        <Text color={'red.400'} {...restTextProps}>{error}</Text>
+        <Text color={'red.400'} {...textProps}>{error}</Text>
         <Input onChangeText={setInputValue}
                onFocus={onFocusInput}
                multiline
@@ -99,7 +98,7 @@ export const EditableText: React.FC<EditableTextProps> = ({
         <Text onPress={onPressHandler}
               fontSize={fontSize}
               flex={1}
-              {...restTextProps}
+              {...textProps}
         >
           {inputValue}
         </Text>

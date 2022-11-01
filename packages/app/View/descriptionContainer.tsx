@@ -23,9 +23,10 @@ export const DescriptionContainer: React.FC<DescriptionContainerProps> = ({ task
 
   <VStack alignContent={'center'}>
     <HStack space={'xs'} alignItems={'flex-start'} justifyContent={'space-between'}>
-      <Text fontSize={'md'}>Description:</Text>
-      <EditableText boxWrapperProps={{flex:1,alignItems:'flex-end'}}
+      <Text  fontSize={'md'}>Description:</Text>
+      <EditableText boxWrapperProps={{flex:1,alignItems:'flex-start'}}
                     controlledEditMode={editMode}
+                    textProps={{flexWrap:'wrap'}}
                     setControlledEditMode={setEditMode}
                     isLoading={isLoading}
                     onPressButton={onPutTask}
