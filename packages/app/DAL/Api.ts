@@ -36,18 +36,19 @@ const axiosQuery = (
           saveStorage("Cookie", result.headers["set-cookie"]?.join(""))
       }
       return { data: result.data }
-    } catch (axiosError) {
-      if (axiosError instanceof AxiosError) {
-        let err = axiosError as AxiosError
+    } catch (e) {
+      if (e instanceof AxiosError) {
+        let err = e as AxiosError
         console.log(err)
         return {
           error: {
             status: err.response?.status,
-            data: err.response?.data || err.message
+            data: err.response?.data ,
+            message:err.message
           }
         }
       } else {
-        throw axiosError
+        throw e
       }
     }
   }

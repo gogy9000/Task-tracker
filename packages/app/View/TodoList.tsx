@@ -1,5 +1,5 @@
 import { useActions } from '../CustomHooks/CustomHooks'
-import { ListRenderItem, TouchableOpacity } from 'react-native'
+import { ListRenderItem } from 'react-native'
 import { ViewModContainer } from './ViewModContainer'
 import React, { memo } from 'react'
 import { Api } from '../DAL/Api'
@@ -13,7 +13,7 @@ import { EmptyContent } from 'app/View/EmptyContent'
 import { doubleTap } from 'app/Utils/doubleTap'
 
 export const TodoList = AuthRedirect(memo(() => {
-  const { data: todoList, isLoading, isError, error, refetch } = Api.useGetTodoListQuery()
+  const { data: todoList, isLoading, error, refetch } = Api.useGetTodoListQuery()
   const { changeCurrentTodo } = useActions()
   const router = useRouter()
   const err = error as ErrorType
@@ -44,7 +44,7 @@ export const TodoList = AuthRedirect(memo(() => {
       error={err}
       renderItem={render}
       ListHeaderComponent={<HeaderByTodoList />}
-      ListEmptyComponent={<EmptyContent errorMessage={err?.data.message} />}
+      ListEmptyComponent={<EmptyContent errorMessage={err?.message} />}
     />
   )
 }))

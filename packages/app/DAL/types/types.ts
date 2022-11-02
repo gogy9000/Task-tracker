@@ -56,8 +56,7 @@ export type FeedbackMutationType = {
   'status': string,
 }
 export type ErrorType = {
-  'data': {
-    'message': string,
-  },
+  'data': unknown,
   'status': number,
+  'message': string,
 }
