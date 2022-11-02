@@ -3,14 +3,14 @@ import React from 'react'
 import { NativeBaseProvider } from 'native-base'
 import { Provider } from 'react-redux'
 import { store } from 'app/BLL/Store'
-import { customTheme } from 'app/theme/theme'
+import { config, customTheme } from 'app/theme/theme'
 
 
 export function CommonProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <NavigationProvider>
-      <NativeBaseProvider theme={customTheme}>
+      <NativeBaseProvider config={config} theme={customTheme}>
         <Provider store={store}>
           {children}
         </Provider>

@@ -1,5 +1,7 @@
-import { extendTheme } from 'native-base'
-
+import { extendTheme, INativebaseConfig } from 'native-base'
+import { customIconButtonTheme } from 'app/theme/customIconButtonTheme'
+import { customInputTheme } from 'app/theme/customInputTheme'
+import { customButtonTheme } from 'app/theme/customButtonTheme'
 
 export const customTheme = extendTheme({
   config: {
@@ -10,6 +12,7 @@ export const customTheme = extendTheme({
   components: {
     Button: {
       variants: {
+        custom:customButtonTheme,
         darkStyle: {
           _text: { color: 'white' },
           borderColor: 'white',
@@ -31,47 +34,29 @@ export const customTheme = extendTheme({
           },
           _pressed: {
             bg: 'rgb(19,50,108)'
-            // _text:{color:'rgb(152,151,151)'}
           }
         }
       }
 
     },
+    IconButton: {
+      variants: {
+        custom: customIconButtonTheme
+      }
+    },
     Input: {
       variants: {
-        custom: {
-          _dark:{
-            borderStyle:'solid',
-            borderWidth:'1',
-            borderColor: 'rgb(255,255,255)',
-            color: 'rgba(255,255,255,0.51)',
-            _focus: {
-              borderStyle:'solid',
-              borderWidth:'1',
-              borderColor: 'rgba(255,255,255,0.5)',
-              color: 'rgb(255,255,255)'
-            }
-          },
-          _light:{
-            borderStyle:'solid',
-            borderWidth:'1',
-            borderColor: 'rgba(5,5,5,0.3)',
-            color: 'rgba(7,7,7,0.5)',
-            _focus: {
-              borderStyle:'solid',
-              borderWidth:'1',
-              borderColor: 'rgb(59,87,157)',
-              color: 'rgba(5,5,5,0.8)'
-            }
-          },
-        }
+        custom: customInputTheme
       }
     }
-
   }
 })
 
 type CustomThemeType = typeof customTheme;
+
+export const config: INativebaseConfig = {
+  strictMode: 'error'
+}
 
 declare module 'native-base' {
   interface ICustomTheme extends CustomThemeType {

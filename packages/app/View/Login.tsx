@@ -1,8 +1,6 @@
 import React, { memo, useEffect } from 'react'
-import {CustomButton} from "../common/CustomButton";
-import {StyleSheet, View, NativeSyntheticEvent, NativeTouchEvent, ActivityIndicator} from "react-native";
+import { NativeSyntheticEvent, NativeTouchEvent,} from "react-native";
 import {Formik} from 'formik';
-import {MARGIN, PADDING, WIDTH} from "../common/Variables";
 import {Api} from "../DAL/Api";
 import {Box, Button, Center, FormControl, Heading, HStack, Input, Text, Link, VStack} from "native-base";
 import { useRouter } from 'solito/router'
@@ -31,27 +29,6 @@ export const Login = memo( () => {
             console.log(e)
         }
     }
-
-    // if (isLoading) {
-    //     return (
-    //         <View style={styles.loginContainer}>
-    //             <ActivityIndicator size={"large"} color={"rgb(255,255,255)"}/>
-    //         </View>
-    //     )
-    // }
-
-    // if (isError) {
-    //     return (
-    //         <View  style={styles.loginContainer}>
-    //             {
-    //                 error ?
-    //                     <Text>{err.data.message}</Text> :
-    //                     <Text>error</Text>
-    //             }
-    //
-    //         </View>
-    //     )
-    // }
     return (
         <Center w={"100%"}>
             <Formik
