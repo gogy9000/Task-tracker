@@ -1,7 +1,7 @@
 import { useActions } from '../CustomHooks/CustomHooks'
-import { ListRenderItem } from 'react-native'
+import { ListRenderItem, BackHandler, Alert } from 'react-native'
 import { ViewModContainer } from './ViewModContainer'
-import React, { memo } from 'react'
+import React, { memo, useEffect } from 'react'
 import { Api } from '../DAL/Api'
 import { ErrorType, TodoListItem } from '../DAL/types/types'
 import { TodoContainer } from './TodoContainer'
@@ -12,7 +12,24 @@ import { HeaderByTodoList } from 'app/View/HeaderByTodoList'
 import { EmptyContent } from 'app/View/EmptyContent'
 import { doubleTap } from 'app/Utils/doubleTap'
 
+
 export const TodoList = AuthRedirect(memo(() => {
+
+  useEffect(() => {
+
+    const backAction = () => {
+      BackHandler.exitApp()
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",backAction
+    );
+
+    return () => backHandler.remove();
+  }, []);
+
+
   const { data: todoList, isLoading, error, refetch } = Api.useGetTodoListQuery()
   const { changeCurrentTodo } = useActions()
   const router = useRouter()

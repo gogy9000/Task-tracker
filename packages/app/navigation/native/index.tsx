@@ -14,19 +14,21 @@ export function NativeNavigation() {
   return (
     <Stack.Navigator screenOptions={{headerShown:false}}>
       <Stack.Screen
+        name="todolist"
+        component={TodoList}
+        options={{
+          title: 'todolist',
+
+        }}
+      />
+      <Stack.Screen
         name="login"
         component={Login}
         options={{
           title: 'login',
         }}
       />
-      <Stack.Screen
-        name="todolist"
-        component={TodoList}
-        options={{
-          title: 'todolist',
-        }}
-      />
+
       <Stack.Screen
         name="taskList"
         component={TaskList}
