@@ -24,7 +24,7 @@ type EditableTextProps = {
   isLoading?: boolean
   fontSize?: ResponsiveValue<ISizes | (string & {}) | number>
   controlledEditMode?: boolean
-  setControlledEditMode?: (boolean) => void
+  setControlledEditMode?: (editMode:boolean) => void
 }
 export const EditableText: React.FC<EditableTextProps> = ({
                                                             initialValue = '',
