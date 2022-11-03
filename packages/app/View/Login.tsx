@@ -27,7 +27,7 @@ export const Login = memo(() => {
     }
   }, [authMeData])
 
-  const validate = (values) => {
+  const validate = (values:FormValuesType) => {
     const errors: FormikErrorType = {}
     if (!values.email) {
       errors.email = 'Required'
