@@ -102,11 +102,17 @@ export const Login = memo(() => {
                   <FormControl.ErrorMessage>{errors.password}</FormControl.ErrorMessage>
                   <FormControl.ErrorMessage>{loginClientError}</FormControl.ErrorMessage>
                 </VStack>
-                <Link _text={{
+                <Link
+                  hrefAttrs={{ target: '_blank', rel: 'noreferrer' }}
+                  href='https://social-network.samuraijs.com/login'
+                  _text={{
                   fontSize: 'xs',
                   fontWeight: '500',
                   color: 'indigo.500'
-                }} alignSelf='flex-end' mb='2'>
+                }}
+                  alignSelf='flex-end'
+                  mb='2'
+                >
                   Forget Password?
                 </Link>
               </FormControl>
@@ -127,13 +133,14 @@ export const Login = memo(() => {
                   I'm a new user.{' '}
                 </Text>
                 <Link
+                  hrefAttrs={{ target: '_blank', rel: 'noreferrer' }}
+                  href='https://social-network.samuraijs.com/signUp'
                   _text={{
                     color: 'indigo.500',
                     fontWeight: 'medium',
                     fontSize: 'sm'
                   }}
-                  hrefAttrs={{ target: '_blank', rel: 'noreferrer' }}
-                  href='https://social-network.samuraijs.com/signUp'>
+                >
                   Sign Up
                 </Link>
               </HStack>
