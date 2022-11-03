@@ -27,11 +27,9 @@ export const TodoList = AuthRedirect(memo(() => {
     }
 
     return (
-
         <ViewModContainer  key={item._id} onPress={doubleTap(onPress)}>
           <TodoContainer todo={item} />
         </ViewModContainer>
-
     )
   }
 

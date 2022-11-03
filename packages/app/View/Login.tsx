@@ -4,7 +4,7 @@ import { Formik } from 'formik'
 import { Api } from '../DAL/Api'
 import { Box, Button, Center, FormControl, Heading, HStack, Input, Text, Link, VStack } from 'native-base'
 import { useRouter } from 'solito/router'
-import {  ErrorType } from 'app/DAL/types/types'
+import { ErrorType } from 'app/DAL/types/types'
 
 type FormikErrorType = {
   email?: string
@@ -44,7 +44,7 @@ export const Login = memo(() => {
 
   const loginClientError = err?.message || loginData?.messages[0]
 
-  const onSubmit = async (values: FormValuesType,) => {
+  const onSubmit = async (values: FormValuesType) => {
     try {
       await login(values)
     } catch (e) {
@@ -53,51 +53,67 @@ export const Login = memo(() => {
   }
 
   return (
-    <Center h={'100%'}  w={'100%'} _dark={{ bg: 'warmGray.600' }}>
+    <Center h={'100%'} w={'100%'} _dark={{ bg: 'warmGray.600' }}>
       <Formik
         initialValues={{ email: '', password: '' }}
         validate={validate}
         onSubmit={onSubmit}
       >
         {({ handleChange, handleBlur, errors, handleSubmit, values }) => (
-          <Box  safeArea p={'2'} py={'8'}  w={['60%','50%','40%','30%','20%']} >
+          <Box p={'2'} py={'8'} w={['60%', '50%', '40%', '30%', '20%']}>
             <Heading size='lg' fontWeight='600' color='coolGray.800' _dark={{
               color: 'warmGray.50'
             }}>
               Welcome
             </Heading>
-            <Heading  mt={'2'} _dark={{
+            <Heading mt={'2'} _dark={{
               color: 'warmGray.200'
             }} color='coolGray.600' fontWeight='medium' size='xs'>
               Sign in to continue!
             </Heading>
-            <VStack space={3} mt={'5'}>
-              <FormControl isInvalid={!!errors.password || !!errors.email || !!loginClientError}>
-                <FormControl.Label>
+            <VStack space={3}>
+              <FormControl isInvalid={!!errors.email || !!loginClientError}>
+                <FormControl.Label mt={'2'}>
                   Email
                 </FormControl.Label>
                 <Input
+                  _focus={{ _invalid: { borderColor: 'red.300' } }}
                   onChangeText={handleChange('email')}
                   onBlur={handleBlur('email')}
                   value={values.email} />
-
-                <FormControl.ErrorMessage>{errors.email}</FormControl.ErrorMessage>
-
-                <FormControl.Label mt={'5'}>
+                <VStack h={'6'}>
+                  <FormControl.ErrorMessage>
+                    {errors.email}
+                  </FormControl.ErrorMessage>
+                </VStack>
+              </FormControl>
+              <FormControl isInvalid={!!errors.password || !!loginClientError}>
+                <FormControl.Label>
                   Password
                 </FormControl.Label>
-                <Input type={'password'}
-                       onChangeText={handleChange('password')}
-                       onBlur={handleBlur('password')}
-                       value={values.password}
+                <Input
+                  type={'password'}
+                  _focus={{ _invalid: { borderColor: 'red.300' } }}
+                  onChangeText={handleChange('password')}
+                  onBlur={handleBlur('password')}
+                  value={values.password}
                 />
-                <FormControl.ErrorMessage>{errors.password}</FormControl.ErrorMessage>
-                <FormControl.ErrorMessage>{loginClientError}</FormControl.ErrorMessage>
+                <VStack h={'8'}>
+                  <FormControl.ErrorMessage>{errors.password}</FormControl.ErrorMessage>
+                  <FormControl.ErrorMessage>{loginClientError}</FormControl.ErrorMessage>
+                </VStack>
+                <Link _text={{
+                  fontSize: 'xs',
+                  fontWeight: '500',
+                  color: 'indigo.500'
+                }} alignSelf='flex-end' mb='2'>
+                  Forget Password?
+                </Link>
               </FormControl>
-              <Button mt='2' colorScheme='indigo'
+              <Button colorScheme='indigo'
                       isLoading={isLoading}
-                      isDisabled={isLoading}
-                      disabled={isLoading}
+                      isDisabled={isLoading || !!errors.email || !!errors.password}
+                      disabled={isLoading || !!errors.email || !!errors.password}
                       onPress={
                         (handleSubmit as unknown) as (ev: NativeSyntheticEvent<NativeTouchEvent>) => void
                       }
@@ -112,12 +128,12 @@ export const Login = memo(() => {
                 </Text>
                 <Link
                   _text={{
-                  color: 'indigo.500',
-                  fontWeight: 'medium',
-                  fontSize: 'sm'
-                }}
-                  hrefAttrs={{target:'_blank',rel: "noreferrer"}}
-                      href='https://social-network.samuraijs.com/signUp'>
+                    color: 'indigo.500',
+                    fontWeight: 'medium',
+                    fontSize: 'sm'
+                  }}
+                  hrefAttrs={{ target: '_blank', rel: 'noreferrer' }}
+                  href='https://social-network.samuraijs.com/signUp'>
                   Sign Up
                 </Link>
               </HStack>
