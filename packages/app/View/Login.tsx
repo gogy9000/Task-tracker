@@ -103,7 +103,7 @@ export const Login = memo(() => {
                   <FormControl.ErrorMessage>{loginClientError}</FormControl.ErrorMessage>
                 </VStack>
                 <Link
-                  hrefAttrs={{ target: '_blank', rel: 'noreferrer' }}
+                  isExternal
                   href='https://social-network.samuraijs.com/login'
                   _text={{
                   fontSize: 'xs',
@@ -133,7 +133,7 @@ export const Login = memo(() => {
                   I'm a new user.{' '}
                 </Text>
                 <Link
-                  hrefAttrs={{ target: '_blank', rel: 'noreferrer' }}
+                  isExternal
                   href='https://social-network.samuraijs.com/signUp'
                   _text={{
                     color: 'indigo.500',
