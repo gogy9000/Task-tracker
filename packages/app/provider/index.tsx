@@ -10,12 +10,14 @@ export function CommonProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <NavigationProvider>
-      <NativeBaseProvider config={config} theme={customTheme}>
+      <NativeBaseProvider
+        config={config}
+        theme={customTheme}
+      >
         <Provider store={store}>
           {children}
         </Provider>
       </NativeBaseProvider>
-
     </NavigationProvider>
   )
 }

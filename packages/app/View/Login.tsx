@@ -23,7 +23,7 @@ export const Login = memo(() => {
 
   useEffect(() => {
     if (authMeData && authMeData.resultCode === 0) {
-      router.push('/todolist')
+      // router.push('/todolist')
     }
   }, [authMeData])
 

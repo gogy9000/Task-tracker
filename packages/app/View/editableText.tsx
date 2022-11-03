@@ -1,14 +1,10 @@
 import {
   Box,
   CheckCircleIcon,
-  HStack,
   IBoxProps,
   IInputProps,
-  Input,
   ITextProps,
-  Pressable,
-  Stack,
-  Text
+  Text, TextArea
 } from 'native-base'
 import React, { useState } from 'react'
 import { IconButtonWrapper } from 'app/View/IconButtonWrapper'
@@ -70,7 +66,7 @@ export const EditableText: React.FC<EditableTextProps> = ({
     return (
       <Box flexDirection={'row'} alignItems={'center'} {...boxWrapperProps}>
         <Text color={'red.400'} {...textProps}>{error}</Text>
-        <Input onChangeText={setInputValue}
+        <TextArea onChangeText={setInputValue}
                onFocus={onFocusInput}
                multiline
                autoFocus={editMode}
@@ -97,6 +93,7 @@ export const EditableText: React.FC<EditableTextProps> = ({
       <Box flexDirection={'row'} alignItems={'center'} {...boxWrapperProps} >
         <Text onPress={onPressHandler}
               fontSize={fontSize}
+              wordBreak={'break-word'}
               flex={1}
               {...textProps}
         >

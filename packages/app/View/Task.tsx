@@ -11,7 +11,7 @@ type TaskProps = {
   todo: TodoListItem
 }
 
-export const Task: React.FC<TaskProps> = memo(({ task, todo }) => {
+export const Task: React.FC<TaskProps> = memo(({ task }) => {
   const [putTask, { isLoading }] = Api.usePutTaskMutation()
 
   const checkTask = useCallback(() => {
@@ -46,7 +46,6 @@ export const Task: React.FC<TaskProps> = memo(({ task, todo }) => {
       <CustomDivider _light={{
         borderBottomColor: "muted.500",
       }} _dark={{
-
         borderBottomColor: "muted.50"
       }}/>
     </View>

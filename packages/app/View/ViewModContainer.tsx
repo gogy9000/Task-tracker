@@ -23,15 +23,12 @@ return <Pressable onPress={onPress}>
              _light={{
                backgroundColor:isPressed?'gray.300':'gray.200'
              }}
-
              _web={{
                _light:{backgroundColor:isHovered?'gray.200':'gray.100'},
                w: 'md',
                shadow: 2,
                borderWidth: 2
              }}
-
-
         >
           {children}
         </Box>

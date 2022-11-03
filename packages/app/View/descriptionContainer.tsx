@@ -1,11 +1,9 @@
 import { TaskItem } from 'app/DAL/types/types'
 import React, { useState } from 'react'
 import { Api } from 'app/DAL/Api'
-import { CheckCircleIcon, HStack, Input, Text, VStack } from 'native-base'
+import { HStack, Text, VStack } from 'native-base'
 import { EditableText } from 'app/View/editableText'
-import { IconButtonWrapper } from 'app/View/IconButtonWrapper'
 import { CustomDivider } from 'app/View/CustomDivider'
-
 
 type DescriptionContainerProps = {
   task: TaskItem
@@ -21,21 +19,25 @@ export const DescriptionContainer: React.FC<DescriptionContainerProps> = ({ task
   const initValue = task.description !== null ? task.description : ''
   return (
 
-  <VStack alignContent={'center'}>
-    <HStack space={'xs'} alignItems={'flex-start'} justifyContent={'space-between'}>
-      <Text  fontSize={'md'}>Description:</Text>
-      <EditableText boxWrapperProps={{flex:1,alignItems:'flex-start'}}
-                    controlledEditMode={editMode}
-                    textProps={{flexWrap:'wrap'}}
-                    setControlledEditMode={setEditMode}
-                    isLoading={isLoading}
-                    onPressButton={onPutTask}
-                    initialValue={initValue}
-                    fontSize={'md'}
-      />
-    </HStack>
-    <CustomDivider color={editMode?'rgb(37,99,234)':undefined}/>
-  </VStack>
+    <VStack alignContent={'center'}>
+      <HStack space={'xs'} alignItems={'center'} justifyContent={'space-between'}>
+        <Text fontSize={'md'}>Description:</Text>
+        <EditableText boxWrapperProps={{ flex: 1, alignItems: 'center' }}
+                      controlledEditMode={editMode}
+                      textProps={{ flexWrap: 'wrap' }}
+                      setControlledEditMode={setEditMode}
+                      isLoading={isLoading}
+                      onPressButton={onPutTask}
+                      initialValue={initValue}
+                      fontSize={'md'}
+        />
+      </HStack>
+      <CustomDivider _light={{
+        borderBottomColor: 'muted.500'
+      }} _dark={{
+        borderBottomColor: editMode ? 'blue.300' : 'muted.50'
+      }} />
+    </VStack>
 
   )
 }
