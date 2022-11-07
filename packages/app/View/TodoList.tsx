@@ -37,7 +37,6 @@ export const TodoList = AuthRedirect(memo(() => {
 
   const render: ListRenderItem<TodoListItem> = ({ item }) => {
 
-
     const onPress=()=>{
       changeCurrentTodo(item)
       router.push('/taskList')

@@ -93,7 +93,7 @@ export const EditableText: React.FC<EditableTextProps> = ({
       <Box flexDirection={'row'} alignItems={'center'} {...boxWrapperProps} >
         <Text onPress={onPressHandler}
               fontSize={fontSize}
-              wordBreak={'break-word'}
+
               flex={1}
               {...textProps}
         >

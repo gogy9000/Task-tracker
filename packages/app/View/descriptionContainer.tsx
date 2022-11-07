@@ -38,6 +38,5 @@ export const DescriptionContainer: React.FC<DescriptionContainerProps> = ({ task
         borderBottomColor: editMode ? 'blue.300' : 'muted.50'
       }} />
     </VStack>
-
   )
 }

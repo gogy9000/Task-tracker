@@ -4,7 +4,6 @@ import { TodoList } from 'app/View/TodoList'
 import { TaskList } from 'app/View/taskList'
 import { Heading } from 'native-base'
 
-
 const Stack = createNativeStackNavigator<{
   login: undefined
   todolist:undefined
@@ -17,29 +16,26 @@ export function NativeNavigation() {
       <Stack.Screen
         name="todolist"
         component={
-        // TodoList
-          ()=><Heading>azaza</Heading>
+        TodoList
       }
         options={{
           title: 'todolist',
         }}
       />
-      {/*<Stack.Screen*/}
-      {/*  name="login"*/}
-      {/*  component={Login}*/}
-      {/*  options={{*/}
-      {/*    title: 'login',*/}
-      {/*  }}*/}
-      {/*/>*/}
-
-      {/*<Stack.Screen*/}
-      {/*  name="taskList"*/}
-      {/*  component={TaskList}*/}
-      {/*  options={{*/}
-      {/*    title: 'taskList',*/}
-      {/*  }}*/}
-      {/*/>*/}
-
+      <Stack.Screen
+        name="login"
+        component={Login}
+        options={{
+          title: 'login',
+        }}
+      />
+      <Stack.Screen
+        name="taskList"
+        component={TaskList}
+        options={{
+          title: 'taskList',
+        }}
+      />
     </Stack.Navigator>
   )
 }
