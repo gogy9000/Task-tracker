@@ -15,19 +15,19 @@ import { doubleTap } from 'app/Utils/doubleTap'
 
 export const TodoList = AuthRedirect(memo(() => {
 
-  useEffect(() => {
-
-    const backAction = () => {
-      BackHandler.exitApp()
-      return true;
-    };
-
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",backAction
-    );
-
-    return () => backHandler.remove();
-  }, []);
+  // useEffect(() => {
+  //
+  //   const backAction = () => {
+  //     BackHandler.exitApp()
+  //     return true;
+  //   };
+  //
+  //   const backHandler = BackHandler.addEventListener(
+  //     "hardwareBackPress",backAction
+  //   );
+  //
+  //   return () => backHandler.remove();
+  // }, []);
 
 
   const { data: todoList, isLoading, error, refetch } = Api.useGetTodoListQuery()

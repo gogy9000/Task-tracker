@@ -1,42 +1,35 @@
 import { TaskItem } from 'app/DAL/types/types'
 import React, { useState } from 'react'
 import { Api } from 'app/DAL/Api'
-import { HStack, Text, VStack } from 'native-base'
-import { EditableText } from 'app/View/editableText'
-import { CustomDivider } from 'app/View/CustomDivider'
+import { Input, Box } from 'native-base'
 
 type DescriptionContainerProps = {
   task: TaskItem
 }
 export const DescriptionContainer: React.FC<DescriptionContainerProps> = ({ task }) => {
+  const [initValue, setInitValue] = useState(task.description || '')
   const [putTask, { isLoading }] = Api.usePutTaskMutation()
-  const [editMode, setEditMode] = useState(false)
 
-  const onPutTask = (description: string) => {
-    putTask({ ...task, description })
+  const onPutTask = () => {
+    if (task.description === initValue.trim()) {
+      return
+    }
+    if (!initValue.trim()) {
+      return
+    }
+    putTask({ ...task, description: initValue.trim()})
   }
 
-  const initValue = task.description !== null ? task.description : ''
   return (
-
-    <VStack alignContent={'center'}>
-      <HStack space={'xs'} alignItems={'center'} justifyContent={'space-between'}>
-        <Text fontSize={'md'}>Description:</Text>
-        <EditableText boxWrapperProps={{ flex: 1, alignItems: 'center' }}
-                      controlledEditMode={editMode}
-                      textProps={{ flexWrap: 'wrap' }}
-                      setControlledEditMode={setEditMode}
-                      isLoading={isLoading}
-                      onPressButton={onPutTask}
-                      initialValue={initValue}
-                      fontSize={'md'}
-        />
-      </HStack>
-      <CustomDivider _light={{
-        borderBottomColor: 'muted.500'
-      }} _dark={{
-        borderBottomColor: editMode ? 'blue.300' : 'muted.50'
-      }} />
-    </VStack>
+    <Box flexDirection={'row'} alignItems={'center'}>
+      <Input onChangeText={setInitValue}
+             onEndEditing={onPutTask}
+             placeholder={'description'}
+             textAlignVertical={'top'}
+             multiline
+             flex={1}
+             variant={'outline'}
+             value={initValue} />
+    </Box>
   )
 }

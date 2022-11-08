@@ -20,7 +20,8 @@ type EditableTextProps = {
   isLoading?: boolean
   fontSize?: ResponsiveValue<ISizes | (string & {}) | number>
   controlledEditMode?: boolean
-  setControlledEditMode?: (editMode:boolean) => void
+  setControlledEditMode?: (editMode: boolean) => void
+  hiddenIcon?: boolean
 }
 export const EditableText: React.FC<EditableTextProps> = ({
                                                             initialValue = '',
@@ -31,7 +32,8 @@ export const EditableText: React.FC<EditableTextProps> = ({
                                                             isLoading,
                                                             fontSize = 'md',
                                                             controlledEditMode,
-                                                            setControlledEditMode
+                                                            setControlledEditMode,
+                                                            hiddenIcon
                                                           }) => {
   const [inputValue, setInputValue] = useState<string>(initialValue)
   const [editMode, setEditMode] = useState(false)
@@ -39,12 +41,12 @@ export const EditableText: React.FC<EditableTextProps> = ({
 
   const onPressHandler = () => {
     setEditMode(!editMode)
-    setControlledEditMode&&setControlledEditMode(!editMode)
+    setControlledEditMode && setControlledEditMode(!editMode)
   }
   const fetchText = () => {
     if (inputValue === initialValue) {
       setEditMode(!editMode)
-      setControlledEditMode&&setControlledEditMode(!editMode)
+      setControlledEditMode && setControlledEditMode(!editMode)
       return
     }
     if (!inputValue.trim()) {
@@ -53,7 +55,7 @@ export const EditableText: React.FC<EditableTextProps> = ({
     }
     onPressButton && onPressButton(inputValue)
     setEditMode(!editMode)
-    setControlledEditMode&&setControlledEditMode(!editMode)
+    setControlledEditMode && setControlledEditMode(!editMode)
   }
 
   const onFocusInput = () => {
@@ -62,24 +64,24 @@ export const EditableText: React.FC<EditableTextProps> = ({
     }
   }
 
-  if (controlledEditMode||editMode) {
+  if (controlledEditMode || editMode) {
     return (
       <Box flexDirection={'row'} alignItems={'center'} {...boxWrapperProps}>
         <Text color={'red.400'} {...textProps}>{error}</Text>
         <TextArea onChangeText={setInputValue}
-               onFocus={onFocusInput}
-               multiline
-               autoFocus={editMode}
-               isFocused={editMode}
-               textAlignVertical={'bottom'}
-               p={0}
-               flex={1}
-               fontSize={fontSize}
-               variant={'unstyled'}
-               value={inputValue}
-               {...inputProps}
+                  onFocus={onFocusInput}
+                  multiline
+                  autoFocus={editMode}
+                  isFocused={editMode}
+                  textAlignVertical={'bottom'}
+                  p={0}
+                  flex={1}
+                  fontSize={fontSize}
+                  variant={'unstyled'}
+                  value={inputValue}
+                  {...inputProps}
         />
-        <IconButtonWrapper
+         <IconButtonWrapper
           onPress={fetchText}
           pb={0}
           isDisabled={isLoading}
@@ -99,7 +101,7 @@ export const EditableText: React.FC<EditableTextProps> = ({
         >
           {inputValue}
         </Text>
-        <IconButtonWrapper
+        {!hiddenIcon && <IconButtonWrapper
           onPress={onPressHandler}
           isDisabled={isLoading}
           disabled={isLoading}
@@ -108,7 +110,7 @@ export const EditableText: React.FC<EditableTextProps> = ({
             <CheckCircleIcon
               size={5}
               color={'muted.500'} />}
-        />
+        />}
       </Box>
     )
   }

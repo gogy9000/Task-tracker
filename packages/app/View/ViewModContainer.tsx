@@ -13,7 +13,7 @@ return <Pressable onPress={onPress}>
   {
     ({isHovered,isPressed})=>{
       return (
-        <Box px={'3'} w={'sm'} m={'1'} alignSelf={'center'}
+        <Box px={'3'}  m={'1'} alignSelf={'center'}
              py={'5'} mt={'1'} borderColor={'coolGray.200'}
              rounded='lg' borderWidth='1'
              _dark={{

@@ -13,6 +13,7 @@ export const TaskTitleContainer: React.FC<TaskTitleContainerProps> = ({ task }) 
   }
   return (
     <EditableText
+      hiddenIcon
       isLoading={isLoading}
       inputProps={{ fontSize: '2xl' }}
       onPressButton={onPutTaskTitle}
