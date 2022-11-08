@@ -1,19 +1,13 @@
-import React, { useState } from 'react'
-import { Button } from 'native-base'
-import { CommonModal } from 'app/View/commonModal'
-import { TimePicker } from 'app/View/timePicker'
+import React from 'react'
+import {  Text } from 'native-base'
+import { TaskItem } from 'app/DAL/types/types'
 
-export const StartDateContainer = () => {
-  const [showModal, setShowModal] = useState(false)
-
+type StartDateContainerProps={
+  task:TaskItem
+}
+export const StartDateContainer:React.FC<StartDateContainerProps> = ({task}) => {
+  console.log(task.startDate)
   return (
-    <>
-      <Button onPress={() => {
-        setShowModal(true)
-      }}>select start date</Button>
-      <CommonModal showModal={showModal} setShowModal={setShowModal}>
-        <TimePicker />
-      </CommonModal>
-    </>
+      <Text fontSize={'lg'}>{`StartDate:${task.startDate}`}</Text>
   )
 }

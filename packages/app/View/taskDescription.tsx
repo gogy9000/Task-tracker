@@ -2,51 +2,48 @@ import { TaskItem } from 'app/DAL/types/types'
 import React from 'react'
 import { Api } from 'app/DAL/Api'
 import { ViewModContainer } from 'app/View/ViewModContainer'
-import { HStack, VStack } from 'native-base'
-import { DetailsContentContainer } from 'app/View/detailsContentContainer'
+import { HStack, Text, VStack } from 'native-base'
 import { TaskTitleContainer } from 'app/View/taskTitleContainer'
 import { DescriptionContainer } from 'app/View/descriptionContainer'
 import { Stagg } from 'app/View/Stagg'
 import { StartDateContainer } from 'app/View/startDateContainer'
+import { AddedDateView } from 'app/View/addedDateView'
 
 type TaskDescriptionProps = {
   task: TaskItem
 }
 export const TaskDescription: React.FC<TaskDescriptionProps> = ({ task }) => {
 
-  const [putTask, { isLoading }] = Api.usePutTaskMutation()
-  const onPutTask = (payload: Partial<TaskItem>) => {
-    putTask({ ...task, ...payload })
-  }
-
   return (
     <ViewModContainer>
-      <HStack space={'sm'}>
-        <VStack>
+      <HStack space={'sm'} >
+        <VStack flex={1}>
           <TaskTitleContainer task={task} />
-
           <DescriptionContainer task={task} />
-
-          <DetailsContentContainer PayloadKey={'addedDate'}
-                                   onPutTask={onPutTask}
-                                   title={'addedDate:'}
-                                   value={task.addedDate} />
-          <DetailsContentContainer PayloadKey={'deadline'}
-                                   onPutTask={onPutTask}
-                                   title={'deadline:'}
-                                   value={task.deadline} />
-          <DetailsContentContainer PayloadKey={'priority'}
-                                   onPutTask={onPutTask} title={'priority:'}
-                                   value={task.priority} />
-          <DetailsContentContainer PayloadKey={'status'}
-                                   onPutTask={onPutTask}
-                                   title={'status:'}
-                                   value={task.status} />
-          <StartDateContainer />
+          <StartDateContainer task={task} />
+          <DeadlineView task={task}/>
+          <PriorityView  task={task}/>
+          <StatusView  task={task}/>
+          <AddedDateView  task={task}/>
         </VStack>
-        <Stagg />
+        <Stagg task={task}/>
       </HStack>
     </ViewModContainer>
+  )
+}
+const DeadlineView = ({task}) => {
+  return (
+    <Text fontSize={'lg'}>{`deadline: tomorrow`}</Text>
+  )
+}
+const PriorityView = ({task}) => {
+  return (
+    <Text fontSize={'lg'}>{`priority: high`}</Text>
+  )
+}
+const StatusView = ({task}) => {
+  return (
+    <Text fontSize={'lg'}>{`status: idle`}</Text>
   )
 }
 

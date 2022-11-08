@@ -3,18 +3,18 @@ import { Platform } from 'react-native'
 import { Button, Text, View } from 'native-base'
 import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker'
 
-export const TimePicker = () => {
-  const [date, setDate] = useState(new Date(Date.now()))
+export const TimePicker = ({callback}) => {
+  const [date, setDate] = useState<Date>(new Date())
   const [mode, setMode] = useState<'date' | 'time'>('date')
   const [show, setShow] = useState(false)
-  console.log(mode)
-  console.log(show)
-
 
   const onChange = (event:DateTimePickerEvent, selectedDate:Date) => {
     const currentDate = selectedDate
+    console.log("selectedDate",selectedDate)
+    console.log("event",event)
     setShow(false)
     setDate(currentDate)
+    callback(currentDate)
   }
 
   const showMode = (currentMode:'date' | 'time') => {

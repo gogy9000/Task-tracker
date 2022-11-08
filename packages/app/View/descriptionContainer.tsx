@@ -24,7 +24,8 @@ export const DescriptionContainer: React.FC<DescriptionContainerProps> = ({ task
     <Box flexDirection={'row'} alignItems={'center'}>
       <Input onChangeText={setInitValue}
              onEndEditing={onPutTask}
-             placeholder={'description'}
+             fontSize={'lg'}
+             placeholder={'Description'}
              textAlignVertical={'top'}
              multiline
              flex={1}

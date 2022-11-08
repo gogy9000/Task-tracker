@@ -27,7 +27,7 @@ export type TaskItem = {
   title: string
   status: number
   priority: number
-  startDate: string | null
+  startDate: Date | null
   deadline: string | null
   _id: string
   todoListId: string

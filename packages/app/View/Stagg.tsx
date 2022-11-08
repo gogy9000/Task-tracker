@@ -1,12 +1,17 @@
-import { Box, Center, HStack, Icon, IconButton, Stagger, useDisclose, VStack } from 'native-base'
+import { Icon, IconButton, Stagger, useDisclose, VStack } from 'native-base'
 import React from 'react'
-import { Entypo, Ionicons, MaterialIcons,MaterialCommunityIcons } from '@expo/vector-icons'
+import { Entypo, MaterialIcons,MaterialCommunityIcons } from '@expo/vector-icons'
+import { TimePicker } from 'app/View/timePicker'
+import { CommonModal } from 'app/View/commonModal'
+import { Api } from 'app/DAL/Api'
+import { TaskItem } from 'app/DAL/types/types'
+type StaggProps={
+  task:TaskItem
+}
+export const Stagg:React.FC<StaggProps> = ({task}) => {
+  const { isOpen, onToggle } = useDisclose()
 
-export const Stagg = () => {
-  const {
-    isOpen,
-    onToggle
-  } = useDisclose()
+
   return <VStack space={'sm'}>
     <VStack>
       <IconButton variant='solid' borderRadius='full' size='lg'
@@ -42,15 +47,7 @@ export const Stagg = () => {
           }
         }
       }}>
-        <IconButton mb='4' variant='solid' bg='indigo.500' colorScheme='indigo' borderRadius='full'
-                    icon={<Icon as={MaterialIcons} name='date-range' size='6' />}
-                    _icon={{
-                      color: 'warmGray.50',
-                      _dark: {
-                        color: 'warmGray.50'
-                      }
-                    }}
-        />
+        <StartDateController task={task}/>
         <IconButton mb='4' variant='solid' bg='red.400' colorScheme='yellow' borderRadius='full'
                     icon={<Icon as={MaterialCommunityIcons} name='consolidate' _dark={{
                       color: 'warmGray.50'
@@ -68,4 +65,33 @@ export const Stagg = () => {
       </Stagger>
     </VStack>
   </VStack>
+}
+
+const StartDateController=({task}:{task:TaskItem})=>{
+  const [putTask, { isLoading }] = Api.usePutTaskMutation()
+  const onPutTask = (startDate: Date) => {
+    putTask({ ...task, startDate })
+  }
+
+  const {
+    isOpen,
+    onToggle
+  } = useDisclose()
+
+ return(
+   <>
+   <IconButton onPress={onToggle} mb='4' variant='solid' bg='indigo.500' colorScheme='indigo' borderRadius='full'
+              icon={<Icon as={MaterialIcons} name='date-range' size='6' />}
+              _icon={{
+                color: 'warmGray.50',
+                _dark: {
+                  color: 'warmGray.50'
+                }
+              }}
+  />
+     <CommonModal showModal={isOpen} setShowModal={onToggle}>
+       <TimePicker callback={onPutTask}/>
+     </CommonModal>
+   </>
+ )
 }
