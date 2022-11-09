@@ -1,10 +1,10 @@
-import { Icon, IconButton, Stagger, useDisclose, VStack } from 'native-base'
+import { Icon, IconButton, Stagger, ThreeDotsIcon, useDisclose, VStack } from 'native-base'
 import React from 'react'
-import { Entypo, MaterialIcons,MaterialCommunityIcons } from '@expo/vector-icons'
-import { TimePicker } from 'app/View/timePicker'
-import { CommonModal } from 'app/View/commonModal'
-import { Api } from 'app/DAL/Api'
+import { Entypo, MaterialIcons } from '@expo/vector-icons'
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import { TaskItem } from 'app/DAL/types/types'
+import { StartDateController } from 'app/View/StartDateController'
+
 type StaggProps={
   task:TaskItem
 }
@@ -16,7 +16,10 @@ export const Stagg:React.FC<StaggProps> = ({task}) => {
     <VStack>
       <IconButton variant='solid' borderRadius='full' size='lg'
                   onPress={onToggle} bg='cyan.400'
-                  icon={<Entypo name='dots-three-horizontal' size={24} />}
+                  icon={
+                    <ThreeDotsIcon />
+        // <Entypo name='dots-three-horizontal' size={24} />
+      }
                   _icon={{ color: 'white' }}
       />
     </VStack>
@@ -49,10 +52,14 @@ export const Stagg:React.FC<StaggProps> = ({task}) => {
       }}>
         <StartDateController task={task}/>
         <IconButton mb='4' variant='solid' bg='red.400' colorScheme='yellow' borderRadius='full'
+                    // _icon={{
+                    //   as:MaterialCommunityIcons,
+                    //   name:'consolidate'
+                    // }}
                     icon={<Icon as={MaterialCommunityIcons} name='consolidate' _dark={{
                       color: 'warmGray.50'
-                    }} size='6'  color='warmGray.50' />} />
-
+                    }} size='6'  color='warmGray.50' />}
+        />
         <IconButton mb='4' variant='solid' bg='teal.400' colorScheme='teal' borderRadius='full'
                     icon={<Icon as={MaterialIcons } _dark={{
                       color: 'warmGray.50'
@@ -67,31 +74,3 @@ export const Stagg:React.FC<StaggProps> = ({task}) => {
   </VStack>
 }
 
-const StartDateController=({task}:{task:TaskItem})=>{
-  const [putTask, { isLoading }] = Api.usePutTaskMutation()
-  const onPutTask = (startDate: Date) => {
-    putTask({ ...task, startDate })
-  }
-
-  const {
-    isOpen,
-    onToggle
-  } = useDisclose()
-
- return(
-   <>
-   <IconButton onPress={onToggle} mb='4' variant='solid' bg='indigo.500' colorScheme='indigo' borderRadius='full'
-              icon={<Icon as={MaterialIcons} name='date-range' size='6' />}
-              _icon={{
-                color: 'warmGray.50',
-                _dark: {
-                  color: 'warmGray.50'
-                }
-              }}
-  />
-     <CommonModal showModal={isOpen} setShowModal={onToggle}>
-       <TimePicker callback={onPutTask}/>
-     </CommonModal>
-   </>
- )
-}

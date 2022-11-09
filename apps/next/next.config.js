@@ -11,6 +11,7 @@ module.exports =
       '@react-native-community/hooks',
       'solito',
       'app',
+      "@react-native-community/datetimepicker"
     ],
     nextConfig: {
       projectRoot: __dirname,
