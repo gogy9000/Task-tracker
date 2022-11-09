@@ -1,7 +1,7 @@
 import { TaskItem } from 'app/DAL/types/types'
 import { Api } from 'app/DAL/Api'
 import { Icon, IconButton, useDisclose,Text } from 'native-base'
-import { MaterialIcons } from '@expo/vector-icons'
+import  MaterialIcons  from '@expo/vector-icons/MaterialIcons'
 import { CommonModal } from 'app/View/commonModal'
 import { TimePicker } from 'app/View/timePicker'
 import React from 'react'

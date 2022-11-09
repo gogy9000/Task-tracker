@@ -1,0 +1,81 @@
+
+
+/*html, body, #__next {*/
+/*    width: 100%;*/
+/*    !* To smooth any scrolling behavior *!*/
+/*    -webkit-overflow-scrolling: touch;*/
+/*    margin: 0px;*/
+/*    padding: 0px;*/
+/*    !* Allows content to fill the viewport and go beyond the bottom *!*/
+/*    min-height: 100%;*/
+/*}*/
+/*@font-face {*/
+/*    src: url("react-native-vector-icons/Fonts/Entypo.ttf");*/
+/*    font-family: Entypo;*/
+/*}*/
+/*@font-face {*/
+/*    src: url(${EvilIconsFont});*/
+/*    font-family: EvilIcons;*/
+/*}*/
+/*@font-face {*/
+/*    src: url(${FontAwesomeFont});*/
+/*    font-family: FontAwesome;*/
+/*}*/
+/*@font-face {*/
+/*    src: url(${FeatherFont});*/
+/*    font-family: Feather;*/
+/*}*/
+/*@font-face {*/
+/*    src: url(${IoniconsFont});*/
+/*    font-family: Ionicons;*/
+/*}*/
+/*@font-face {*/
+/*    src: url(${FoundationFont});*/
+/*    font-family: Foundation;*/
+/*}*/
+/*@font-face {*/
+/*    src: local('react-native-vector-icons/Fonts/MaterialIcons.ttf');*/
+/*    font-family: MaterialIcons;*/
+/*}*/
+/*@font-face {*/
+/*    src: url(${MaterialCommunityIconsFont});*/
+/*    font-family: MaterialCommunityIcons;*/
+/*}*/
+/*@font-face {*/
+/*    src: url(${ZocialFont});*/
+/*    font-family: Zocial;*/
+/*}*/
+/*@font-face {*/
+/*    src: url(${SimpleLineIconsFont});*/
+/*    font-family: SimpleLineIcons;*/
+/*}*/
+/*@font-face {*/
+/*    src: url(${OcticonsFont});*/
+/*    font-family: Octicons;*/
+/*}*/
+/*@font-face {*/
+/*    src: url(${FontistoFont});*/
+/*    font-family: Fontisto;*/
+/*}*/
+/*@font-face {*/
+/*    src: url(${AntDesignFont});*/
+/*    font-family: AntDesign;*/
+/*}*/
+
+/*html {*/
+/*    scroll-behavior: smooth;*/
+/*    !* Prevent text size change on orientation change*/
+/*    https://gist.github.com/tfausak/2222823#file-ios-8-web-app-html-L138 *!*/
+/*    -webkit-text-size-adjust: 100%;*/
+/*    height: 100%;*/
+/*}*/
+/*body {*/
+/*    display: flex;*/
+/*    !* Allows you to scroll below the viewport; default value is visible *!*/
+/*    overflow-y: auto;*/
+/*    overscroll-behavior-y: none;*/
+/*    text-rendering: optimizeLegibility;*/
+/*    -webkit-font-smoothing: antialiased;*/
+/*    -moz-osx-font-smoothing: grayscale;*/
+/*    -ms-overflow-style: scrollbar;*/
+/*}*/

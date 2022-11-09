@@ -1,6 +1,7 @@
 import { Icon, IconButton, Stagger, ThreeDotsIcon, useDisclose, VStack } from 'native-base'
 import React from 'react'
-import { Entypo, MaterialIcons } from '@expo/vector-icons'
+import { Entypo,  } from '@expo/vector-icons'
+import  MaterialIcons  from '@expo/vector-icons/MaterialIcons'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import { TaskItem } from 'app/DAL/types/types'
 import { StartDateController } from 'app/View/StartDateController'
