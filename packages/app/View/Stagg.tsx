@@ -1,29 +1,30 @@
-import { Icon, IconButton, Stagger, ThreeDotsIcon, useDisclose, VStack } from 'native-base'
+import { Icon, IconButton, Stagger, useDisclose, VStack } from 'native-base'
 import React from 'react'
-import { Entypo,  } from '@expo/vector-icons'
-import  MaterialIcons  from '@expo/vector-icons/MaterialIcons'
+import Entypo from '@expo/vector-icons/Entypo'
+import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import { TaskItem } from 'app/DAL/types/types'
 import { StartDateController } from 'app/View/StartDateController'
 
-type StaggProps={
-  task:TaskItem
+type StaggProps = {
+  task: TaskItem
 }
-export const Stagg:React.FC<StaggProps> = ({task}) => {
+export const Stagg: React.FC<StaggProps> = ({ task }) => {
   const { isOpen, onToggle } = useDisclose()
 
 
-  return <VStack space={'sm'}>
-    <VStack>
-      <IconButton variant='solid' borderRadius='full' size='lg'
+  return <VStack space={'sm'} alignItems={'center'}>
+
+      <IconButton variant='solid' borderRadius='full'
                   onPress={onToggle} bg='cyan.400'
-                  icon={
-                    <ThreeDotsIcon />
-        // <Entypo name='dots-three-horizontal' size={24} />
-      }
-                  _icon={{ color: 'white' }}
+                  _icon={{
+                    as: Entypo,
+                    name: 'dots-three-horizontal',
+                    color: 'white',
+                    _web:{size:'6'}
+                  }}
       />
-    </VStack>
+
     <VStack flex={1} justifyContent={'space-evenly'} alignItems={'center'}>
       <Stagger visible={isOpen} initial={{
         opacity: 0,
@@ -51,25 +52,33 @@ export const Stagg:React.FC<StaggProps> = ({task}) => {
           }
         }
       }}>
-        <StartDateController task={task}/>
-        <IconButton mb='4' variant='solid' bg='red.400' colorScheme='yellow' borderRadius='full'
-                    // _icon={{
-                    //   as:MaterialCommunityIcons,
-                    //   name:'consolidate'
-                    // }}
-                    icon={<Icon as={MaterialCommunityIcons} name='consolidate' _dark={{
-                      color: 'warmGray.50'
-                    }} size='6'  color='warmGray.50' />}
+        <StartDateController task={task} />
+        <IconButton mb='4' variant='solid' bg='red.400' colorScheme='yellow'
+                    borderRadius='full'
+                    _icon={{
+                      as: MaterialCommunityIcons,
+                      name: 'consolidate',
+                      color: 'warmGray.50',
+                      _web:{size:'6'}
+                    }}
         />
-        <IconButton mb='4' variant='solid' bg='teal.400' colorScheme='teal' borderRadius='full'
-                    icon={<Icon as={MaterialIcons } _dark={{
-                      color: 'warmGray.50'
-                    }} size='6' name='priority-high' color='warmGray.50' />} />
+        <IconButton mb='4' variant='solid' bg='teal.400' colorScheme='teal'
+                    borderRadius='full'
+                    _icon={{
+                      as: MaterialIcons, name: 'priority-high',
+                      color: 'warmGray.50',
+                      _web:{size:'6'}
+                    }}
+        />
 
-        <IconButton mb='4' variant='solid' bg='red.500' colorScheme='red' borderRadius='full'
-                    icon={<Icon as={MaterialCommunityIcons } size='6' name='emoticon-dead-outline' _dark={{
-                      color: 'warmGray.50'
-                    }} color='warmGray.50' />}/>
+        <IconButton mb='4' variant='solid' bg='red.500' colorScheme='red'
+                    borderRadius='full'
+                    _icon={{
+                      as: MaterialCommunityIcons, name: 'emoticon-dead-outline',
+                      color: 'warmGray.50',
+                      _web: { size: '6' }
+                    }}
+        />
       </Stagger>
     </VStack>
   </VStack>

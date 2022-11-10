@@ -1,23 +1,19 @@
 import React, { useState } from 'react'
 import { Platform } from 'react-native'
-import { Button, Text, View } from 'native-base'
+import { Button, HStack } from 'native-base'
 import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker'
 
-export const TimePicker = ({callback}) => {
+export const TimePicker = ({ onRightButton, rightButtonTitle }) => {
   const [date, setDate] = useState<Date>(new Date())
   const [mode, setMode] = useState<'date' | 'time'>('date')
   const [show, setShow] = useState(false)
 
-  const onChange = (event:DateTimePickerEvent, selectedDate:Date) => {
-    const currentDate = selectedDate
-    console.log("selectedDate",selectedDate)
-    console.log("event",event)
+  const onChange = (event: DateTimePickerEvent, selectedDate: Date) => {
     setShow(false)
-    setDate(currentDate)
-    callback(currentDate)
+    setDate(selectedDate)
   }
 
-  const showMode = (currentMode:'date' | 'time') => {
+  const showMode = (currentMode: 'date' | 'time') => {
     if (Platform.OS === 'android') {
       setShow(true)
       // for iOS, add a button that closes the picker
@@ -32,11 +28,21 @@ export const TimePicker = ({callback}) => {
   const showTimepicker = () => {
     showMode('time')
   }
+  const onRightButtonHandler = () => {
+    onRightButton(date)
+  }
 
   return (
-    <View>
-      <Button onPress={showDatepicker}>Show date picker!</Button>
-      <Button onPress={showTimepicker}>Show time picker!</Button>
+    <HStack flex={1} justifyContent={'flex-end'} space={'sm'}>
+      <Button onPress={showDatepicker}>Select date</Button>
+      <Button onPress={showTimepicker}>Select time</Button>
+      <HStack flex={1} justifyContent={'flex-end'}>
+        <Button colorScheme={'red'}
+                onPress={onRightButtonHandler}
+        >
+          {rightButtonTitle}
+        </Button>
+      </HStack>
       {show && (
         <DateTimePicker
           testID='dateTimePicker'
@@ -46,6 +52,6 @@ export const TimePicker = ({callback}) => {
           onChange={onChange}
         />
       )}
-    </View>
+    </HStack>
   )
 }

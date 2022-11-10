@@ -28,11 +28,11 @@ export type TaskItem = {
   status: number
   priority: number
   startDate: Date | null
-  deadline: string | null
+  deadline: Date | null
   _id: string
   todoListId: string
   order: number
-  addedDate: string
+  addedDate: Date
 }
 export type LoginPayloadType = {
   email: string
