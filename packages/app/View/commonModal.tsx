@@ -7,7 +7,7 @@ type CommonModalProps = {
   modalHeader?: string | ReactElement
   modalFooterContent?: ReactElement
   onCloseCallback: () => void
-  modalBody:ReactElement
+  modalBody?:ReactElement
 }
 export const CommonModal: React.FC<CommonModalProps> = ({
                                                           children,

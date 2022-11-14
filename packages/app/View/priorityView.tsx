@@ -4,8 +4,9 @@ import { TaskItem } from 'app/DAL/types/types'
 
 const priority = {
   1: 'Low',
-  2: 'High',
-  3: 'Fucking high'
+  2: 'Normal',
+  3: 'High',
+  4:'Very high'
 }
 type PriorityViewProps = {
   task: TaskItem
