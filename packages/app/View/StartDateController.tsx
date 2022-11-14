@@ -35,9 +35,11 @@ export const StartDateController = ({ task }: { task: TaskItem }) => {
                    onCloseCallback={onToggle}
                    modalHeader={'Select start date'}
                    modalFooterContent={ <TimePicker rightButtonTitle={'Start task'} onRightButton={onStart}  />}
-                   modalBody={<StartDateModalBody startDate={task.startDate}/>}
+                   modalBody={<StartDateModalBody />}
       />
     </>
   )
 }
+
+
 

@@ -1,10 +1,11 @@
-import { Icon, IconButton, Stagger, useDisclose, VStack } from 'native-base'
+import { IconButton, Stagger, useDisclose, VStack } from 'native-base'
 import React from 'react'
 import Entypo from '@expo/vector-icons/Entypo'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import { TaskItem } from 'app/DAL/types/types'
 import { StartDateController } from 'app/View/StartDateController'
+import { DeadlineController } from 'app/View/DeadlineController'
 
 type StaggProps = {
   task: TaskItem
@@ -16,7 +17,7 @@ export const Stagg: React.FC<StaggProps> = ({ task }) => {
   return <VStack space={'sm'} alignItems={'center'}>
 
       <IconButton variant='solid' borderRadius='full'
-                  onPress={onToggle} bg='cyan.400'
+                  onPressOut={onToggle} bg='cyan.400'
                   _icon={{
                     as: Entypo,
                     name: 'dots-three-horizontal',
@@ -53,15 +54,7 @@ export const Stagg: React.FC<StaggProps> = ({ task }) => {
         }
       }}>
         <StartDateController task={task} />
-        <IconButton mb='4' variant='solid' bg='red.400' colorScheme='yellow'
-                    borderRadius='full'
-                    _icon={{
-                      as: MaterialCommunityIcons,
-                      name: 'consolidate',
-                      color: 'warmGray.50',
-                      _web:{size:'6'}
-                    }}
-        />
+        <DeadlineController task={task}/>
         <IconButton mb='4' variant='solid' bg='teal.400' colorScheme='teal'
                     borderRadius='full'
                     _icon={{

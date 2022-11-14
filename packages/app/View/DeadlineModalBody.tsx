@@ -1,7 +1,7 @@
-import React from 'react'
 import { Text, VStack } from 'native-base'
+import React from 'react'
 
-export const StartDateModalBody = () => {
+export const DeadlineModalBody = () => {
 
   return (
     <VStack>
