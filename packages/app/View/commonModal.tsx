@@ -23,7 +23,7 @@ export const CommonModal: React.FC<CommonModalProps> = ({
       <Modal.Content>
         {modalHeader && <Modal.CloseButton />}
         {modalHeader && <Modal.Header alignItems={'center'}>{modalHeader}</Modal.Header>}
-        <Modal.Body>{modalBody}{children}</Modal.Body>
+        {(modalBody ||children)&&<Modal.Body>{modalBody}{children}</Modal.Body>}
         {modalFooterContent && <Modal.Footer>{modalFooterContent}</Modal.Footer>}
       </Modal.Content>
     </Modal>

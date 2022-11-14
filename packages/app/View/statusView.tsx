@@ -3,9 +3,10 @@ import React from 'react'
 import { TaskItem } from 'app/DAL/types/types'
 
 const status={
-  0:'idle',
-  1:'in progress',
-  2:'completed'
+  0:'Idle',
+  1:'In progress',
+  2:'Completed',
+  3:'Failure'
 }
 
 type StatusView={

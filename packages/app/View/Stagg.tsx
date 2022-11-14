@@ -7,6 +7,7 @@ import { StartDateController } from 'app/View/StartDateController'
 import { DeadlineController } from 'app/View/DeadlineController'
 import { IStaggerStyleProps } from 'native-base/lib/typescript/components/composites/Transitions/Stagger'
 import { PriorityController } from 'app/View/PriorityController'
+import { StatusController } from 'app/View/StatusController'
 
 const exit={
   translateY: 34,
@@ -47,7 +48,7 @@ export const Stagg: React.FC<StaggProps> = ({ task }) => {
 
   return <VStack space={'sm'} alignItems={'center'}>
 
-      <IconButton variant='solid' borderRadius='full'
+      <IconButton  variant='solid' borderRadius='full'
                   onPressOut={onToggle} bg='cyan.400'
                   _icon={{
                     as: Entypo,
@@ -62,15 +63,7 @@ export const Stagg: React.FC<StaggProps> = ({ task }) => {
         <StartDateController task={task} />
         <DeadlineController task={task}/>
         <PriorityController task={task}/>
-
-        <IconButton mb='4' variant='solid' bg='red.500' colorScheme='red'
-                    borderRadius='full'
-                    _icon={{
-                      as: MaterialCommunityIcons, name: 'emoticon-dead-outline',
-                      color: 'warmGray.50',
-                      _web: { size: '6' }
-                    }}
-        />
+        <StatusController task={task}/>
       </Stagger>
     </VStack>
   </VStack>
