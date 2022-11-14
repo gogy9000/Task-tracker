@@ -1,13 +1,14 @@
 import { TaskItem } from 'app/DAL/types/types'
 import React from 'react'
 import { ViewModContainer } from 'app/View/ViewModContainer'
-import { HStack, Text, VStack } from 'native-base'
+import { HStack, VStack } from 'native-base'
 import { TaskTitleContainer } from 'app/View/taskTitleContainer'
 import { DescriptionContainer } from 'app/View/descriptionContainer'
 import { Stagg } from 'app/View/Stagg'
-import { StartDateContainer } from 'app/View/startDateContainer'
 import { AddedDateView } from 'app/View/addedDateView'
 import { DateAndTimeView } from 'app/View/dateAndTimeView'
+import { PriorityView } from 'app/View/priorityView'
+import { StatusView } from 'app/View/statusView'
 
 type TaskDescriptionProps = {
   task: TaskItem
@@ -29,16 +30,6 @@ export const TaskDescription: React.FC<TaskDescriptionProps> = ({ task }) => {
         <Stagg task={task}/>
       </HStack>
     </ViewModContainer>
-  )
-}
-const PriorityView = ({task}) => {
-  return (
-    <Text fontSize={'lg'}>{`priority: high`}</Text>
-  )
-}
-const StatusView = ({task}) => {
-  return (
-    <Text fontSize={'lg'}>{`status: idle`}</Text>
   )
 }
 

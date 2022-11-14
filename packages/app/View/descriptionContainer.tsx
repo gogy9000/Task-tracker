@@ -36,7 +36,6 @@ export const DescriptionContainer: React.FC<DescriptionContainerProps> = ({ task
                 value={initValue}
                 rightElement={
                   <IconButton onPress={onPutTask} alignSelf={'flex-end'} variant={'solid'}
-                              _web={{size:'sm'}}
                               _icon={{ as: AntDesign, name: 'pluscircleo' }}
                   />}
       />
