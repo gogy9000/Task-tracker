@@ -4,7 +4,7 @@ import { Button, HStack } from 'native-base'
 type PriorityModalBodyProps = {
   onPressHandler: (priority: number) => void
 }
-export const PriorityModalBody: React.FC<PriorityModalBodyProps> = ({ onPressHandler }) => {
+export const PriorityModalButtons: React.FC<PriorityModalBodyProps> = ({ onPressHandler }) => {
   return (
     <HStack flex={1} space={'xs'}>
       <Button colorScheme={'green'} onPress={() => {
