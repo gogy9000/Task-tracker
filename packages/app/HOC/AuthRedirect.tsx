@@ -4,7 +4,8 @@ import { useRouter } from 'solito/router'
 
 
 export function AuthRedirect<P>(WrappedComponent: React.ComponentType<P>) {
-  const NavigationToLoginPage = (props: P) => {
+
+  return (props: P) => {
     const { data: authData } = Api.useAuthMeQuery()
     const router = useRouter()
     useEffect(() => {
@@ -14,5 +15,4 @@ export function AuthRedirect<P>(WrappedComponent: React.ComponentType<P>) {
     }, [authData])
     return <WrappedComponent {...props} />
   }
-  return NavigationToLoginPage
 }

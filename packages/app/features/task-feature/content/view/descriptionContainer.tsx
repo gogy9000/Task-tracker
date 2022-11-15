@@ -1,7 +1,7 @@
 import { TaskItem } from 'app/DAL/types/types'
 import React, { useState } from 'react'
 import { Api } from 'app/DAL/Api'
-import { TextArea, VStack, Text, Icon, IconButton, Input, FormControl } from 'native-base'
+import { TextArea, VStack, Text, IconButton } from 'native-base'
 import AntDesign from '@expo/vector-icons/AntDesign'
 
 type DescriptionContainerProps = {

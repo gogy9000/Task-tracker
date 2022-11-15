@@ -1,4 +1,4 @@
-import { HStack, Text, VStack } from 'native-base'
+import { HStack, Text } from 'native-base'
 import React from 'react'
 import { TaskItem } from 'app/DAL/types/types'
 
@@ -6,7 +6,7 @@ const priority = {
   1: 'Low',
   2: 'Normal',
   3: 'High',
-  4:'Very high'
+  4: 'Very high'
 }
 type PriorityViewProps = {
   task: TaskItem
