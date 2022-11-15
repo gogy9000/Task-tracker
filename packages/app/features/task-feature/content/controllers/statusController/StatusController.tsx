@@ -1,17 +1,13 @@
 import React from 'react'
 import { Api } from 'app/DAL/Api'
-import { IconButton, useDisclose } from 'native-base'
+import { Button, IconButton, useDisclose, Skeleton, Spinner, ZStack, Box, Center, Factory, Icon } from 'native-base'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import { CommonModal } from 'app/components/commonModal/commonModal'
 import { StatusModalButtons } from 'app/features/task-feature/content/controllers/statusController/StatusModalButtons'
 import { TaskItem } from 'app/DAL/types/types'
+import { iconsEntity } from 'app/features/task-feature/content/controllers/statusController/IconsEntity'
+import { ActivityIndicator } from 'react-native'
 
-export const iconsEntity={
-  0:{name:'coffee', colorScheme:'indigo'},
-  1:{name:'crane',colorScheme:'blue'},
-  2:{name:'check-circle',colorScheme:'green'},
-  3:{name:'emoticon-poop',colorScheme:'red'}
-}
 
 type StatusControllerProps = {
   task: TaskItem
@@ -28,20 +24,36 @@ export const StatusController: React.FC<StatusControllerProps> = ({ task }) => {
   }
 
   return (
-    <>
-      <IconButton onPressOut={onToggle} mb='4' variant='solid'  colorScheme={iconsEntity[task.status].colorScheme}
-                  borderRadius='full'
-                  _icon={{
-                    as: MaterialCommunityIcons, name: iconsEntity[task.status].name,
-                    color: 'warmGray.50',
-                    _web: { size: '6' }
-                  }}
-      />
+    <Center>
+
+      <ActivityIconButton isLoading={isLoading} task={task} onPress={onToggle} />
       <CommonModal
-        modalFooterContent={<StatusModalButtons  onPressHandler={selectPriority} />}
+        modalFooterContent={<StatusModalButtons onPressHandler={selectPriority} />}
         modalHeader={'Select priority'}
         showModal={isOpen}
         onCloseCallback={onToggle} />
-    </>
+    </Center>
   )
 }
+
+const ActivityIconButton = ({ onPress, task,isLoading }) => {
+  return (
+      <Button onPressOut={onPress}
+              w={'10'}
+              h={'10'}
+              rounded={'full'}
+              colorScheme={iconsEntity[task.status].colorScheme}
+              isLoading={isLoading}
+              mb='4'
+      >
+        {!isLoading&&<Icon as={MaterialCommunityIcons}
+               name={iconsEntity[task.status].name}
+               color={'warmGray.50'}
+               _web={{ size: '6' }}
+        />}
+      </Button>
+  )
+}
+
+
+

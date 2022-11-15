@@ -1,6 +1,6 @@
 import { Button, HStack, VStack } from 'native-base'
 import React from 'react'
-import { iconsEntity } from './StatusController'
+import { iconsEntity } from 'app/features/task-feature/content/controllers/statusController/IconsEntity'
 type StatusModalBodyProps={
   onPressHandler:(status:number) =>void
 }
