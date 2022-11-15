@@ -1,7 +1,5 @@
 import { FC, memo, ReactElement, useCallback } from 'react'
-import { FONTSIZE_SECONDARY, TEXTCOLOR_PRIMARY } from '../common/Variables'
 import React from 'react'
-import { FeedbackMutationType, TodoListItem } from '../DAL/types/types'
 import {
   HStack,
   Input,
@@ -10,7 +8,8 @@ import {
   Button,
   Heading
 } from 'native-base'
-import { IconButtonWrapper } from 'app/View/IconButtonWrapper'
+import { IconButtonWrapper } from 'app/components/iconButtonWrapper/IconButtonWrapper'
+import { FeedbackMutationType, TodoListItem } from 'app/DAL/types/types'
 
 type TodoProps = {
   postFeedbackData: FeedbackMutationType
@@ -67,7 +66,6 @@ export const Todo: FC<TodoProps> = memo((props) => {
         <HStack space={'sm'}>
           <Input flex={1}
                  variant={'custom'}
-                 fontSize={FONTSIZE_SECONDARY}
                  fontWeight={'500'}
                  size={'md'}
                  placeholder={'task name...'}

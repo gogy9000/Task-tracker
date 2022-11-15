@@ -2,8 +2,8 @@ import React from 'react'
 import { Api } from 'app/DAL/Api'
 import { IconButton, useDisclose } from 'native-base'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
-import { CommonModal } from 'app/View/commonModal'
-import { StatusModalButtons } from 'app/View/StatusModalButtons'
+import { CommonModal } from 'app/components/commonModal/commonModal'
+import { StatusModalButtons } from 'app/features/task-feature/content/controllers/statusController/StatusModalButtons'
 import { TaskItem } from 'app/DAL/types/types'
 
 export const iconsEntity={

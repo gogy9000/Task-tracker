@@ -1,9 +1,8 @@
 import { TaskItem } from 'app/DAL/types/types'
 import React, { useState } from 'react'
 import { CheckCircleIcon, HStack, Input, Text, VStack } from 'native-base'
-import { IconButtonWrapper } from 'app/View/IconButtonWrapper'
-import { CustomDivider } from 'app/View/CustomDivider'
-import { EditableText } from 'app/View/editableText'
+import { IconButtonWrapper } from 'app/components/iconButtonWrapper/IconButtonWrapper'
+import { CustomDivider } from 'app/components/customDivider/CustomDivider'
 
 type DetailsContentContainerProps = {
   title: string

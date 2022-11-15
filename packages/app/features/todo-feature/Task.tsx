@@ -1,10 +1,10 @@
 import React, { memo, useCallback } from 'react'
-import { TaskItem, TodoListItem } from '../DAL/types/types'
-import { Api } from '../DAL/Api'
 import { CheckIcon, HStack, Text, View } from 'native-base'
 import { TEXTCOLOR_PRIMARY } from 'app/common/Variables'
-import { IconButtonWrapper } from 'app/View/IconButtonWrapper'
-import { CustomDivider } from 'app/View/CustomDivider'
+import { IconButtonWrapper } from 'app/components/iconButtonWrapper/IconButtonWrapper'
+import { CustomDivider } from 'app/components/customDivider/CustomDivider'
+import { Api } from 'app/DAL/Api'
+import { TaskItem, TodoListItem } from 'app/DAL/types/types'
 
 type TaskProps = {
   task: TaskItem
@@ -27,27 +27,27 @@ export const Task: React.FC<TaskProps> = memo(({ task }) => {
           disabled={isLoading}
           isDisabled={isLoading}
           _web={{
-            size:'4'
+            size: '4'
           }}
           icon={
-            <CheckIcon  />
+            <CheckIcon />
           }
           _icon={{
-            _dark:{
-              color: task.status !== 0 ?'rgba(255,255,255,0.42)': 'rgb(255,255,255)'
+            _dark: {
+              color: task.status !== 0 ? 'rgba(255,255,255,0.42)' : 'rgb(255,255,255)'
             },
-            color: task.status === 0 ?TEXTCOLOR_PRIMARY: 'rgb(37,99,234)'
+            color: task.status === 0 ? TEXTCOLOR_PRIMARY : 'rgb(37,99,234)'
           }}
         />
 
-        <Text w={'90%'}  fontSize={'xl'}>{task.title}</Text>
+        <Text w={'90%'} fontSize={'xl'}>{task.title}</Text>
 
       </HStack>
       <CustomDivider _light={{
-        borderBottomColor: "muted.500",
+        borderBottomColor: 'muted.500'
       }} _dark={{
-        borderBottomColor: "muted.50"
-      }}/>
+        borderBottomColor: 'muted.50'
+      }} />
     </View>
   )
 })

@@ -1,8 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { Login } from 'app/View/Login'
-import { TodoList } from 'app/View/TodoList'
-import { TaskList } from 'app/View/taskList'
-import { Heading } from 'native-base'
+import { Login } from 'app/screens/login-screen/Login'
+import { TaskList } from 'app/screens/task-screen/taskList'
+import { TodoList } from 'app/screens/todolist-screen/TodoList'
 
 const Stack = createNativeStackNavigator<{
   login: undefined

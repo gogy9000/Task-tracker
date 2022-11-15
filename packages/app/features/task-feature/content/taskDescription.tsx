@@ -1,14 +1,14 @@
 import { TaskItem } from 'app/DAL/types/types'
 import React from 'react'
-import { ViewModContainer } from 'app/View/ViewModContainer'
+import { ViewModContainer } from 'app/components/viewModContainer/ViewModContainer'
 import { HStack, VStack } from 'native-base'
-import { TaskTitleContainer } from 'app/View/taskTitleContainer'
-import { DescriptionContainer } from 'app/View/descriptionContainer'
-import { Stagg } from 'app/View/Stagg'
-import { AddedDateView } from 'app/View/addedDateView'
-import { DateAndTimeView } from 'app/View/dateAndTimeView'
-import { PriorityView } from 'app/View/priorityView'
-import { StatusView } from 'app/View/statusView'
+import { TaskTitleContainer } from 'app/features/task-feature/content/view/taskTitleContainer'
+import { DescriptionContainer } from 'app/features/task-feature/content/view/descriptionContainer'
+import { Stagg } from 'app/features/task-feature/content/controllers/Stagg'
+import { AddedDateView } from 'app/features/task-feature/content/view/addedDateView'
+import { DateAndTimeView } from 'app/features/task-feature/content/view/dateAndTimeView'
+import { PriorityView } from 'app/features/task-feature/content/view/priorityView'
+import { StatusView } from 'app/features/task-feature/content/view/statusView'
 
 type TaskDescriptionProps = {
   task: TaskItem

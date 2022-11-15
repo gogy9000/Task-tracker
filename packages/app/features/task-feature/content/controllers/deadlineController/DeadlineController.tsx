@@ -1,11 +1,11 @@
 import { Api } from 'app/DAL/Api'
 import { IconButton, useDisclose } from 'native-base'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
-import { CommonModal } from 'app/View/commonModal'
-import { TimePicker } from 'app/View/timePicker'
+import { CommonModal } from 'app/components/commonModal/commonModal'
+import { TimePicker } from 'app/components/timePicker/timePicker'
 import React from 'react'
 import { TaskItem } from 'app/DAL/types/types'
-import { DeadlineModalBody } from 'app/View/DeadlineModalBody'
+import { DeadlineModalBody } from 'app/features/task-feature/content/controllers/deadlineController/DeadlineModalBody'
 
 type DeadlineControllerProps={
   task:TaskItem

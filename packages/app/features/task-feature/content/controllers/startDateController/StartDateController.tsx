@@ -2,10 +2,10 @@ import { TaskItem } from 'app/DAL/types/types'
 import { Api } from 'app/DAL/Api'
 import { IconButton, useDisclose } from 'native-base'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
-import { CommonModal } from 'app/View/commonModal'
-import { TimePicker } from 'app/View/timePicker'
+import { CommonModal } from 'app/components/commonModal/commonModal'
+import { TimePicker } from 'app/components/timePicker/timePicker'
 import React from 'react'
-import { StartDateModalBody } from 'app/View/StartDateModalBody'
+import { StartDateModalBody } from 'app/features/task-feature/content/controllers/startDateController/StartDateModalBody'
 
 export const StartDateController = ({ task }: { task: TaskItem }) => {
   const [putTask, { isLoading }] = Api.usePutTaskMutation()

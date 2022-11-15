@@ -1,10 +1,10 @@
 import React, { memo, useEffect } from 'react'
 import { NativeSyntheticEvent, NativeTouchEvent } from 'react-native'
 import { Formik } from 'formik'
-import { Api } from '../DAL/Api'
 import { Box, Button, Center, FormControl, Heading, HStack, Input, Text, Link, VStack } from 'native-base'
 import { useRouter } from 'solito/router'
 import { ErrorType } from 'app/DAL/types/types'
+import { Api } from 'app/DAL/Api'
 
 type FormikErrorType = {
   email?: string
@@ -23,7 +23,7 @@ export const Login = memo(() => {
 
   useEffect(() => {
     if (authMeData && authMeData.resultCode === 0) {
-      // router.push('/todolist')
+      router.push('/todolist')
     }
   }, [authMeData])
 

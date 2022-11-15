@@ -1,13 +1,12 @@
 import { IconButton, Stagger, useDisclose, VStack } from 'native-base'
 import React from 'react'
 import Entypo from '@expo/vector-icons/Entypo'
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import { TaskItem } from 'app/DAL/types/types'
-import { StartDateController } from 'app/View/StartDateController'
-import { DeadlineController } from 'app/View/DeadlineController'
+import { StartDateController } from 'app/features/task-feature/content/controllers/startDateController/StartDateController'
+import { DeadlineController } from 'app/features/task-feature/content/controllers/deadlineController/DeadlineController'
 import { IStaggerStyleProps } from 'native-base/lib/typescript/components/composites/Transitions/Stagger'
-import { PriorityController } from 'app/View/PriorityController'
-import { StatusController } from 'app/View/StatusController'
+import { PriorityController } from 'app/features/task-feature/content/controllers/priorityController/PriorityController'
+import { StatusController } from 'app/features/task-feature/content/controllers/statusController/StatusController'
 
 const exit={
   translateY: 34,

@@ -1,6 +1,6 @@
 import React, { FC, memo, useCallback } from 'react'
 import { Api } from 'app/DAL/Api'
-import { HeaderContainer } from 'app/View/HeaderContainer'
+import { HeaderContainer } from 'app/components/commonHeader/HeaderContainer'
 
 type HeaderByTaskListProps = {
   todoId:string

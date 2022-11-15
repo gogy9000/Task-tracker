@@ -1,3 +1,4 @@
-import { TodoList  } from 'app/View/TodoList'
+import { TodoList } from 'app/screens/todolist-screen/TodoList'
+
 
 export default TodoList

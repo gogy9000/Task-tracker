@@ -3,8 +3,8 @@ import { IconButton, useDisclose } from 'native-base'
 import  FontAwesome  from '@expo/vector-icons/FontAwesome'
 import { TaskItem } from 'app/DAL/types/types'
 import { Api } from 'app/DAL/Api'
-import { CommonModal } from 'app/View/commonModal'
-import { PriorityModalButtons } from 'app/View/PriorityModalButtons'
+import { CommonModal } from 'app/components/commonModal/commonModal'
+import { PriorityModalButtons } from 'app/features/task-feature/content/controllers/priorityController/PriorityModalButtons'
 
 const priorityIconsEntity={
   1:{name:'thermometer-0'},

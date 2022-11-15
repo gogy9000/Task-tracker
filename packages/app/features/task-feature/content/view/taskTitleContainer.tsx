@@ -1,7 +1,7 @@
 import { TaskItem } from 'app/DAL/types/types'
 import React from 'react'
 import { Api } from 'app/DAL/Api'
-import { EditableText } from 'app/View/editableText'
+import { EditableText } from 'app/components/editableText/editableText'
 
 type TaskTitleContainerProps = {
   task: TaskItem

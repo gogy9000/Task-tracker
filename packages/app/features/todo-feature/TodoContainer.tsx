@@ -1,9 +1,9 @@
 import React, { FC, memo, useCallback, useState } from 'react'
-import { Api } from '../DAL/Api'
 import { Todo } from './Todo'
 import { Tasks } from './Tasks'
-import { FeedbackMutationType, TodoListItem } from '../DAL/types/types'
 import { Spinner } from 'native-base'
+import { Api } from 'app/DAL/Api'
+import { FeedbackMutationType, TodoListItem } from 'app/DAL/types/types'
 
 type TodoContainerProps = {
   todo: TodoListItem

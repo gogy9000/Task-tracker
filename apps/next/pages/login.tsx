@@ -1,3 +1,4 @@
-import  {Login } from 'app/View/Login'
+import { Login } from 'app/screens/login-screen/Login'
+
 
 export default Login

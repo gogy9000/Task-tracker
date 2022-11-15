@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import { HeaderLayout } from 'app/View/HeaderLayout'
+import { HeaderLayout } from 'app/components/commonHeader/HeaderLayout'
 
 type HeaderContainerProps = {
   onPressHandler: (inputValue: string) => void

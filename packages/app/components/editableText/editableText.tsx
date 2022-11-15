@@ -7,7 +7,7 @@ import {
   Text, TextArea
 } from 'native-base'
 import React, { useState } from 'react'
-import { IconButtonWrapper } from 'app/View/IconButtonWrapper'
+import { IconButtonWrapper } from 'app/components/iconButtonWrapper/IconButtonWrapper'
 import { ResponsiveValue } from 'native-base/lib/typescript/components/types'
 import { ISizes } from 'native-base/lib/typescript/theme/base/sizes'
 
