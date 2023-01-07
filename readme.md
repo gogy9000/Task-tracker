@@ -1,4 +1,24 @@
-# NativeBase + Solito Starter Template
+# Task-tracker
+<p>
+<img height="400" src="https://github.com/gogy9000/redflix/blob/master/design/design/home.png" width="200" alt="design"/>
+<img height="400" src="https://github.com/gogy9000/redflix/blob/master/design/design/movie-page.png" width="200" alt="design"/>
+<img height="400" src="https://github.com/gogy9000/redflix/blob/master/design/design/movie-edit.png" width="200" alt="design"/>
+<img height="400" src="https://github.com/gogy9000/redflix/blob/master/design/design/genre.png" width="200" alt="design"/>
+</p>
+
+## About
+
+Redflix-is an online video marketplace, with additional administration functions. In the app you can select movies by title, actor, genre, popularity, number of views, and the ones you like. If you are an administrator, you have the ability to add movies, movie descriptions, bind actors and genres to the movie, as well as a movie banner
+
+## Technology stack
+- React-native
+- Expo
+- React-query
+- React-Navigation
+- React-Hook-Form
+- NativeWind
+- Reanimated
+
 
 For a long long time the React Native community has been looking for a way to make Universal Apps a reality, and the major roadblock that was stopping us was Navigation. Solito is most probably the answer to that, and as we know NativeBase already works on all the three platforms. It’s a match made in heaven. So now your next can run with the same codebase on all the 3 platforms and we are here to show you how?
 
