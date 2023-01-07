@@ -2,7 +2,7 @@
 
 Это приложение базируется в монорепозитории. Имеет две точки входа, и одну кодовую базу написанную на react-native.
 Приложение разворачивается как Next.js приложение на Vercel, так же разворачивается как мобильное приложение на серверах EAS от Expo.
-Маршрутизация приложения основана на библиотеке SOLITO, которая по сути является обертокой над роутингом от Next.js и React-Navigation, что даетет адекватный роутинг как в веб варианте так и в мобильном варианте.
+Маршрутизация приложения основана на библиотеке SOLITO, которая по сути является обертокой над роутингом от Next.js и React-Navigation, что даeт адекватный роутинг как в веб варианте так и в мобильном варианте.
 # Task-tracker
 This application is based in a mono repository, has two entry points, and one codebase written in react-native.
 The application is deployed as a Next.js application on Vercel, and similarly deployed as a mobile application on EAS servers.
