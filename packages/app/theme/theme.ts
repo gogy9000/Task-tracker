@@ -27,7 +27,7 @@ export const customTheme = extendTheme({
     },
     Button: {
       variants: {
-        custom: customButtonTheme
+        custom: customButtonTheme,
       }
     },
     IconButton: {

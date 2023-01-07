@@ -1,5 +1,5 @@
 import React from 'react'
-import { IconButton, useDisclose } from 'native-base'
+import { useDisclose } from 'native-base'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import { TaskItem } from 'app/DAL/types/types'
 import { Api } from 'app/DAL/Api'
@@ -10,6 +10,7 @@ import {
 import {
   priorityIconsEntity
 } from 'app/features/task-feature/content/controllers/priorityController/PriorityIconsEntity'
+import { ButtonWithLoader } from 'app/components/activityIconButton/ButtonWithLoader'
 
 type PriorityControllerProps = {
   task: TaskItem
@@ -26,18 +27,15 @@ export const PriorityController: React.FC<PriorityControllerProps> = ({ task }) 
 
   return (
     <>
-      <IconButton onPressOut={onToggle} mb='4' variant='solid' bg='teal.400' colorScheme='teal'
-                  borderRadius='full'
-                  _icon={{
-
-                    as: FontAwesome, name: priorityIconsEntity[task.priority].name,
-                    color: 'warmGray.50',
-                    _web: { size: '6' }
-                  }}
+      <ButtonWithLoader isLoading={isLoading} onPressOut={onToggle}
+                        colorScheme={priorityIconsEntity[task.priority].colorScheme}
+                        _icon={{ as: FontAwesome,
+                            name: priorityIconsEntity[task.priority].name,
+      }}
       />
       <CommonModal
         modalHeader={'Select priority'}
-        modalFooterContent={<PriorityModalButtons onPressHandler={selectPriority}/>}
+        modalFooterContent={<PriorityModalButtons onPressHandler={selectPriority} />}
         showModal={isOpen}
         onCloseCallback={onToggle} />
     </>

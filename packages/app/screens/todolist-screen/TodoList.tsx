@@ -31,14 +31,14 @@ export const TodoList = AuthRedirect(memo(() => {
 
   const { data: todoList, isLoading, error, refetch } = Api.useGetTodoListQuery()
   const { changeCurrentTodo } = useActions()
-  const router = useRouter()
+  const {push} = useRouter()
   const err = error as ErrorType
 
   const render: ListRenderItem<TodoListItem> = ({ item }) => {
 
     const onPress = () => {
       changeCurrentTodo(item)
-      router.push('/taskList')
+      push(`/taskList`)
     }
 
     return (

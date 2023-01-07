@@ -8,8 +8,12 @@ import { AuthRedirect } from 'app/HOC/AuthRedirect'
 import { EmptyContent } from 'app/components/emptyContent/EmptyContent'
 import { HeaderByTaskList } from 'app/features/task-feature/header/HeaderByTaskList'
 import { useAppSelector } from 'app/CustomHooks/CustomHooks'
+import { createParam } from 'solito'
 
 export const TaskList = AuthRedirect(memo(() => {
+  const {useParam}=createParam<{todoid:string}>()
+  const [todoId]=useParam('todoid')
+  console.log(todoId)
   const todo = useAppSelector(state => state.navigateParamsState.currentTodo)
   const { data, isLoading, refetch, error } = Api.useGetTasksQuery({ todolistId: todo._id })
   const taskList = data?.items

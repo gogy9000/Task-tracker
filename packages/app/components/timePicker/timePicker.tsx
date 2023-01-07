@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { FC, useState } from 'react'
 import { Platform } from 'react-native'
 import { Button, HStack } from 'native-base'
 import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker'
-
-export const TimePicker = ({ onRightButton, rightButtonTitle }) => {
+interface ITimePickerProps {
+  onRightButton:(date:Date)=>void
+  rightButtonTitle:string
+}
+export const TimePicker:FC<ITimePickerProps> = ({ onRightButton, rightButtonTitle }) => {
   const [date, setDate] = useState<Date>(new Date())
   const [mode, setMode] = useState<'date' | 'time'>('date')
   const [show, setShow] = useState(false)

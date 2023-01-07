@@ -1,16 +1,17 @@
 import { Api } from 'app/DAL/Api'
-import { IconButton, useDisclose } from 'native-base'
+import { useDisclose } from 'native-base'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import { CommonModal } from 'app/components/commonModal/commonModal'
 import { TimePicker } from 'app/components/timePicker/timePicker'
 import React from 'react'
 import { TaskItem } from 'app/DAL/types/types'
 import { DeadlineModalBody } from 'app/features/task-feature/content/controllers/deadlineController/DeadlineModalBody'
+import { ButtonWithLoader } from 'app/components/activityIconButton/ButtonWithLoader'
 
-type DeadlineControllerProps={
-  task:TaskItem
+type DeadlineControllerProps = {
+  task: TaskItem
 }
-export const DeadlineController:React.FC<DeadlineControllerProps> = ({ task }) => {
+export const DeadlineController: React.FC<DeadlineControllerProps> = ({ task }) => {
   const [putTask, { isLoading }] = Api.usePutTaskMutation()
   const { isOpen, onToggle } = useDisclose()
 
@@ -22,15 +23,13 @@ export const DeadlineController:React.FC<DeadlineControllerProps> = ({ task }) =
 
   return (
     <>
-      <IconButton mb='4' variant='solid' bg='red.400' colorScheme='yellow'
-                  onPressOut={onToggle}
-                  borderRadius='full'
-                  _icon={{
-                    as: MaterialCommunityIcons,
-                    name: 'consolidate',
-                    color: 'warmGray.50',
-                    _web: { size: '6' }
-                  }}
+      <ButtonWithLoader colorScheme='red'
+                        isLoading={isLoading}
+                        onPressOut={onToggle}
+                        _icon={{
+                            as: MaterialCommunityIcons,
+                            name: 'consolidate'
+                          }}
       />
       <CommonModal showModal={isOpen}
                    onCloseCallback={onToggle}
