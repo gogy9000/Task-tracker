@@ -19,7 +19,7 @@ The application routing is based on SOLITO library, which is essentially a wrapp
 ## Technology stack
 - React-native
 - Expo
-- Redux(RTC-query)
+- Redux(RTK-query)
 - Solito
 - Formik
 - NativeBase
