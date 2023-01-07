@@ -1,7 +1,8 @@
 {
   "presets": [
     "next/babel",
-    ["babel-preset-expo", { "jsxRuntime": "automatic" }]
+    ["babel-preset-expo", { "jsxRuntime": "automatic" }],
+    "@expo/next-adapter/babel"
   ],
   "plugins": [
     ["@babel/plugin-proposal-class-properties", { "loose": true }],

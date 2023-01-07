@@ -1,5 +1,9 @@
 import { NativeNavigation } from 'app/navigation/native'
 import { CommonProvider } from 'app/provider'
+import {useColorModeValue,StatusBar } from 'native-base'
+import React from 'react'
+
+
 // import * as Sentry from 'sentry-expo'
 //
 // import * as Sentry from 'sentry-expo';
@@ -11,9 +15,7 @@ import { CommonProvider } from 'app/provider'
 // });
 
 export default function App() {
-
-
-    return (
+  return (
       <CommonProvider>
         <NativeNavigation />
       </CommonProvider>

@@ -1,38 +1,55 @@
-// import { makeTheme } from 'dripsy'
-//
-// export const theme = makeTheme({
-//   colors: {
-//     $text: '#000',
-//     $background: '#fff',
-//     $primary: 'tomato',
-//   },
-//   space: {
-//     // recommended: set 0 first, then double for consistent nested spacing
-//     $0: 0,
-//     $1: 4,
-//     $2: 8,
-//     $3: 16,
-//     $4: 32,
-//     $5: 64,
-//     $6: 128,
-//     $7: 256,
-//   },
-//   fontSizes: {
-//     $0: 12,
-//     $1: 14,
-//     $2: 16,
-//     $3: 18,
-//     $4: 24,
-//     $5: 28,
-//     $6: 32,
-//   },
-//   text: {
-//     h1: {
-//       fontSize: '$2', // 16px, from `fontSizes` above
-//     },
-//     p: {
-//       fontSize: '$0', // 12px from `fontSizes`
-//       mb: '$3', // 16px from `space`
-//     },
-//   },
-// })
+import { extendTheme, INativebaseConfig } from 'native-base'
+import { customIconButtonTheme } from 'app/theme/customIconButtonTheme'
+import { customInputTheme } from 'app/theme/customInputTheme'
+import { customButtonTheme } from 'app/theme/customButtonTheme'
+
+export const customTheme = extendTheme({
+  config: {
+    useSystemColorMode: false,
+    initialColorMode: 'dark'
+
+  },
+  components: {
+    Text: {
+      variants: {
+        primary: {
+          fontSize: 'xl',
+          _light: { color: 'warmGray.500' },
+          _dark:{color: 'warmGray.400'},
+          fontWeight: '700'
+        },
+        secondary: {
+          fontSize: 'lg',
+          _light: { color: 'warmGray.500' },
+          fontWeight: '500'
+        }
+      }
+    },
+    Button: {
+      variants: {
+        custom: customButtonTheme,
+      }
+    },
+    IconButton: {
+      variants: {
+        custom: customIconButtonTheme
+      }
+    },
+    Input: {
+      variants: {
+        custom: customInputTheme
+      }
+    }
+  }
+})
+
+type CustomThemeType = typeof customTheme;
+
+export const config: INativebaseConfig = {
+  strictMode: 'error'
+}
+
+declare module 'native-base' {
+  interface ICustomTheme extends CustomThemeType {
+  }
+}

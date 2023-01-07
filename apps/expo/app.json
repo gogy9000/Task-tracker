@@ -3,7 +3,6 @@
     "name": "mini-trello",
     "slug": "solito-blank",
     "version": "1.0.0",
-    "sdkVersion": "44.0.0",
     "scheme": "mini-trello",
     "icon": "./assets/icon.png",
     "splash": {

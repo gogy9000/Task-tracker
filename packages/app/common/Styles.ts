@@ -1,5 +1,5 @@
 import {StyleProp, StyleSheet, TextStyle} from "react-native";
-import {FONTSIZE_PRIMARY, HEIGHT, PADDING, TEXTCOLOR_PRIMARY, WIDTH} from "./Variables";
+import {FONTSIZE_PRIMARY, TEXTCOLOR_PRIMARY} from "./Variables";
 
 export const commonBorderStyle=(borderRadius:number=10):StyleProp<TextStyle>=>({
     borderStyle: "solid",
@@ -10,8 +10,6 @@ export const commonBorderStyle=(borderRadius:number=10):StyleProp<TextStyle>=>({
 
 export const commonStyles=StyleSheet.create({
     modalInputStyle:{
-        height:(HEIGHT-PADDING*2)/19,
-        width:(WIDTH-PADDING*2)/2,
         paddingHorizontal:10,
         fontSize:FONTSIZE_PRIMARY,
         color:TEXTCOLOR_PRIMARY,

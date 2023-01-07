@@ -1,4 +1,30 @@
-# NativeBase + Solito Starter Template
+# Task-tracker
+
+Это приложение базируется в монорепозитории. Имеет две точки входа, и одну кодовую базу написанную на react-native.
+Приложение разворачивается как Next.js приложение на Vercel, так же разворачивается как мобильное приложение на серверах EAS от Expo.
+Маршрутизация приложения основана на библиотеке SOLITO, которая по сути является обертокой над роутингом от Next.js и React-Navigation, что даетет адекватный роутинг как в веб варианте так и в мобильном варианте.
+# Task-tracker
+This application is based in a mono repository, has two entry points, and one codebase written in react-native.
+The application is deployed as a Next.js application on Vercel, and similarly deployed as a mobile application on EAS servers.
+The application routing is based on SOLITO library, which is essentially a wrapper over Next.js and React-Navigation routing, which gives adequate routing in both web and mobile variants.
+
+
+<p>
+<img height="400" src="https://github.com/gogy9000/Task-tracker/blob/update_expo/design/native/photo_2023-01-07_14-58-43.jpg" width="200" alt="design"/>
+<img height="400" src="https://github.com/gogy9000/Task-tracker/blob/update_expo/design/native/photo_2023-01-07_14-58-46.jpg" width="200" alt="design"/>
+<img height="400" src="https://github.com/gogy9000/Task-tracker/blob/update_expo/design/native/photo_2023-01-07_14-58-50.jpg" width="200" alt="design"/>
+<img height="400" src="https://github.com/gogy9000/Task-tracker/blob/update_expo/design/native/photo_2023-01-07_14-58-55.jpg" width="200" alt="design"/>
+</p>
+
+## Technology stack
+- React-native
+- Expo
+- Redux
+- Solito
+- Formik
+- NativeBase
+- Reanimated
+
 
 For a long long time the React Native community has been looking for a way to make Universal Apps a reality, and the major roadblock that was stopping us was Navigation. Solito is most probably the answer to that, and as we know NativeBase already works on all the three platforms. It’s a match made in heaven. So now your next can run with the same codebase on all the 3 platforms and we are here to show you how?
 

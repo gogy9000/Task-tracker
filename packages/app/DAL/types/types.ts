@@ -27,12 +27,12 @@ export type TaskItem = {
   title: string
   status: number
   priority: number
-  startDate: string | null
-  deadline: string | null
+  startDate: Date | null
+  deadline: Date | null
   _id: string
   todoListId: string
   order: number
-  addedDate: string
+  addedDate: Date
 }
 export type LoginPayloadType = {
   email: string
@@ -56,8 +56,7 @@ export type FeedbackMutationType = {
   'status': string,
 }
 export type ErrorType = {
-  'data': {
-    'message': string,
-  },
+  'data': unknown,
   'status': number,
+  'message': string,
 }
